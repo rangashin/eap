@@ -12,22 +12,19 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
-            <!-- Email Address -->
+            <!-- Username -->
             <div>
-                <x-input-label for="email" :value="__('Email')" />
-                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                <x-input-label for="username" :value="__('Username')" />
+                <x-text-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" autofocus />
+                <x-input-error :messages="$errors->get('username')" class="mt-2" />
             </div>
 
             <!-- Password -->
             <div class="mt-4">
                 <x-input-label for="password" :value="__('Password')" />
-
                 <x-text-input id="password" class="block mt-1 w-full"
                                 type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-
+                                name="password"/>
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
             </div>
 
@@ -45,7 +42,18 @@
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
+            </div>
 
+            <div class="flex items-center justify-end mt-4">
+                <p class="text-sm text-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    {{ __('Don\'t have an account? ') }}
+                </p> &nbsp;
+                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('register') }}">
+                    {{ __('Sign up') }}
+                </a>
+            </div>
+            
+            <div class="flex items-center justify-end mt-4">
                 <x-primary-button class="ml-3">
                     {{ __('Log in') }}
                 </x-primary-button>
