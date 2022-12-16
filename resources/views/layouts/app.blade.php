@@ -13,6 +13,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -34,5 +35,18 @@
         </div>
 
         <script src="../path/to/flowbite/dist/flowbite.js"></script>
+        <script src="../path/to/flowbite/dist/datepicker.js"></script>
+        <script src="https://unpkg.com/flowbite@1.5.5/dist/datepicker.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#table-search-users").on("keyup", function() {
+                    var value = $(this).val().toLowerCase();
+                    $("#mainTable tr").filter(function() {
+                        $('#head').show();
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                });
+            });
+        </script>
     </body>
 </html>

@@ -20,5 +20,6 @@
         </div>
 
         <script src="../path/to/flowbite/dist/flowbite.js"></script>
+        <script src="../path/to/flowbite/dist/datepicker.js"></script>
     </body>
 </html>

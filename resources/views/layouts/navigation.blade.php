@@ -12,9 +12,16 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
+                    @if (in_array(auth()->user()->role_id, [2, 3]))
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                    @elseif (auth()->user()->role_id == 4)
+                        <x-nav-link :href="route('admin.user.index')" :active="request()->routeIs('admin.user.index')">
+                            {{ __('User') }}
+                        </x-nav-link>
+                    @endif
+                    
                 </div>
             </div>
 
@@ -37,6 +44,12 @@
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Account') }}
                         </x-dropdown-link>
+
+                        @if (in_array(auth()->user()->role_id, [2, 3, 5, 6, 7]))
+                            <x-dropdown-link :href="route('account.edit')">
+                                {{ __('Profile') }}
+                            </x-dropdown-link>
+                        @endif
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
@@ -67,9 +80,16 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
+            @if (in_array(auth()->user()->role_id, [2, 3]))
+                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    {{ __('Dashboard') }}
+                </x-responsive-nav-link>
+            @elseif (auth()->user()->role_id == 4)
+                <x-responsive-nav-link :href="route('admin.user.index')" :active="request()->routeIs('admin.user.index')">
+                    {{ __('User') }}
+                </x-responsive-nav-link>
+            @endif
+            
         </div>
 
         <!-- Responsive Settings Options -->
@@ -83,6 +103,12 @@
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Account') }}
                 </x-responsive-nav-link>
+
+                @if (in_array(auth()->user()->role_id, [2, 3, 5, 6, 7]))
+                    <x-responsive-nav-link :href="route('account.edit')">
+                        {{ __('Profile') }}
+                    </x-responsive-nav-link>
+                @endif
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">

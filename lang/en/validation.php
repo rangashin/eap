@@ -174,6 +174,17 @@ return [
     'attributes' => [
         'contactno' => 'contact number',
         'email' => 'email address',
+        'fullname' => 'full name',
+        'acctype' => 'account type',
+        'leaderfullname' => 'full name',
+        'leaderaddress' => 'address',
+        'leaderbirthdate' => 'birthdate',
+        'leadersex' => 'sex',
+        'kawan_id' => 'kawan',
+        'subadminfullname' => 'full name',
+        'subadminaddress' => 'address',
+        'subadminbirthdate' => 'birthdate',
+        'role_id' => 'role',
     ],
 
 ];

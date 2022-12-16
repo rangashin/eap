@@ -13,9 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('user_profiles', function (Blueprint $table) {
             $table->id();
-            $table->string('roletype', 20);
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('fullname', 45);
+            $table->string('address', 100);
+            $table->date('birthdate');
+            $table->string('acctype', 10);
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('user_profile');
     }
 };

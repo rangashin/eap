@@ -25,8 +25,6 @@ class VerifyEmailController extends Controller
             event(new Verified($request->user()));
         }
 
-        // RETURN ROUTE DASHBOARD!!!
-        return view('dashboard-impo');
-        // return redirect()->intended(RouteServiceProvider::HOME.'?verified=1');
+        return redirect()->intended(RouteServiceProvider::HOME.'?verified=1');
     }
 }

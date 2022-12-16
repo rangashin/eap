@@ -10,12 +10,20 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable //implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
     public function role(){
         return $this->belongsTo(Role::class, 'role_id');
+    }
+
+    public function userProfile(){
+        return $this->hasOne(UserProfile::class);
+    }
+
+    public function adminProfile(){
+        return $this->hasOne(AdminProfile::class);
     }
 
     /**
