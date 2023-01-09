@@ -26,6 +26,10 @@ class User extends Authenticatable //implements MustVerifyEmail
         return $this->hasOne(AdminProfile::class);
     }
 
+    public function applicant(){
+        return $this->hasOne(Applicant::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *

@@ -155,8 +155,32 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'file_input_picture' => [
+            'required' => 'The :attribute is required.',
+        ],
+        'file_input_baptismal' => [
+            'required_if' => 'The :attribute is required.',
+        ],
+        'file_input_birth' => [
+            'required_if' => 'The :attribute is required.',
+        ],
+        'file_input_regi_report' => [
+            'required_if' => 'The :attribute is required.',
+        ],
+        'file_input_regi' => [
+            'required_if' => 'The :attribute is required.',
+        ],
+        'file_input_report' => [
+            'required_if' => 'The :attribute is required.',
+        ],
+        'fathername' => [
+            'required_without_all' => 'At least one parent/guardian information is required.'
+        ],
+        'mothername' => [
+            'required_without_all' => 'At least one parent/guardian information is required.'
+        ],
+        'guardianname' => [
+            'required_without_all' => 'At least one parent/guardian information is required.'
         ],
     ],
 
@@ -185,6 +209,59 @@ return [
         'subadminaddress' => 'address',
         'subadminbirthdate' => 'birthdate',
         'role_id' => 'role',
+        'genave' => 'general average',
+        'elemtohsgenave' => 'general average',
+        'collegegenave' => 'general average',
+        'scholaryears' => 'scholar year\'s',
+        'applicantfirstname' => 'applicant\'s first name',
+        'applicantmiddlename' => 'applicant\'s middle name',
+        'applicantlastname' => 'applicant\'s last name',
+        'applicantsuffix' => 'applicant\'s suffix',
+        'applicantbirthdate' => 'applicant\'s birthdate',
+        'applicantsex' => 'applicant\'s sex',
+        'applicantcontactno' => 'applicant\'s contact number',
+        'applicantaddress' => 'applicant\'s address',
+        'gradeyearorlevel' => 'incoming grade year level',
+        'schoolname' => 'school name',
+        'schooladdress' => 'school address',
+        'fathername' => 'father\'s name',
+        'fatherage' => 'father\'s age',
+        'fatheroccupation' => 'father\'s occupation',
+        'fatherincome' => 'father\'s income',
+        'fathercontactno' => 'father\'s contact number',
+        'fatherreligion' => 'father\'s name',
+        'mothername' => 'mother\'s name',
+        'motherage' => 'mother\'s age',
+        'motheroccupation' => 'mother\'s occupation',
+        'motherincome' => 'mother\'s income',
+        'mothercontactno' => 'mother\'s contact number',
+        'motherreligion' => 'mother\'s name',
+        'parentstatus' => 'parent status',
+        'guardianname' => 'guardian\'s name',
+        'guardiancontactno' => 'guardian\'s contact number',
+        'pwdname.*' => 'pwd family member\'s name',
+        'pwdage.*' => 'pwd family member\'s age',
+        'siblingname.*' => 'sibling\'s name',
+        'siblingage.*' => 'sibling\'s age',
+        'siblingyearorwork.*' => 'sibling\'s work-study',
+        'siblingsnumberofworking' => 'number of working siblings',
+        'siblingstotalincome' => 'sibling\'s total income',
+        'applicantministryans' => 'answer to this',
+        'applicantministry' => 'applicant\'s ministry',
+        'parentapplicantministryans' => 'answer to this',
+        'parentapplicantministry' => 'parent of applicant\'s ministry',
+        'relativename.*' => 'relative\'s name',
+        'relativeage.*' => 'relative\'s age',
+        'relativerelation.*' => 'relative\'s relation to applicant',
+        'relativework.*' => 'relative\'s work',
+        'resubmissionmessage' => 'resubmission message',
+        'file_input_picture' => '2X2 picture',
+        'file_input_baptismal' => 'baptismal file',
+        'file_input_birth' => 'birth certificate',
+        'file_input_regi_report' => 'registration card or report form', 
+        'file_input_regi' => 'registration form',
+        'file_input_report' => 'report card',
+        'applicantstatus' => 'applicant status (dropdown)',
     ],
 
 ];

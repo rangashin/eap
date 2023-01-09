@@ -44,7 +44,7 @@ class ManageUserController extends Controller
     {
         $request->validated();
 
-        User::create([
+        $user = User::create([
             'username' => $request->username,
             'email' => $request->email,
             'contactno' => $request->contactno,
@@ -52,7 +52,7 @@ class ManageUserController extends Controller
             'role_id' => $request->role_id,
         ]);
 
-        return redirect()->route('user.index')->with('success', 'User Has Been Created.');
+        return redirect()->route('admin.user.index')->with('success', 'User Has Been Created.');
     }
 
     /**
@@ -74,7 +74,7 @@ class ManageUserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.user-edit',compact('user'));
+        return view('admin.user-edit', compact('user'));
     }
 
     /**
@@ -94,7 +94,7 @@ class ManageUserController extends Controller
             'contactno' => $request->contactno,
         ]);
 
-        return redirect()->route('user.index')->with('success', $user->username.' Has Been Updated');
+        return redirect()->route('admin.user.index')->with('success', $user->username.' Has Been Updated');
     }
 
     /**
@@ -107,6 +107,6 @@ class ManageUserController extends Controller
     {
         $username = $user->username;
         $user->delete();
-        return redirect()->route('user.index')->with('success', $username.'  Has Been Deleted.');
+        return redirect()->route('admin.user.index')->with('success', $username.'  Has Been Deleted.');
     }
 }

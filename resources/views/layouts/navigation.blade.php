@@ -16,10 +16,23 @@
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('registration.edit')" :active="request()->routeIs('registration.edit')">
+                            {{ __('Registration') }}
+                        </x-nav-link>
                     @elseif (auth()->user()->role_id == 4)
                         <x-nav-link :href="route('admin.user.index')" :active="request()->routeIs('admin.user.index')">
                             {{ __('User') }}
                         </x-nav-link>
+                        <x-nav-button-link id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="cursor-pointer" :active="request()->routeIs('admin.applicant.index')">Applicants </x-nav-button-link>
+                        <!-- Dropdown menu -->
+                        <div id="dropdownNavbar" class="z-10  hidden  font-normal bg-white  divide-gray-100 rounded shadow w-44 dark:bg-gray-700 dark:divide-gray-600  ">
+                            <ul class="text-sm top-0 text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
+                                <li><a href="{{ route('admin.applicant.index') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All Applicants</a></li>
+                                <li><a href="{{ route('admin.applicant.review.index') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Under Review</a></li>
+                                <li><a href="{{ route('admin.applicant.selected.index') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Selected for Interview</a></li>
+                                <li><a href="{{ route('admin.applicant.rejected.index') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Rejected</a></li>
+                            </ul>
+                        </div>
                     @endif
                     
                 </div>
@@ -83,6 +96,9 @@
             @if (in_array(auth()->user()->role_id, [2, 3]))
                 <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                     {{ __('Dashboard') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('registration.edit')" :active="request()->routeIs('registration.edit')">
+                    {{ __('Registration') }}
                 </x-responsive-nav-link>
             @elseif (auth()->user()->role_id == 4)
                 <x-responsive-nav-link :href="route('admin.user.index')" :active="request()->routeIs('admin.user.index')">

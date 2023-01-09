@@ -25,25 +25,25 @@
                             @method('patch')
 
                             <div>
-                                <x-input-label for="subadminfullname" :value="__('Full Name')" />
+                                <x-input-label for="subadminfullname" :value="__('Full Name')" class="uppercase"/>
                                 <x-text-input id="subadminfullname" name="subadminfullname" type="text" class="mt-1 block w-full uppercase" value="{{ old('subadminfullname') }}" autofocus autocomplete="name" />
                                 <x-input-error class="mt-2" :messages="$errors->get('subadminfullname')" />
                             </div>
 
                             <div>
-                                <x-input-label for="subadminaddress" :value="__('Address')" />
+                                <x-input-label for="subadminaddress" :value="__('Address')" class="uppercase"/>
                                 <x-text-input id="subadminaddress" name="subadminaddress" type="text" class="mt-1 block w-full uppercase" value="{{ old('subadminaddress') }}" autocomplete="address" />
                                 <x-input-error class="mt-2" :messages="$errors->get('subadminaddress')" />
                             </div>
 
                             <div>
-                                <x-input-label for="subadminbirthdate" :value="__('Birthdate (year-month-day)')" />
+                                <x-input-label for="subadminbirthdate" :value="__('Birthdate (year-month-day)')" class="uppercase"/>
                                 <x-text-input datepicker datepicker-autohide datepicker-format="yyyy-mm-dd" id="subadminbirthdate" name="subadminbirthdate" type="text" class="mt-1 block w-full" value="{{ old('subadminbirthdate') }}" autocomplete="birthdate" />
                                 <x-input-error class="mt-2" :messages="$errors->get('subadminbirthdate')" />
                             </div>
 
                             <div>
-                                <x-input-label for="" :value="__('Admin Type')" />
+                                <x-input-label for="" :value="__('Admin Type')" class="uppercase"/>
                                 <x-text-input id="" name="" type="text" class="mt-1 block w-full bg-slate-200 uppercase" value="{{ auth()->user()->role->roletype }}" disabled/>
                             </div>
 

@@ -15,17 +15,17 @@ class KawanSeeder extends Seeder
      */
     public function run()
     {
-        Kawan::create(['id' => 'AH', 'kawanname' => 'AYALA HILLSIDE']);
-        Kawan::create(['id' => 'AV', 'kawanname' => 'ALPHA VILLAGE']);
-        Kawan::create(['id' => 'C', 'kawanname' => 'CENTRO']);
-        Kawan::create(['id' => 'CG', 'kawanname' => 'CH GOLF']);
-        Kawan::create(['id' => 'DM', 'kawanname' => 'DIVINE MERCY']);
-        Kawan::create(['id' => 'OLL-S', 'kawanname' => 'OUR LADY OF LOURDES - SOFIA']);
-        Kawan::create(['id' => 'SG', 'kawanname' => 'SITIO GABIHAN']);
-        Kawan::create(['id' => 'SK', 'kawanname' => 'SAPANG KANGKONG']);
-        Kawan::create(['id' => 'SN', 'kawanname' => 'STO. NIÑO']);
-        Kawan::create(['id' => 'SP', 'kawanname' => 'SITIO PAYONG']);
-        Kawan::create(['id' => 'STCJ-H', 'kawanname' => 'ST. THERESE OF THE CHILD JESUS - HOBART']);
-        Kawan::create(['id' => 'VH', 'kawanname' => 'VISAYAN HILLS']);
+        Kawan::create(['id' => 'AH', 'kawanname' => 'Ayala Hillside']);
+        Kawan::create(['id' => 'AV', 'kawanname' => 'Alpha Village']);
+        Kawan::create(['id' => 'C', 'kawanname' => 'Centro']);
+        Kawan::create(['id' => 'CG', 'kawanname' => 'CH Golf ']);
+        Kawan::create(['id' => 'DM', 'kawanname' => 'Divine Mercy']);
+        Kawan::create(['id' => 'OLL-S', 'kawanname' => 'Our Lady of Lourdes - Sofia']);
+        Kawan::create(['id' => 'SG', 'kawanname' => 'Sitio Gabihan']);
+        Kawan::create(['id' => 'SK', 'kawanname' => 'Sapang Kangkong']);
+        Kawan::create(['id' => 'SN', 'kawanname' => 'Sto. Niño']);
+        Kawan::create(['id' => 'SP', 'kawanname' => 'Sitio Payong']);
+        Kawan::create(['id' => 'STCJ-H', 'kawanname' => 'St. Therese of the Child Jesus - Hobart']);
+        Kawan::create(['id' => 'VH', 'kawanname' => 'Visayan Hills']);
     }
 }

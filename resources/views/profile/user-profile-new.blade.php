@@ -24,25 +24,25 @@
                             @csrf
                             @method('patch')
                             <div>
-                                <x-input-label for="fullname" :value="__('Full Name')" />
+                                <x-input-label for="fullname" :value="__('Full Name')" class="uppercase" />
                                 <x-text-input id="fullname" name="fullname" type="text" class="mt-1 block w-full uppercase" value="{{ old('fullname') }}" autofocus autocomplete="name" />
                                 <x-input-error class="mt-2" :messages="$errors->get('fullname')" />
                             </div>
 
                             <div>
-                                <x-input-label for="address" :value="__('Address')" />
+                                <x-input-label for="address" :value="__('Address')" class="uppercase"/>
                                 <x-text-input id="address" name="address" type="text" class="mt-1 block w-full uppercase" value="{{ old('address') }}" autocomplete="address" />
                                 <x-input-error class="mt-2" :messages="$errors->get('address')" />
                             </div>
 
                             <div>
-                                <x-input-label for="birthdate" :value="__('Birthdate (year-month-day)')" />
+                                <x-input-label for="birthdate" :value="__('Birthdate (year-month-day)')" class="uppercase"/>
                                 <x-text-input datepicker datepicker-autohide datepicker-format="yyyy-mm-dd" id="birthdate" name="birthdate" type="text" class="mt-1 block w-full" value="{{ old('birthdate') }}" autocomplete="birthdate" />
                                 <x-input-error class="mt-2" :messages="$errors->get('birthdate')" />
                             </div>
 
                             <div>
-                                <x-input-label for="acctype" :value="__('Account Type')" />
+                                <x-input-label for="acctype" :value="__('Account Type')" class="uppercase"/>
                                 <select id="acctype" name="acctype" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
                                     <option {{ old('acctype')  == '' ? 'selected' : '' }} value="" disabled selected hidden></option>
                                     <option {{ old('acctype') == 'STUDENT' ? 'selected' : '' }} value="STUDENT">STUDENT</option>

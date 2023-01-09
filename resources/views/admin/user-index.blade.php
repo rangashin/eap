@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Manage User') }}
+            {{ __('Manage Users') }}
         </h2>
     </x-slot>
 
@@ -27,9 +27,8 @@
                             <input type="text" id="table-search-users" class="block p-2 pl-10 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Search for users">
                         </div>
                     </div>
-
+                    
                     <table class="w-full text-sm text-left text-gray-500" id="mainTable">
-                        @forelse ($users as $user)
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                             <tr id="head"> 
                                 <th scope="col" class="py-3 px-6">Username</th>
@@ -39,33 +38,35 @@
                                 <th scope="col" class="py-3 px-6 text-center">Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr class="bg-white border-b hover:bg-gray-50">
-                                <td class="py-4 px-6 space-x-4">
-                                    <a href="{{ route('admin.user.show', $user->id) }}" class="text-gray-900 hover:text-yellow-300">
-                                        <div class="text-base font-semibold">{{ $user->username }}</div>
-                                    </a>
-                                </td>
-                                <td class="py-4 px-6 space-x-4">{{ $user->contactno }}</td>
-                                <td class="py-4 px-6 space-x-4">{{ $user->email }}</td>
-                                <td class="py-4 px-6 space-x-4">{{ $user->role->roletype }}</td>
-                                <td class="flex py-4 px-6 space-x-4 justify-center">              
-                                    <x-a-link :href="route('admin.user.edit', $user->id)">{{ __('Edit') }}</x-a-link>
-                                    <form action="{{ route('admin.user.destroy', $user->id) }}" method="post" class="cursor-pointer">
-                                        @csrf
-                                        @method('DELETE')
-                                        <x-a-link-red>   
-                                            <button type="submit">{{ __('Delete') }}</button>   
-                                        </x-a-link-red>
-                                    </form>
-                                </td>
-                            </tr>
-                        </tbody>
-                        @empty
+                        @foreach ($users as $user)
+                            <tbody>
+                                <tr class="bg-white border-b hover:bg-gray-50">
+                                    <td class="py-4 px-6 space-x-4">
+                                        <a href="{{ route('admin.user.show', $user->id) }}" class="text-gray-900 hover:text-yellow-300">
+                                            <div class="text-base font-semibold">{{ $user->username }}</div>
+                                        </a>
+                                    </td>
+                                    <td class="py-4 px-6 space-x-4">{{ $user->contactno }}</td>
+                                    <td class="py-4 px-6 space-x-4">{{ $user->email }}</td>
+                                    <td class="py-4 px-6 space-x-4">{{ $user->role->roletype }}</td>
+                                    <td class="flex py-4 px-6 space-x-4 justify-center">              
+                                        <x-a-link :href="route('admin.user.edit', $user->id)">{{ __('Edit') }}</x-a-link>
+                                        <form action="{{ route('admin.user.destroy', $user->id) }}" method="post" class="cursor-pointer">
+                                            @csrf
+                                            @method('DELETE')
+                                            <x-a-link-red>   
+                                                <button type="submit">{{ __('Delete') }}</button>   
+                                            </x-a-link-red>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        @endforeach
+                        @if (count($users) == 0)
                             <div class="py-6 px-3 bg-white  hover:bg-gray-50">
                                 <p class="font-black text-xl text-gray-700">{{ 'No data' }}</p>
                             </div>
-                        @endforelse
+                        @endif
                     </table>
                 </div>
             </div>

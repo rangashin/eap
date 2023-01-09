@@ -25,7 +25,7 @@
                             @csrf
                             @method('patch')
                             <div>
-                                <x-input-label for="kawan_id" :value="__('Kawan')" />
+                                <x-input-label for="kawan_id" :value="__('Kawan')" class="uppercase"/>
                                 <select class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm uppercase" name="kawan_id" id="kawan_id" autofocus>
                                     <option {{ old('kawan_id', $user->kawan_id) == '' ? 'selected' : '' }} value="" disabled selected hidden></option>
                                     <option {{ old('kawan_id', $user->kawan_id) == 'AH' ? 'selected' : '' }} value="AH">Ayala Hillside</option>
@@ -41,29 +41,29 @@
                                     <option {{ old('kawan_id', $user->kawan_id) == 'STCJ-H' ? 'selected' : '' }} value="STCJ-H">St. Therese of the Child Jesus - Hobart</option>
                                     <option {{ old('kawan_id', $user->kawan_id) == 'VH' ? 'selected' : '' }} value="VH">Visayan Hills</option>
                                 </select>
-                                <x-input-error :messages="$errors->get('kawan_id')" class="mt-2" />
+                                <x-input-error :messages="$errors->get('kawan_id')" class="mt-2" class="uppercase"/>
                             </div>
 
                             <div>
-                                <x-input-label for="leaderfullname" :value="__('Full Name')" />
+                                <x-input-label for="leaderfullname" :value="__('Full Name')" class="uppercase"/>
                                 <x-text-input id="leaderfullname" name="leaderfullname" type="text" class="mt-1 block w-full uppercase" value="{{ old('leaderfullname', $user->adminfullname) }}" autocomplete="name" />
                                 <x-input-error class="mt-2" :messages="$errors->get('leaderfullname')" />
                             </div>
 
                             <div>
-                                <x-input-label for="leaderaddress" :value="__('Address')" />
+                                <x-input-label for="leaderaddress" :value="__('Address')" class="uppercase"/>
                                 <x-text-input id="leaderaddress" name="leaderaddress" type="text" class="mt-1 block w-full uppercase" value="{{ old('leaderaddress', $user->adminaddress) }}" autocomplete="address" />
                                 <x-input-error class="mt-2" :messages="$errors->get('leaderaddress')" />
                             </div>
 
                             <div>
-                                <x-input-label for="leaderbirthdate" :value="__('Birthdate (year-month-day)')" />
+                                <x-input-label for="leaderbirthdate" :value="__('Birthdate (year-month-day)')" class="uppercase"/>
                                 <x-text-input datepicker datepicker-autohide datepicker-format="yyyy-mm-dd" id="leaderbirthdate" name="leaderbirthdate" type="text" class="mt-1 block w-full" value="{{ old('leaderbirthdate', $user->adminbirthdate) }}" autocomplete="birthdate" />
                                 <x-input-error class="mt-2" :messages="$errors->get('leaderbirthdate')" />
                             </div>
 
                             <div>
-                                <x-input-label for="leadersex" :value="__('Sex')" />
+                                <x-input-label for="leadersex" :value="__('Sex')" class="uppercase"/>
                                 <select class="rmt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="leadersex" id="leadersex">
                                     <option {{ old('leadersex', $user->sex) == '' ? 'selected' : '' }} value="" disabled selected hidden></option>
                                     <option {{ old('leadersex', $user->sex) == 'MALE' ? 'selected' : '' }} value="MALE">MALE</option>

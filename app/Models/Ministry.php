@@ -5,13 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Kawan extends Model
+class Ministry extends Model
 {
     use HasFactory;
-    
-    public function adminProfile(){
-        return $this->hasOne(UserProfile::class);
-    }
 
     public function applicant(){
         return $this->hasOne(Applicant::class);
@@ -22,8 +18,11 @@ class Kawan extends Model
     public $incrementing = false;
 
     protected $keyType = 'string';
-
+    
     protected $fillable = [
-        'kawanname',
+        'id',
+        'ministryname',
     ];
+
+    
 }

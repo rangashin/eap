@@ -49,29 +49,37 @@
                             </h6>
                             
                             @if (in_array($user->role_id, [2, 3]))
-                                <div class="my-5">
-                                    <x-input-label for="fullname" class="uppercase my-1" :value="__('Full Name')" />
-                                    <p class="font-black text-xl text-gray-700">{{ $user->userProfile->fullname }}</p>
-                                </div>
-        
-                                <div class="my-5">
-                                    <x-input-label for="address" class="uppercase my-1" :value="__('Address')" />
-                                    <p class="font-black text-xl text-gray-700">{{ $user->userProfile->address }}</p>
-                                </div>
 
-                                <div class="my-5">
-                                    <x-input-label for="birthdate" class="uppercase my-1" :value="__('Birthdate')" />
-                                    <p class="font-black text-xl text-gray-700">{{ $user->userProfile->birthdate }}</p>
-                                </div>
-
-                                <div class="my-5">
-                                    <x-input-label for="acctype" class="uppercase my-1" :value="__('Account Type')" />
-                                    <p class="font-black text-xl text-gray-700">{{ $user->userProfile->acctype }}</p>
-                                </div>
-                            @else
-                                @if (empty($user->adminProfile()))
+                                @if (empty($user->userProfile->fullname))
                                     <div class="my-5">
-                                        <p class="font-black text-xl text-gray-700">{{ 'Not yet registered.' }}</p>
+                                        <p class="font-black text-xl text-gray-700">{{ 'Not yet filled up.' }}</p>
+                                    </div>
+                                @else
+                                    <div class="my-5">
+                                        <x-input-label for="fullname" class="uppercase my-1" :value="__('Full Name')" />
+                                        <p class="font-black text-xl text-gray-700">{{ $user->userProfile->fullname }}</p>
+                                    </div>
+            
+                                    <div class="my-5">
+                                        <x-input-label for="address" class="uppercase my-1" :value="__('Address')" />
+                                        <p class="font-black text-xl text-gray-700">{{ $user->userProfile->address }}</p>
+                                    </div>
+
+                                    <div class="my-5">
+                                        <x-input-label for="birthdate" class="uppercase my-1" :value="__('Birthdate')" />
+                                        <p class="font-black text-xl text-gray-700">{{ $user->userProfile->birthdate }}</p>
+                                    </div>
+
+                                    <div class="my-5">
+                                        <x-input-label for="acctype" class="uppercase my-1" :value="__('Account Type')" />
+                                        <p class="font-black text-xl text-gray-700">{{ $user->userProfile->acctype }}</p>
+                                    </div>
+                                @endif
+                            @else
+                                {{-- @if (empty($user->adminProfile())) --}}
+                                @if (empty($user->adminProfile->adminfullname))
+                                    <div class="my-5">
+                                        <p class="font-black text-xl text-gray-700">{{ 'Not yet filled up.' }}</p>
                                     </div>
                                 @else
                                     <div class="my-5">

@@ -60,7 +60,7 @@ class UserProfileController extends Controller
                 'kawan_id' => ['required'],
                 'leaderfullname' => ['min:8', 'string', 'required', 'regex:/^[\w-]{2,}(\s([\w-]{2,}|[\w]{1}.))+$/'],
                 'leaderaddress' => ['min:8', 'string', 'required', 'regex:/^[#.0-9a-zA-Z\s,-]+$/'],
-                'leaderbirthdate' => ['date', 'before_or_equal:12 years ago'],
+                'leaderbirthdate' => ['date', 'before_or_equal:14 years ago'],
                 'leadersex' => ['required'],
             ]);
 
