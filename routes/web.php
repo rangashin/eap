@@ -27,10 +27,7 @@ Route::view('sample', 'sample');
 Route::middleware('auth')->group(function () {
 
     Route::view('applicant.registration-new', 'applicant.registration-new');
-    // Route::view('applicant.registration-copy', 'applicant.registration-copy');
     Route::view('dashboard-impo', 'dashboard-impo');
-    Route::view('admin.applicant-rejected', 'admin.applicant-rejected');
-    
     
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('verified');
     // Route::get('registerrr', [DashboardController::class, 'edit'])->name('register.edit');
@@ -53,15 +50,17 @@ Route::middleware('auth')->group(function () {
     Route::middleware('secretary')->group(function(){
         Route::prefix('admin')->as('admin.')->group(function(){
             Route::resource('user', ManageUserController::class);
-
-            Route::get('applicant', [ManageApplicantController::class, 'index'])->name('applicant.index');
-            Route::get('applicant/review', [ManageApplicantController::class, 'review'])->name('applicant.review.index');
-            Route::post('applicant/review', [ManageApplicantController::class, 'updateApplicantReview'])->name('applicant.review.update');
-            Route::get('applicant/review/{user_id}', [ManageApplicantController::class, 'reviewShow'])->name('applicant.review.show');
-            Route::patch('applicant/review/{user_id}', [ManageApplicantController::class, 'resubmit'])->name('applicant.review.resubmit');
-            Route::get('applicant/selected', [ManageApplicantController::class, 'selected'])->name('applicant.selected.index');
-            Route::post('applicant/selected', [ManageApplicantController::class, 'updateApplicantSelected'])->name('applicant.selected.update');
-            Route::get('applicant/rejected', [ManageApplicantController::class, 'rejected'])->name('applicant.rejected.index');
+            Route::prefix('applicant')->as('applicant.')->group(function(){
+                Route::get('/', [ManageApplicantController::class, 'index'])->name('index');
+                Route::get('review', [ManageApplicantController::class, 'review'])->name('review.index');
+                Route::post('review', [ManageApplicantController::class, 'updateApplicantReview'])->name('review.update');
+                Route::get('review/{user_id}', [ManageApplicantController::class, 'reviewShow'])->name('review.show');
+                Route::patch('review/{user_id}', [ManageApplicantController::class, 'resubmit'])->name('review.resubmit');
+                Route::get('selected', [ManageApplicantController::class, 'selected'])->name('selected.index');
+                Route::post('selected', [ManageApplicantController::class, 'updateApplicantSelected'])->name('selected.update');
+                Route::get('rejected', [ManageApplicantController::class, 'rejected'])->name('rejected.index');
+            });
+            
 
             
         });
