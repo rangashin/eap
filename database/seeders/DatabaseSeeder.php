@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             KawanSeeder::class,
             MinistrySeeder::class,
             ApplicantStatusSeeder::class,
+            ScholarStatusSeeder::class,
         ]);
 
         User::create([

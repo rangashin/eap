@@ -18,7 +18,8 @@ return new class extends Migration
         Schema::create('applicants', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('kawan_id', 10)->nullable()->constrained()->nullOnDelete();
+            $table->string('kawan_id', 10)->nullable();
+            $table->foreign('kawan_id')->references('id')->on('kawans')->nullOnDelete();
             $table->enum('renewal', ['NEW', 'OLD']);
             $table->decimal('genave', 5, 2, true);
             $table->integer('scholaryears', false, true);

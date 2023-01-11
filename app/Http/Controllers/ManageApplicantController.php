@@ -40,7 +40,7 @@ class ManageApplicantController extends Controller
             'resubmissionmessage' => ['required', 'string'],
         ]);
         $temp = Applicant::find($applicant);
-        $temp->update(['resubmissionmessage' => $request->resubmissionmessage, 'applicant_statuses_id' => ApplicantStatus::IS_UNDER_REVIEW, 'issubmitted' => Applicant::IS_NOT_SUBMMITED]);
+        $temp->update(['resubmissionmessage' => $request->resubmissionmessage, 'applicant_statuses_id' => ApplicantStatus::IS_NEED_RESUBMMISSION, 'issubmitted' => Applicant::IS_NOT_SUBMMITED]);
 
         return redirect()->route('admin.applicant.review.index')->with('success', $temp->full_name.' has been resubmitted.');
     }

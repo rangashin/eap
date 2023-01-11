@@ -152,7 +152,7 @@
                         </div>
                     </div>
                     @if (!empty($applicant->guardianname))
-                        <div class="grid grid-cols-2 gap-6 mb-6">
+                        <div class="grid grid-cols-2 gap-6 my-6">
                             <div>
                                 <x-input-label for="guardianname" :value="__('Guardian Name')" class="uppercase"/>
                                 <p class="font-black text-xl text-gray-700 uppercase">{{ $applicant->guardianname }}</p>
