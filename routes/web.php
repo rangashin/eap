@@ -29,6 +29,10 @@ Route::middleware('auth')->group(function () {
     Route::view('applicant.registration-new', 'applicant.registration-new');
     Route::view('dashboard-impo', 'dashboard-impo');
     Route::view('scholar.dashboard', 'scholar.dashboard');
+    //Temp Routes for view
+    Route::view('admin-scholar-view-attendance', 'admin-scholar-view-attendance');
+    Route::view('admin-scholar-edit-attendance', 'admin-scholar-edit-attendance');
+    Route::view('dashboard-scholar-interface', 'dashboard-scholar-interface');
     
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('verified');
     // Route::get('registerrr', [DashboardController::class, 'edit'])->name('register.edit');
