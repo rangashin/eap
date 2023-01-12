@@ -28,15 +28,13 @@ Route::middleware('auth')->group(function () {
 
     Route::view('applicant.registration-new', 'applicant.registration-new');
     Route::view('dashboard-impo', 'dashboard-impo');
+    Route::view('scholar.dashboard', 'scholar.dashboard');
     
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('verified');
     // Route::get('registerrr', [DashboardController::class, 'edit'])->name('register.edit');
     // Route::post('registerrr', [DashboardController::class, 'store'])->name('register.store');
 
-
-    Route::get('registration', [ApplicantController::class, 'edit'])->name('registration.edit');
-    Route::post('registration', [ApplicantController::class, 'update'])->name('registration.update');
-
+  
     Route::get('account', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('account', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('profile', [UserProfileController::class, 'edit'])->name('account.edit');
@@ -44,6 +42,8 @@ Route::middleware('auth')->group(function () {
     // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::middleware('applicant')->group(function(){
+        Route::get('registration', [ApplicantController::class, 'edit'])->name('registration.edit');
+        Route::post('registration', [ApplicantController::class, 'update'])->name('registration.update');
         Route::post('applicant/setinterviewdate', [ManageApplicantController::class, 'setInterviewDate'])->name('applicant.setinterviewdate');
     });
     

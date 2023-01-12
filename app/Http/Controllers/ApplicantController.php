@@ -72,6 +72,7 @@ class ApplicantController extends Controller
             'parentapplicantministry' => $request->parentapplicantministryans == 'OO' ? $request->parentapplicantministry : null,
             'formreceived' => date('Y-m-d'),
             'issubmitted' => Applicant::IS_SUBMITTED,
+            'applicant_statuses_id' => ApplicantStatus::IS_UNDER_REVIEW,
         ]);
     
         $applicant = Applicant::find(auth()->user()->id);

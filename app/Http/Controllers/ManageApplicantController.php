@@ -2,16 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Scholar;
 use App\Models\Applicant;
 use Illuminate\Http\Request;
 use App\Models\ApplicantStatus;
 
 class ManageApplicantController extends Controller
 {
+
     public function index(){
         $applicants = Applicant::latest('formreceived')->with('applicantStatus')->get();
+
+        foreach($applicants as $applicant){
+            $now = Carbon::now()->format('Y-m-d');
+            $enddate = Carbon::parse($applicant->hasbeenselecteddate)->addDays(9)->format('Y-m-d');
+            if((Carbon::parse($now))->gt($enddate) && empty($applicant->interviewdate)){
+                $applicant->update(['applicant_statuses_id' => ApplicantStatus::IS_REJECTED]);
+                // SMS NOTIFICATION
+                continue;
+            }
+        }
+
         return view('admin.applicant-index', compact('applicants'));
     }
 
@@ -27,6 +41,17 @@ class ManageApplicantController extends Controller
 
     public function selected(){
         $applicants = Applicant::latest('hasbeenselecteddate')->latest('formreceived')->with('applicantStatus')->whereIn('applicant_statuses_id', [ApplicantStatus::IS_SELECTED, ApplicantStatus::IS_WAITING])->get();
+        
+        foreach($applicants as $applicant){
+            $now = Carbon::now()->format('Y-m-d');
+            $enddate = Carbon::parse($applicant->hasbeenselecteddate)->addDays(9)->format('Y-m-d');
+            if((Carbon::parse($now))->gt($enddate) && empty($applicant->interviewdate)){
+                $applicant->update(['applicant_statuses_id' => ApplicantStatus::IS_REJECTED]);
+                // SMS NOTIFICATION
+                continue;
+            }
+        }
+        
         return view('admin.applicant-selected', compact('applicants'));
     }
 
@@ -53,7 +78,7 @@ class ManageApplicantController extends Controller
                 return redirect()->route('admin.applicant.review.index')->with('error', 'Selection for interview must be a NEW applicant.');
             }else{
                 Applicant::whereIn('user_id', $request->userCheckbox)->update(['applicant_statuses_id' => ApplicantStatus::IS_SELECTED, 'hasbeenselecteddate' => date('Y-m-d')]);
-                return redirect()->route('admin.applicant.review.index')->with('success', 'The selection of applicant/s for the interview has been updated.');
+                return redirect()->route('admin.applicant.review.index')->with('success', 'The selection of applicants for the interview have been updated.');
             }
         }elseif($request->applicantstatus == ApplicantStatus::IS_REJECTED){
             Applicant::whereIn('user_id', $request->userCheckbox)->update(['applicant_statuses_id' => ApplicantStatus::IS_REJECTED]);
@@ -64,13 +89,16 @@ class ManageApplicantController extends Controller
             }else{
                 Applicant::whereIn('user_id', $request->userCheckbox)->update(['applicant_statuses_id' => ApplicantStatus::IS_ADMITTED]);
                 User::whereIn('id', $request->userCheckbox)->update(['role_id' => Role::IS_SCHOLAR]);
-                return redirect()->route('admin.applicant.review.index')->with('success', 'The selection of applicant/s for the admission has been updated.');
+                foreach($request->userCheckbox as $id){
+                    Scholar::create(['applicant_user_id' => $id]);
+                }
+                
+                return redirect()->route('admin.applicant.review.index')->with('success', 'The selection of applicants for the admission have been updated.');
             }
         }
     }
 
     public function setInterviewDate(Request $request){
-        // dd($request->all());
         $request->validate([
             'interviewdate' => 'date|required'
         ]);
@@ -87,10 +115,16 @@ class ManageApplicantController extends Controller
             Applicant::whereIn('user_id', $request->userCheckbox)->update(['applicant_statuses_id' => ApplicantStatus::IS_REJECTED]);
             return redirect()->route('admin.applicant.selected.index')->with('success', 'The selected applicants have been rejected.');
         }elseif($request->applicantstatus == ApplicantStatus::IS_ADMITTED){
-            Applicant::whereIn('user_id', $request->userCheckbox)->update(['applicant_statuses_id' => ApplicantStatus::IS_ADMITTED]);
-            User::whereIn('id', $request->userCheckbox)->update(['role_id' => Role::IS_SCHOLAR]);
-            return redirect()->route('admin.applicant.selected.index')->with('success', 'The selection of applicant/s for the admission has been updated.');
+            if(Applicant::whereIn('user_id', $request->userCheckbox)->where('interviewdate', null)->exists()){
+                return redirect()->route('admin.applicant.selected.index')->with('error', 'The selection of applicants for the admission MUST HAVE AN INTERVIEW DATE.');
+            }else{
+                Applicant::whereIn('user_id', $request->userCheckbox)->update(['applicant_statuses_id' => ApplicantStatus::IS_ADMITTED]);
+                User::whereIn('id', $request->userCheckbox)->update(['role_id' => Role::IS_SCHOLAR]);
+                foreach($request->userCheckbox as $id){
+                    Scholar::create(['applicant_user_id' => $id]);
+                }
+                return redirect()->route('admin.applicant.selected.index')->with('success', 'The selection of applicants for the admission have been updated.');
+            }
         }
     }
-
 }

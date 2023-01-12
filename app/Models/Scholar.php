@@ -9,14 +9,14 @@ class Scholar extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'user_id';
+    protected $primaryKey = 'applicant_user_id';
 
     public $incrementing = false;
 
     protected $keyType = 'string';
 
     protected $fillable = [
-        'user_id',
+        'applicant_user_id',
         'firststudent',
         'secondstudent',
         'thirdstudent',

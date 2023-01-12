@@ -28,7 +28,6 @@ return new class extends Migration
             $table->integer('fourthparent')->nullable();
             $table->integer('totalparent')->nullable();
             $table->integer('totalcombinedattendance')->nullable();
-            // $table->foreignId('scholar_statuses_id')->nullable()->constrained('scholar_statuses')->nullOnDelete();
             $table->string('scholar_statuses_id', 1)->nullable()->default(ScholarStatus::IS_REGULAR);
             $table->foreign('scholar_statuses_id')->references('id')->on('scholar_statuses')->nullOnDelete();
             $table->timestamps();

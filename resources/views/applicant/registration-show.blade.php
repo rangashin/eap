@@ -144,12 +144,13 @@
                             <x-input-label for="motherreligion" :value="__('Religion')" class="uppercase"/>
                             <p class="font-black text-xl text-gray-700 uppercase">{{ !empty($applicant->motherreligion) ?  $applicant->motherreligion : 'N/A' }}</p>
                         </div>
-                        <div>
-                            @if (!empty($applicant->parentstatus))
+                        @if (!empty($applicant->parentstatus))
+                            <div> 
                                 <x-input-label for="parentstatus" :value="__('Parent Status')" class="uppercase"/>
                                 <p class="font-black text-xl text-gray-700 uppercase">{{ !empty($applicant->parentstatus) ?  $applicant->parentstatus : 'N/A' }}</p>
-                            @endif
-                        </div>
+                            </div>
+                        @endif
+                        
                     </div>
                     @if (!empty($applicant->guardianname))
                         <div class="grid grid-cols-2 gap-6 my-6">

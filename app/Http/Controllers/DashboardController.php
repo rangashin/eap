@@ -23,7 +23,7 @@ class DashboardController extends Controller
             }
             
         }elseif(auth()->user()->role_id == Role::IS_SCHOLAR){
-            return view('dashboard-impo');
+            return view('dashboard');
         }elseif(auth()->user()->role_id == Role::IS_SECRETARY){
             return redirect()->route('admin.user.index');
         }elseif(auth()->user()->role_id == Role::IS_LEADER){

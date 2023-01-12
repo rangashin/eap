@@ -16,9 +16,11 @@
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('registration.edit')" :active="request()->routeIs('registration.edit')">
-                            {{ __('Registration') }}
-                        </x-nav-link>
+                        @if(auth()->user()->role_id == 2)
+                            <x-nav-link :href="route('registration.edit')" :active="request()->routeIs('registration.edit')">
+                                {{ __('Registration') }}
+                            </x-nav-link>
+                        @endif
                     @elseif (auth()->user()->role_id == 4)
                         <x-nav-link :href="route('admin.user.index')" :active="request()->routeIs('admin.user.index')">
                             {{ __('User') }}
@@ -97,9 +99,11 @@
                 <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                     {{ __('Dashboard') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('registration.edit')" :active="request()->routeIs('registration.edit')">
-                    {{ __('Registration') }}
-                </x-responsive-nav-link>
+                @if(auth()->user()->role_id == 2)
+                    <x-responsive-nav-link :href="route('registration.edit')" :active="request()->routeIs('registration.edit')">
+                        {{ __('Registration') }}
+                    </x-responsive-nav-link>
+                @endif
             @elseif (auth()->user()->role_id == 4)
                 <x-responsive-nav-link :href="route('admin.user.index')" :active="request()->routeIs('admin.user.index')">
                     {{ __('User') }}
