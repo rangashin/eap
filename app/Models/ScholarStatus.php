@@ -9,7 +9,11 @@ class ScholarStatus extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'user_id';
+    public function scholar(){
+        return $this->hasOne(Scholar::class);
+    }
+
+    protected $primaryKey = 'id';
 
     public $incrementing = false;
 

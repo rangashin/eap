@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ManageUserController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ManageApplicantController;
+use App\Http\Controllers\ManageScholarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,10 +30,12 @@ Route::middleware('auth')->group(function () {
     Route::view('applicant.registration-new', 'applicant.registration-new');
     Route::view('dashboard-impo', 'dashboard-impo');
     Route::view('scholar.dashboard', 'scholar.dashboard');
+    Route::view('admin.scholar-index', 'admin.scholar-index');
+
     //Temp Routes for view
-    Route::view('admin-scholar-view-attendance', 'admin-scholar-view-attendance');
     Route::view('admin-scholar-edit-attendance', 'admin-scholar-edit-attendance');
-    Route::view('dashboard-scholar-interface', 'dashboard-scholar-interface');
+    Route::view('admin.scholar-attendance-show', 'admin.scholar-attendance-show');
+    Route::view('admin.scholar-attendance-edit', 'admin.scholar-attendance-edit');
     
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('verified');
     // Route::get('registerrr', [DashboardController::class, 'edit'])->name('register.edit');
@@ -64,7 +67,9 @@ Route::middleware('auth')->group(function () {
                 Route::post('selected', [ManageApplicantController::class, 'updateApplicantSelected'])->name('selected.update');
                 Route::get('rejected', [ManageApplicantController::class, 'rejected'])->name('rejected.index');
             });
-            
+            Route::get('scholar', [ManageScholarController::class, 'index'])->name('scholar.index');
+            Route::get('scholar/{id}', [ManageScholarController::class, 'show'])->name('scholar.show');
+            // Route::get('scholar/{user_id}/edit', [ManageScholarController::class, 'show'])->name('scholar.show');
 
             
         });

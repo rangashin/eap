@@ -62,6 +62,10 @@ class Applicant extends Model implements HasMedia
         return $this->hasMany(OtherMemberApplicant::class);
     }
 
+    public function scholar(){
+        return $this->hasOne(Scholar::class);
+    }
+
     protected $primaryKey = 'user_id';
 
     protected $fillable = [

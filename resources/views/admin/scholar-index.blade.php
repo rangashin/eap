@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Manage Applicants - Selected for Interview') }}
+            {{ __('Manage Scholars') }}
         </h2>
     </x-slot>
 
@@ -11,9 +11,9 @@
             <x-error-message/>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <form action="{{ route('admin.applicant.selected.update') }}" method="post">
+                    <form action="{{-- route('admin.applicant.review.update') --}}" method="post">
                         @csrf
-                        <nav class="flex px-5 py-3 text-gray-700 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700" aria-label="Breadcrumb">
+                        {{-- <nav class="flex px-5 py-3 text-gray-700 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700" aria-label="Breadcrumb">
                             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                                 <li class="inline-flex items-center">
                                     <a href="{{ route('admin.applicant.index') }}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
@@ -24,25 +24,26 @@
                                 <li>
                                     <div class="flex items-center">
                                         <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                                        <a href="{{ route('admin.applicant.selected.index') }}" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">Selected for Interview</a>
+                                        <a href="{{ route('admin.applicant.review.index') }}" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">Under Review</a>
                                     </div>
                                 </li>
                             </ol>
-                        </nav>
-                        <div class="flex justify-between items-center py-4 bg-white">
+                        </nav> --}}
+                        
+                        <div class="flex justify-between items-center py-4 bg-white"> 
                             <div class="flex items-center">
-                                <select id="applicantstatus" name="applicantstatus" class="block border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm hidden " placeholder="Change To" >
-                                    <option value="" disabled hidden selected >Change To</option>
-                                    <option value="4">Rejected</option>
-                                    <option value="5">Accepted</option>
+                                <select id="applicantstatus" name="scholarstatus" class="block border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm hidden " placeholder="Change To" >
+                                    <option value="" disabled hidden selected >Change Scholar Status To</option>
+                                    <option value="R">Regular</option>
+                                    <option value="C">Conditional</option>
+                                    <option value="I">Incomplete</option>
                                 </select>
                                 <div>
-                                    <x-primary-button class="text-sm ml-3 hidden " name="confirmChanges" id="confirmChanges">
+                                    <x-primary-button class="text-sm ml-3 hidden " id="confirmChanges">
                                         {{ __('Confirm Changes') }}
                                     </x-primary-button>
                                 </div>
                             </div>
-
                             <label for="table-search" class="sr-only">Search</label>
                             <div class="relative">
                                 <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
@@ -57,26 +58,30 @@
                                 <tr id="head"> 
                                     <th scope="col" class="py-3 px-6"><input type="checkbox" name="mainCheckbox" id="mainCheckbox" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" ></th>
                                     <th scope="col" class="py-3 px-6">Name</th>
-                                    <th scope="col" class="py-3 px-6">Contact Number</th>
-                                    <th scope="col" class="py-3 px-6">Grade Year or Level</th>
-                                    <th scope="col" class="py-3 px-6">Interview Date</th>
-                                    <th scope="col" class="py-3 px-6">Kawan</th>  
+                                    <th scope="col" class="py-3 px-6">Kawan</th>
+                                    <th scope="col" class="py-3 px-6">Year Level</th>
+                                    <th scope="col" class="py-3 px-6">Scholar Status</th>  
+                                    <th scope="col" class="py-3 px-6">Action</th>    
                                 </tr>
                             </thead>
-                            @foreach ($applicants as $applicant)
+                            @foreach ($scholars as $scholar)
                                 <tbody>
                                     <tr class="bg-white border-b hover:bg-gray-50">
-                                        <td class="py-4 px-6 space-x-4 text-base font-semibold text-black"><input type="checkbox" name="userCheckbox[]" id="userCheckbox" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" value="{{ $applicant->user_id }}"></td>
-                                        <td class="py-4 px-6 space-x-4 text-base font-semibold text-black uppercase">{{ $applicant->full_name }}</td>
-                                        <td class="py-4 px-6 space-x-4">{{ $applicant->applicantcontactno }}</td>
-                                        <td class="py-4 px-6 space-x-4">{{ $applicant->gradeyearorlevel }}</td>
-                                        <td class="py-4 px-6 space-x-4">{{ !empty($applicant->interviewdate) ? $applicant->interviewdate : 'Not yet set'}}</td>
-                                        <td class="py-4 px-6 space-x-4">{{ $applicant->kawan->kawanname }}</td>
+                                        <td class="py-4 px-6 space-x-4 text-base font-semibold text-black"><input type="checkbox" name="userCheckbox[]" id="userCheckbox" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" value="{{ $scholar->id }}" /></td>
+                                        <td class="py-4 px-6 space-x-4 text-base font-semibold text-black uppercase">{{ $scholar->applicant->full_name }}</td>
+                                        <td class="py-4 px-6 space-x-4 uppercase">{{ $scholar->applicant->kawan->kawanname }}</td>
+                                        <td class="py-4 px-6 space-x-4">{{ $scholar->applicant->gradeyearorlevel }}</td>
+                                        <td class="py-4 px-6 space-x-4 uppercase">{{ $scholar->applicant->scholar->scholarStatus->status }}</td>
+                                        <td class="py-4 px-6 space-x-4">
+                                            <x-a-link href="{{ route('admin.scholar.show', $scholar->id) }}">   
+                                                {{ __('View') }}
+                                            </x-a-link>
+                                        </td> 
                                     </tr>
                                 </tbody>
                             @endforeach                       
                         </table>
-                        @if (count($applicants) == 0)
+                        @if (count($scholars) == 0)
                             <div class="py-6 px-3 bg-white  hover:bg-gray-50">
                                 <p class="font-black text-xl text-gray-700">{{ 'No data' }}</p>
                             </div>

@@ -35,6 +35,9 @@
                                 <li><a href="{{ route('admin.applicant.rejected.index') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Rejected</a></li>
                             </ul>
                         </div>
+                        <x-nav-link :href="route('admin.scholar.index')" :active="request()->routeIs('admin.scholar.index')">
+                            {{ __('Scholar') }}
+                        </x-nav-link>
                     @endif
                     
                 </div>
@@ -107,6 +110,9 @@
             @elseif (auth()->user()->role_id == 4)
                 <x-responsive-nav-link :href="route('admin.user.index')" :active="request()->routeIs('admin.user.index')">
                     {{ __('User') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.scholar.index')" :active="request()->routeIs('admin.scholar.index')">
+                    {{ __('Scholar') }}
                 </x-responsive-nav-link>
             @endif
             
