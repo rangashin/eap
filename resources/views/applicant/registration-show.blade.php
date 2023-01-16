@@ -19,8 +19,8 @@
                         Applicant's Information
                     </h6>
                     {{-- <div class="grid grid-cols-4 gap-6 my-6"> --}}
-                    <div class="grid grid-cols-5 grid-row-3 grid-flow-row gap-6 my-6">
-                        <div class="row-span-3">
+                    <div class="grid lg:grid-cols-5 lg:grid-row-3 md:grid-cols-3 md:grid-row-4    sm:grid-cols-2 sm:grid-row-6 grid-flow-row gap-6 my-6">
+                        <div class="lg:row-span-3">
                             <x-input-label for="applicantpicture" :value="__('2x2 Picture')" class="uppercase"/>
                             <img class="w-52 h-52" src="{{ $applicant->getFirstMediaUrl('picture') }}" alt="2x2 picture">
                         </div>
@@ -56,14 +56,14 @@
                             <x-input-label for="applicantcontactno" :value="__('Contact Number')" class="uppercase"/>
                             <p class="font-black text-xl text-gray-700">{{ $applicant->applicantcontactno }}</p>
                         </div>
-                        <div class="col-span-4">
+                        <div class="lg:col-span-4">
                             <x-input-label for="applicantaddress" :value="__('Address')" class="uppercase"/>
                             <p class="font-black text-xl text-gray-700 uppercase">{{ $applicant->applicantaddress }}</p>
                         </div>
                     </div>
                     
 
-                    <div class="grid grid-cols-3 gap-6 my-6 ">
+                    <div class="grid min-[320px]:grid-cols-2 lg:grid-cols-3 md:grid-cols-2   gap-6 my-6 ">
                         <div>
                             <x-input-label for="gradeyearorlevel" :value="__('Incoming Grade Or Year Level')" class="uppercase"/>
                             <p class="font-black text-xl text-gray-700 uppercase">{{ $applicant->gradeyearorlevel }}</p>
@@ -95,63 +95,68 @@
                     <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
                         Parent's Information
                     </h6>
-                    <div class="grid grid-cols-3 gap-6 mt-6">
+                    <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 min-[320px]:grid-cols-2 gap-6 mt-6">
                         <div>
-                            <x-input-label for="fathername" :value="__('Father Name')" class="uppercase"/>
+                            <x-input-label for="fathername" :value="__('Father\'s Name')" class="uppercase"/>
                             <p class="font-black text-xl text-gray-700 uppercase">{{ !empty($applicant->fathername) ?  $applicant->fathername : 'N/A' }}</p>
                         </div>
                         <div>
-                            <x-input-label for="fatherage" :value="__('Age')" class="uppercase"/>
+                            <x-input-label for="fatherage" :value="__('Father\'s Age')" class="uppercase"/>
                             <p class="font-black text-xl text-gray-700">{{ !empty($applicant->fatherage) ?  $applicant->fatherage : 'N/A' }}</p>
                         </div>
                         <div>
-                            <x-input-label for="fatheroccupation" :value="__('Occupation')" class="uppercase"/>
+                            <x-input-label for="fatheroccupation" :value="__('Father\'s Occupation')" class="uppercase"/>
                             <p class="font-black text-xl text-gray-700 uppercase">{{ !empty($applicant->fatheroccupation) ?  $applicant->fatheroccupation : 'N/A' }}</p>
                         </div>
                         <div>
-                            <x-input-label for="fatherincome" :value="__('Monthly Income')" class="uppercase"/>
+                            <x-input-label for="fatherincome" :value="__('Father\'s Monthly Income')" class="uppercase"/>
                             <p class="font-black text-xl text-gray-700">{{ !empty($applicant->fatherincome) ?  '₱'.number_format($applicant->fatherincome, 2) : 'N/A' }}</p>
                         </div>
                         <div>
-                            <x-input-label for="fatheroccupation" :value="__('Occupation')" class="uppercase"/>
+                            <x-input-label for="fatheroccupation" :value="__('Father\'s Occupation')" class="uppercase"/>
                             <p class="font-black text-xl text-gray-700 uppercase">{{ !empty($applicant->fatheroccupation) ?  $applicant->fatheroccupation : 'N/A' }}</p>
                         </div>
                         <div>
-                            <x-input-label for="fatherreligion" :value="__('Religion')" class="uppercase"/>
+                            <x-input-label for="fatherreligion" :value="__('Father\'s Religion')" class="uppercase"/>
                             <p class="font-black text-xl text-gray-700 uppercase">{{ !empty($applicant->fatherreligion) ?  $applicant->fatherreligion : 'N/A' }}</p>
                         </div>
+                    </div>
+                    <hr class="my-6">
+                    <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 min-[320px]:grid-cols-2 gap-6 mt-6">
                         <div>
-                            <x-input-label for="mothername" :value="__('Mother Name')" class="uppercase"/>
+                            <x-input-label for="mothername" :value="__('Mother\'s Name')" class="uppercase"/>
                             <p class="font-black text-xl text-gray-700 uppercase">{{ !empty($applicant->mothername) ?  $applicant->mothername : 'N/A' }}</p>
                         </div>
                         <div>
-                            <x-input-label for="motherage" :value="__('Age')" class="uppercase"/>
+                            <x-input-label for="motherage" :value="__('Mother\'s Age')" class="uppercase"/>
                             <p class="font-black text-xl text-gray-700">{{ !empty($applicant->motherage) ?  $applicant->motherage : 'N/A' }}</p>
                         </div>
                         <div>
-                            <x-input-label for="motheroccupation" :value="__('Occupation')" class="uppercase"/>
+                            <x-input-label for="motheroccupation" :value="__('Mother\'s Occupation')" class="uppercase"/>
                             <p class="font-black text-xl text-gray-700 uppercase">{{ !empty($applicant->motheroccupation) ?  $applicant->motheroccupation : 'N/A' }}</p>
                         </div>
                         <div>
-                            <x-input-label for="motherincome" :value="__('Monthly Income')" class="uppercase"/>
+                            <x-input-label for="motherincome" :value="__('Mother\'s Monthly Income')" class="uppercase"/>
                             <p class="font-black text-xl text-gray-700">{{ !empty($applicant->motherincome) ?  '₱'.number_format($applicant->motherincome, 2) : 'N/A' }}</p>
                         </div>
                         <div>
-                            <x-input-label for="motheroccupation" :value="__('Occupation')" class="uppercase"/>
+                            <x-input-label for="motheroccupation" :value="__('Mother\'s Occupation')" class="uppercase"/>
                             <p class="font-black text-xl text-gray-700 uppercase">{{ !empty($applicant->motheroccupation) ?  $applicant->motheroccupation : 'N/A' }}</p>
                         </div>
                         <div>
-                            <x-input-label for="motherreligion" :value="__('Religion')" class="uppercase"/>
+                            <x-input-label for="motherreligion" :value="__('Mother\'s Religion')" class="uppercase"/>
                             <p class="font-black text-xl text-gray-700 uppercase">{{ !empty($applicant->motherreligion) ?  $applicant->motherreligion : 'N/A' }}</p>
                         </div>
-                        @if (!empty($applicant->parentstatus))
-                            <div> 
-                                <x-input-label for="parentstatus" :value="__('Parent Status')" class="uppercase"/>
-                                <p class="font-black text-xl text-gray-700 uppercase">{{ !empty($applicant->parentstatus) ?  $applicant->parentstatus : 'N/A' }}</p>
-                            </div>
-                        @endif
-                        
+                       
                     </div>
+                    <hr class="my-6">
+                     @if (!empty($applicant->parentstatus))
+                        <div> 
+                            <x-input-label for="parentstatus" :value="__('Parent\'s Status')" class="uppercase"/>
+                            <p class="font-black text-xl text-gray-700 uppercase">{{ !empty($applicant->parentstatus) ?  $applicant->parentstatus : 'N/A' }}</p>
+                        </div>
+                    @endif
+                    <hr class="my-6">
                     @if (!empty($applicant->guardianname))
                         <div class="grid grid-cols-2 gap-6 my-6">
                             <div>
@@ -190,7 +195,7 @@
                         IBANG MGA KAPATID NA NAGAARAL O NAGTRATRABAHO
                     </h6>
                     @forelse ($applicant->siblingMembers as $sibling)
-                        <div class="grid grid-cols-3 gap-6 my-6">
+                        <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 min-[320px]:grid-cols-1 gap-6 my-6">
                             <div>
                                 <x-input-label for="siblingname" :value="__('Pangalan')" class="uppercase"/>
                                 <p class="font-black text-xl text-gray-700 uppercase">{{ $sibling->siblingname }}</p>
@@ -204,10 +209,11 @@
                                 <p class="font-black text-xl text-gray-700 uppercase">{{ $sibling->siblingyearorwork }}</p>
                             </div>
                         </div>
+                        <hr>
                     @empty
                         <p class="font-black text-xl text-gray-700 uppercase">{{ 'No PWD Family Member' }}</p>   
                     @endforelse
-                    <div class="grid grid-cols-3 gap-6 my-6">
+                    <div class="grid grid-cols-2 gap-6 my-6">
                         <div>
                             <x-input-label for="siblingsnumberofworking" :value="__('Bilang ng mga kapatid na nagtatrabaho')" class="uppercase"/>
                             <p class="font-black text-xl text-gray-700 uppercase">{{ $applicant->siblingsnumberofworking > 0 ? $applicant->siblingsnumberofworking : 'N/A' }}</p>
@@ -249,7 +255,7 @@
                         Iba pang kasama sa tirahan <span><i>(Kamag-anak, Pamangkin, Lolo, Lola, etc.)</i></span>
                     </h6>
                     @forelse ($applicant->otherMembers as $other)
-                    <div class="grid grid-cols-4 gap-6 my-6">
+                    <div class="grid lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2 min-[320px]:grid-cols-2 gap-6 my-6">
                         <div>
                             <x-input-label for="relativename" :value="__('Pangalan')" class="uppercase"/>
                             <p class="font-black text-xl text-gray-700 uppercase">{{ $other->relativename }}</p>
@@ -267,12 +273,14 @@
                             <p class="font-black text-xl text-gray-700 uppercase">{{ $other->relativework }}</p>
                         </div>
                     </div>
+                    <hr>
                 @empty
-                    <p class="font-black text-xl text-gray-700 uppercase">{{ 'No PWD Family Member' }}</p>   
+                    <p class="font-black text-xl text-gray-700 uppercase">{{ 'No PWD Family Member' }}</p>
+                    <hr>   
                 @endforelse
 
 
-                    <hr class="my-4 h-px bg-gray-200 border-0 dark:bg-gray-700">
+                    
                     <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
                         Requirements (Clear Copy)
                     </h6>

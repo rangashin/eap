@@ -24,11 +24,11 @@
                 <div class="p-6 bg-white border-b border-gray-200 ">
                     <form action="{{ route('registration.update') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        @method('patch')
+                        
                         <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
                             Applicant's Information
                         </h6>
-                        <div class="grid grid-cols-4 gap-6 my-6">
+                        <div class="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-6 my-6">
                             <div>   
                                 <x-input-label for="kawan_id" :value="__('Kawan')" class="uppercase"/>
                                 <select class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm uppercase" name="kawan_id" id="kawan_id">
@@ -79,7 +79,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="grid grid-cols-4 gap-6 my-6">
+                        <div class="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-6 my-6">
                             <div>
                                 <x-input-label for="applicantfirstname" :value="__('First Name')" class="uppercase"/>
                                 <x-text-input id="applicantfirstname" class="mt-1 block w-full uppercase" type="text" name="applicantfirstname" value="{{ old('applicantfirstname', $applicant->applicantfirstname) }}" autocomplete="firstname" />
@@ -110,7 +110,7 @@
                                 <x-input-error :messages="$errors->get('applicantsuffix')" class="mt-2" />
                             </div>
                         </div>
-                        <div class="grid grid-cols-3 gap-6 my-6">
+                        <div class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 gap-6 my-6">
                             <div>
                                 <x-input-label for="applicantbirthdate" :value="__('Birthdate (year-month-day)')" class="uppercase"/>
                                 <x-text-input datepicker datepicker-autohide datepicker-format="yyyy-mm-dd" id="applicantbirthdate" name="applicantbirthdate" type="text" class="mt-1 block w-full" value="{{ old('applicantbirthdate', $applicant->applicantbirthdate) }}" />
@@ -138,7 +138,7 @@
                                 <x-input-error :messages="$errors->get('applicantaddress')" class="mt-2" />
                             </div>
                         </div>
-                        <div class="grid grid-cols-3 gap-6 my-6"> 
+                        <div class="grid lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 gap-6 my-6"> 
                             <div>
                                 <x-input-label for="gradeyearorlevel" :value="__('Incoming Grade Or Year Level')" class="uppercase"/>
                                 <select class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm uppercase" name="gradeyearorlevel" id="gradeyearorlevel">
@@ -186,75 +186,73 @@
                             Parent's Information
                         </h6>
 
-                        <div class="grid grid-cols-3 gap-6 my-6">
+                        <div class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 gap-6 my-6">
                             <div>
                                 <x-input-label for="fathername" :value="__('Father\'s Name')" class="uppercase"/>
                                 <x-text-input id="fathername" class="block mt-1 w-full uppercase" type="text" name="fathername" value="{{ old('fathername', $applicant->fathername) }}" autocomplete="name" />
                                 <x-input-error :messages="$errors->get('fathername')" class="mt-2" />
                             </div>
                             <div>
-                                <x-input-label for="fatherage" :value="__('Age')" class="uppercase"/>
+                                <x-input-label for="fatherage" :value="__('Father\'s Age')" class="uppercase"/>
                                 <x-text-input id="fatherage" class="block mt-1 w-full uppercase" type="number" name="fatherage" value="{{ old('fatherage', $applicant->fatherage) }}" />
                                 <x-input-error :messages="$errors->get('fatherage')" class="mt-2" />
                             </div>
                             <div>
-                                <x-input-label for="fatheroccupation" :value="__('Occupation')" class="uppercase"/>
+                                <x-input-label for="fatheroccupation" :value="__('Father\'s Occupation')" class="uppercase"/>
                                 <x-text-input id="fatheroccupation" class="block mt-1 w-full uppercase" type="text" name="fatheroccupation" value="{{ old('fatheroccupation', $applicant->fatheroccupation) }}" autocomplete="occupation" />
                                 <x-input-error :messages="$errors->get('fatheroccupation')" class="mt-2" />
                             </div>
-                        </div>
-                        <div class="grid grid-cols-3 gap-6 my-6">
                             <div>
-                                <x-input-label for="fatherincome" :value="__('Monthly Income')" class="uppercase"/>
+                                <x-input-label for="fatherincome" :value="__('Father\'s Monthly Income')" class="uppercase"/>
                                 <x-text-input id="fatherincome" class="block mt-1 w-full" type="number" name="fatherincome" value="{{ old('fatherincome', empty($applicant->fatherincome) ? null : intval($applicant->fatherincome)) }}" />
                                 <x-input-error :messages="$errors->get('fatherincome')" class="mt-2" />
                             </div>
                             <div>
-                                <x-input-label for="fathercontactno" :value="__('Contact Number')" class="uppercase"/>
+                                <x-input-label for="fathercontactno" :value="__('Father\'s Contact Number')" class="uppercase"/>
                                 <x-text-input id="fathercontactno" class="block mt-1 w-full" type="text" name="fathercontactno" value="{{ old('fathercontactno', $applicant->fathercontactno) }}" autocomplete="contactno" />
                                 <x-input-error :messages="$errors->get('fathercontactno')" class="mt-2" />
                             </div>
                             <div>
-                                <x-input-label for="fatherreligion" :value="__('Religion')" class="uppercase"/>
+                                <x-input-label for="fatherreligion" :value="__('Father\'s Religion')" class="uppercase"/>
                                 <x-text-input id="fatherreligion" class="block mt-1 w-full uppercase" type="text" name="fatherreligion" value="{{ old('fatherreligion', $applicant->fatherreligion) }}" autocomplete="religion" />
                                 <x-input-error :messages="$errors->get('fatherreligion')" class="mt-2" />
                             </div>
                         </div>
+                        
                         <hr class="my-4 h-px bg-gray-200 border-0 dark:bg-gray-700">
-                        <div class="grid grid-cols-3 gap-6 my-6">
+                        <div class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 gap-6 my-6">
                             <div>
                                 <x-input-label for="mothername" :value="__('Mother\'s Name')" class="uppercase"/>
                                 <x-text-input id="mothername" class="block mt-1 w-full uppercase" type="text" name="mothername" value="{{ old('mothername', $applicant->mothername) }}" autocomplete="name" />
                                 <x-input-error :messages="$errors->get('mothername')" class="mt-2" />
                             </div>
                             <div>
-                                <x-input-label for="motherage" :value="__('Age')" class="uppercase"/>
+                                <x-input-label for="motherage" :value="__('Mother\'s Age')" class="uppercase"/>
                                 <x-text-input id="motherage" class="block mt-1 w-full" type="number" name="motherage" value="{{ old('motherage', $applicant->motherage) }}" />
                                 <x-input-error :messages="$errors->get('motherage')" class="mt-2" />
                             </div>
                             <div>
-                                <x-input-label for="motheroccupation" :value="__('Occupation')" class="uppercase"/>
+                                <x-input-label for="motheroccupation" :value="__('Mother\'s Occupation')" class="uppercase"/>
                                 <x-text-input id="motheroccupation" class="block mt-1 w-full uppercase" type="text" name="motheroccupation" value="{{ old('motheroccupation', $applicant->motheroccupation) }}" autocomplete="occupation" />
                                 <x-input-error :messages="$errors->get('motheroccupation')" class="mt-2" />
                             </div>
-                        </div>
-                        <div class="grid grid-cols-3 gap-6 my-6">
                             <div>
-                                <x-input-label for="motherincome" :value="__('Monthly Income')" class="uppercase"/>
+                                <x-input-label for="motherincome" :value="__('Mother\'s Monthly Income')" class="uppercase"/>
                                 <x-text-input id="motherincome" class="block mt-1 w-full" type="number" name="motherincome" value="{{ old('motherincome', empty($applicant->motherincome) ? null : intval($applicant->motherincome)) }}" />
                                 <x-input-error :messages="$errors->get('motherincome')" class="mt-2" />
                             </div>
                             <div>
-                                <x-input-label for="mothercontactno" :value="__('Contact Number')" class="uppercase"/>
+                                <x-input-label for="mothercontactno" :value="__('Mother\'s Contact Number')" class="uppercase"/>
                                 <x-text-input id="mothercontactno" class="block mt-1 w-full" type="text" name="mothercontactno" value="{{ old('mothercontactno', $applicant->mothercontactno) }}" autocomplete="contactno" />
                                 <x-input-error :messages="$errors->get('mothercontactno')" class="mt-2" />
                             </div>
                             <div>
-                                <x-input-label for="motherreligion" :value="__('Religion')" class="uppercase"/>
+                                <x-input-label for="motherreligion" :value="__('Mother\'s Religion')" class="uppercase"/>
                                 <x-text-input id="motherreligion" class="block mt-1 w-full uppercase" type="text" name="motherreligion" value="{{ old('motherreligion', $applicant->motherreligion) }}" autocomplete="religion" />
                                 <x-input-error :messages="$errors->get('motherreligion')" class="mt-2" />
                             </div>
                         </div>
+                        
                         <div class="gap-6 my-6">
                             <x-input-label for="parentstatus" :value="__('Parent Status')" class="uppercase"/>
                             <select class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm uppercase " name="parentstatus" id="parentstatus">
@@ -268,7 +266,7 @@
                             <x-input-error :messages="$errors->get('parentstatus')" class="mt-2" />
                         </div>
                         <hr class="my-4 h-px bg-gray-200 border-0 dark:bg-gray-700">
-                        <div class="grid grid-cols-2 gap-6 my-6">
+                        <div class="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-6 my-6">
                             <div>
                                 <x-input-label for="guardianname" value="If not living with the parent, NAME OF THE GUARDIAN" class="uppercase"/>
                                 <x-text-input id="guardianname" class="block mt-1 w-full uppercase" type="text" name="guardianname" value="{{ old('guardianname', $applicant->guardianname) }}" autocomplete="name" />
@@ -286,9 +284,9 @@
                             PWD (Persons With Disabilities) Family Members Information
                         </h6>
                         @foreach (range(0, 2) as $id)
-                            <div class="grid grid-cols-2 gap-6 my-6">
+                            <div class="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-6 my-6">
                                 <div>
-                                    <x-input-label for="pwdname-{{ $id }}" :value="__('Name')" class="uppercase"/>
+                                    <x-input-label for="pwdname-{{ $id }}" :value="__('Name (Leave blank if empty)')" class="uppercase"/>
                                     <x-text-input id="pwdname-{{ $id }}" class="block mt-1 w-full uppercase" type="text" name="pwdname[]" value="{{ old('pwdname.'.$id) }}" autocomplete="name" />
                                     <x-input-error :messages="$errors->get('pwdname.'.$id)" class="mt-2" />
                                 </div>
@@ -298,6 +296,7 @@
                                     <x-input-error :messages="$errors->get('pwdage.'.$id)" class="mt-2" />
                                 </div>
                             </div>
+                            <hr>
                         @endforeach
 
                         <hr class="my-4 h-px bg-gray-200 border-0 dark:bg-gray-700">
@@ -305,9 +304,9 @@
                             IBANG MGA KAPATID NA NAG-AARAL O MAY TRABAHO
                         </h6>
                         @foreach (range(0, 3) as $id)
-                            <div class="grid grid-cols-3 gap-6 my-6">
+                            <div class="grid lg:grid-cols-3 sm:grid-cols-2 gap-6 my-6">
                                 <div>
-                                    <x-input-label for="siblingname-{{ $id }}" value="Pangalan" class="uppercase"/>     
+                                    <x-input-label for="siblingname-{{ $id }}" value="Pangalan (Leave blank if empty)" class="uppercase"/>     
                                     <x-text-input id="siblingname-{{ $id }}" class="block mt-1 w-full uppercase" type="text" name="siblingname[]" value="{{ old('siblingname.'.$id) }}" autocomplete="name" />
                                     <x-input-error :messages="$errors->get('siblingname.'.$id)" class="mt-2" />
                                 </div>
@@ -328,9 +327,10 @@
                                     <x-input-error :messages="$errors->get('siblingyearorwork.'.$id)" class="mt-2" />
                                 </div>
                             </div>
+                            <hr>
                         @endforeach
 
-                        <div class="grid grid-cols-2 gap-6 my-6">
+                        <div class="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-6 my-6">
                             <div>
                                 <x-input-label for="siblingsnumberofworking" :value="__('Bilang ng (mga) kapatid na nagtatrabaho')" class="uppercase"/>
                                 <x-text-input id="siblingsnumberofworking" class="block mt-1 w-full uppercase" type="number" name="siblingsnumberofworking" value="{{ old('siblingsnumberofworking', $applicant->siblingsnumberofworking) }}" />
@@ -347,7 +347,7 @@
                         <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
                             MIYEMBRO KA BA NG KAHIT NA ANONG MINISTRY NG PAROKYA?
                         </h6>
-                        <div class="grid grid-cols-2 gap-6 my-6">
+                        <div class="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-6 my-6">
                             <div>
                                 <x-input-label for="applicantministryans" :value="__('Sagot')" class="uppercase"/>
                                 <select class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm uppercase" name="applicantministryans" id="applicantministryans">
@@ -377,7 +377,7 @@
                         <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
                             MIYEMBRO BA ANG IYONG MGA MAGULANG/GUARDIAN SA KAHIT ANONG MINISTRY NG PAROKYA?
                         </h6>
-                        <div class="grid grid-cols-2 gap-6 my-6">
+                        <div class="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-6 my-6">
                             <div>
                                 <x-input-label for="parentapplicantministryans" :value="__('Sagot')" class="uppercase"/>
                                 <select class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm uppercase" name="parentapplicantministryans" id="parentapplicantministryans">
@@ -408,9 +408,9 @@
                             IBA PANG KASAMA SA TIRAHAN (Kamag-anak, Pamangkin, Lolo, Lola etc.)
                         </h6>
                         @foreach (range(0, 3) as $id)
-                        <div class="grid grid-cols-4 gap-6 my-6">
+                        <div class="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 gap-6 my-6">
                             <div>
-                                <x-input-label for="relativename-{{ $id }}" value="Pangalan" class="uppercase"/>
+                                <x-input-label for="relativename-{{ $id }}" value="Pangalan (Leave blank if empty)" class="uppercase"/>
                                 <x-text-input id="relativename-{{ $id }}" class="block mt-1 w-full uppercase" type="text" name="relativename[]" value="{{ old('relativename.'.$id) }}" autocomplete=""/>
                                 <x-input-error :messages="$errors->get('relativename.'.$id)" class="mt-2" />
                             </div>
@@ -430,6 +430,7 @@
                                 <x-input-error :messages="$errors->get('relativework.'.$id)" class="mt-2" />
                             </div>
                         </div>
+                        <hr>
                         @endforeach
                     
                         <hr class="my-4 h-px bg-gray-200 border-0 dark:bg-gray-700">
