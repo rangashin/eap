@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::view('admin-scholar-edit-attendance', 'admin-scholar-edit-attendance');
     Route::view('admin.scholar-attendance-show', 'admin.scholar-attendance-show');
     Route::view('admin.scholar-attendance-edit', 'admin.scholar-attendance-edit');
+    Route::view('scholar-submit-req-view', 'scholar-submit-req-view');
     
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('verified');
     // Route::get('registerrr', [DashboardController::class, 'edit'])->name('register.edit');

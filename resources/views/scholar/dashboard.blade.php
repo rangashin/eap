@@ -34,10 +34,10 @@
                         <h5 class="mb-3 text-base font-semibold text-gray-900 md:text-xl dark:text-white">Scholar's Attendance</h5>
                     </div>
 
-                    <div class="flex flex-nowrap">
+                    <div class="grid lg:grid-cols-5 md:grid-cols-2 md:shrink-0 sm:grid-cols-2 xs:grid-cols-2 gap-3">
                         <div class="w-full p-4 mr-3 mb-3 bg-white border rounded-lg shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
                             <div class="flex">
-                                <h5 class="text-base font-semibold pb-2 text-gray-900 md:text-xl dark:text-white">First Webinar</h5>
+                                <h5 class="text-base font-semibold pb-2 text-gray-900 md:text-xl dark:text-white">1st Webinar</h5>
                             </div>
                             <hr class="mb-3 h-px bg-gray-200 border-0 drop-shadow dark:bg-gray-700">
                             <div>
@@ -46,7 +46,7 @@
                         </div>
                         <div class="w-full p-4 mr-3 mb-3 bg-white border rounded-lg shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
                             <div class="flex">
-                                <h5 class="text-base font-semibold pb-2 text-gray-900 md:text-xl dark:text-white">Second Webinar</h5>
+                                <h5 class="text-base font-semibold pb-2 text-gray-900 md:text-xl dark:text-white">2nd Webinar</h5>
                             </div>
                             <hr class="mb-3 h-px bg-gray-200 border-0 drop-shadow dark:bg-gray-700">
                             <div>
@@ -55,7 +55,7 @@
                         </div>
                         <div class="w-full p-4 mr-3 mb-3 bg-white border rounded-lg shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
                             <div class="flex">
-                                <h5 class="text-base font-semibold pb-2 text-gray-900 md:text-xl dark:text-white">Third Webinar</h5>
+                                <h5 class="text-base font-semibold pb-2 text-gray-900 md:text-xl dark:text-white">3rd Webinar</h5>
                             </div>
                             <hr class="mb-3 h-px bg-gray-200 border-0 drop-shadow dark:bg-gray-700">
                             <div>
@@ -64,14 +64,14 @@
                         </div>
                         <div class="w-full p-4 mr-3 mb-3 bg-white border rounded-lg shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
                             <div class="flex">
-                                <h5 class="text-base font-semibold pb-2 text-gray-900 md:text-xl dark:text-white">Fourth Webinar</h5>
+                                <h5 class="text-base font-semibold pb-2 text-gray-900 md:text-xl dark:text-white">4th Webinar</h5>
                             </div>
                             <hr class="mb-3 h-px bg-gray-200 border-0 drop-shadow dark:bg-gray-700">
                             <div>
                                 <p class="font-black text-xl text-gray-700 uppercase">{{ !empty($scholar->fourthstudent) ?  $scholar->fourthstudent : 0 }}</p>
                             </div>
                         </div>
-                        <div class="w-full p-4 mr-3 mb-3 bg-white border rounded-lg shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
+                        <div class="w-full p-4 mr-3 mb-3 bg-white border rounded-lg shadow-md lg:col-span-1 md:col-span-2 sm:col-span-2 xs:col-span-2 sm:p-6 dark:bg-gray-800 dark:border-gray-700">
                             <div class="flex">
                                 <h5 class="text-base font-semibold pb-2 text-gray-900 md:text-xl dark:text-white">Total</h5>
                             </div>
@@ -89,10 +89,10 @@
                         <h5 class="mb-3 text-base font-semibold text-gray-900 md:text-xl dark:text-white">Parent's Attendance</h5>
                     </div>
 
-                    <div class="flex flex-nowrap">
+                    <div class="grid lg:grid-cols-5 md:grid-cols-2 md:shrink-0 sm:grid-cols-2 xs:grid-cols-2 gap-3">
                         <div class="w-full p-4 mr-3 mb-3 bg-white border rounded-lg shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
                             <div class="flex">
-                                <h5 class="text-base font-semibold pb-2 text-gray-900 md:text-xl dark:text-white">First Webinar</h5>
+                                <h5 class="text-base font-semibold pb-2 text-gray-900 md:text-xl dark:text-white">1st Webinar</h5>
                             </div>
                             <hr class="mb-3 h-px bg-gray-200 border-0 drop-shadow dark:bg-gray-700">
                             <div>
@@ -101,7 +101,7 @@
                         </div>
                         <div class="w-full p-4 mr-3 mb-3 bg-white border rounded-lg shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
                             <div class="flex">
-                                <h5 class="text-base font-semibold pb-2 text-gray-900 md:text-xl dark:text-white">Second Webinar</h5>
+                                <h5 class="text-base font-semibold pb-2 text-gray-900 md:text-xl dark:text-white">2nd Webinar</h5>
                             </div>
                             <hr class="mb-3 h-px bg-gray-200 border-0 drop-shadow dark:bg-gray-700">
                             <div>
@@ -110,7 +110,7 @@
                         </div>
                         <div class="w-full p-4 mr-3 mb-3 bg-white border rounded-lg shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
                             <div class="flex">
-                                <h5 class="text-base font-semibold pb-2 text-gray-900 md:text-xl dark:text-white">Third Webinar</h5>
+                                <h5 class="text-base font-semibold pb-2 text-gray-900 md:text-xl dark:text-white">3rd Webinar</h5>
                             </div>
                             <hr class="mb-3 h-px bg-gray-200 border-0 drop-shadow dark:bg-gray-700">
                             <div>
@@ -119,14 +119,14 @@
                         </div>
                         <div class="w-full p-4 mr-3 mb-3 bg-white border rounded-lg shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
                             <div class="flex">
-                                <h5 class="text-base font-semibold pb-2 text-gray-900 md:text-xl dark:text-white">Fourth Webinar</h5>
+                                <h5 class="text-base font-semibold pb-2 text-gray-900 md:text-xl dark:text-white">4th Webinar</h5>
                             </div>
                             <hr class="mb-3 h-px bg-gray-200 border-0 drop-shadow dark:bg-gray-700">
                             <div>
                                 <p class="font-black text-xl text-gray-700 uppercase">{{ !empty($scholar->fourthparent) ?  $scholar->fourthparent : 0 }}</p>
                             </div>
                         </div>
-                        <div class="w-full p-4 mr-3 mb-3 bg-white border rounded-lg shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
+                        <div class="w-full p-4 mr-3 mb-3 bg-white border rounded-lg shadow-md lg:col-span-1 md:col-span-2 sm:col-span-2 xs:col-span-2 sm:p-6 dark:bg-gray-800 dark:border-gray-700">
                             <div class="flex">
                                 <h5 class="text-base font-semibold pb-2 text-gray-900 md:text-xl dark:text-white">Total</h5>
                             </div>
