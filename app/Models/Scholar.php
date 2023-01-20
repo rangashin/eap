@@ -4,10 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Scholar extends Model
+class Scholar extends Model implements HasMedia
 {
-    use HasFactory;
+    use HasFactory, InteractsWithMedia;
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('scholar_regi');
+        $this->addMediaCollection('scholar_report');
+    }
+
+    public function getStudentAttribute(){
+        return (!empty($this->firststudent) ? 1 : 0) + (!empty($this->secondstudent) ? 1 : 0) + (!empty($this->thirdstudent) ? 1 : 0) + (!empty($this->fourthstudent) ? 1 : 0);
+    }
+
+    public function getParentAttribute(){
+        return (!empty($this->firstparent) ? 1 : 0) + (!empty($this->secondparent) ? 1 : 0) + (!empty($this->thirdparent) ? 1 : 0) + (!empty($this->fourthparent) ? 1 : 0);
+    }
 
     public function applicant(){
         return $this->belongsTo(Applicant::class, 'applicant_user_id');
@@ -36,6 +52,7 @@ class Scholar extends Model
         'fourthparent',
         'totalparent',
         'totalcombinedattendance',
+        // scholarsubmissionmessage
         'scholar_statuses_id',
     ];
 }

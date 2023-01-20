@@ -2,8 +2,11 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\IsAdviserMiddleware;
 use App\Http\Middleware\IsScholarMiddleware;
 use App\Http\Middleware\IsApplicantMiddleware;
+use App\Http\Middleware\IsLeaderMiddleware;
+use App\Http\Middleware\IsPriestMiddleware;
 use App\Http\Middleware\IsSecretaryMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -69,5 +72,8 @@ class Kernel extends HttpKernel
         'applicant' => IsApplicantMiddleware::class, 
         'scholar' => IsScholarMiddleware::class,
         'secretary' => IsSecretaryMiddleware::class,
+        'leader' => IsLeaderMiddleware::class,
+        'priest' => IsPriestMiddleware::class,
+        'adviser' => IsAdviserMiddleware::class,
     ];
 }

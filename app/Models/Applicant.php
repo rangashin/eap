@@ -83,6 +83,7 @@ class Applicant extends Model implements HasMedia
         'applicantcontactno',
         'applicantaddress',
         'gradeyearorlevel',
+        // yearlevel
         'course',
         'schoolname',
         'schooladdress',

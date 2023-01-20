@@ -182,6 +182,38 @@ return [
         'guardianname' => [
             'required_without_all' => 'At least one parent/guardian information is required.'
         ],
+        'firststudent' => [
+            'gte' => 'The :attribute must be a counting value.',
+            'lte' => 'The :attribute must be less than 3 hours (180 minutes).'
+        ],
+        'secondstudent' => [
+            'gte' => 'The :attribute must be a counting value.',
+            'lte' => 'The :attribute must be less than 3 hours (180 minutes).'
+        ],
+        'thirdstudent' => [
+            'gte' => 'The :attribute must be a counting value.',
+            'lte' => 'The :attribute must be less than 3 hours (180 minutes).'
+        ],
+        'fourthstudent' => [
+            'gte' => 'The :attribute must be a counting value.',
+            'lte' => 'The :attribute must be less than 3 hours (180 minutes).'
+        ],
+        'firstparent' => [
+            'gte' => 'The :attribute must be a counting value.',
+            'lte' => 'The :attribute must be less than 3 hours (180 minutes).'
+        ],
+        'secondparent' => [
+            'gte' => 'The :attribute must be a counting value.',
+            'lte' => 'The :attribute must be less than 3 hours (180 minutes).'
+        ],
+        'thirdparent' => [
+            'gte' => 'The :attribute must be a counting value.',
+            'lte' => 'The :attribute must be less than 3 hours (180 minutes).'
+        ],
+        'fourthparent' => [
+            'gte' => 'The :attribute must be a counting value.',
+            'lte' => 'The :attribute must be less than 3 hours (180 minutes).'
+        ],
     ],
 
     /*
@@ -262,6 +294,16 @@ return [
         'file_input_regi' => 'registration form',
         'file_input_report' => 'report card',
         'applicantstatus' => 'applicant status (dropdown)',
+        'firststudent' => 'first attendance',
+        'secondstudent' => 'second attendance',
+        'thirdstudent' => 'third attendance',
+        'fourthstudent' => 'fourth attendance',
+        'firstparent' => 'first attendance',
+        'secondparent' => 'second attendance',
+        'thirdparent' => 'third attendance',
+        'fourthparent' => 'fourth attendance',
+        'file_input_scholar_regi' => 'registration form',
+        'file_input_scholar_report' => 'report card',
     ],
 
 ];

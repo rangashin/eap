@@ -77,7 +77,7 @@
                             </div>
                             <hr class="mb-3 h-px bg-gray-200 border-0 drop-shadow dark:bg-gray-700">
                             <div>
-                                <p class="font-black text-xl text-gray-700 uppercase">{{ !empty($scholar->totalstudent) ?  $scholar->totalstudent : 0 }}</p>
+                                <p class="font-black text-xl text-gray-700 uppercase">{{ $scholar->student }}</p>
                             </div>
                         </div>
                     </div>
@@ -132,7 +132,7 @@
                             </div>
                             <hr class="mb-3 h-px bg-gray-200 border-0 drop-shadow dark:bg-gray-700">
                             <div>
-                                <p class="font-black text-xl text-gray-700 uppercase">{{ !empty($scholar->totalparent) ?  $scholar->totalparent : 0 }}</p>
+                                <p class="font-black text-xl text-gray-700 uppercase">{{ $scholar->parent }}</p>
                             </div>
                         </div>
                     </div>

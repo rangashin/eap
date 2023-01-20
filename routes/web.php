@@ -9,6 +9,7 @@ use App\Http\Controllers\ManageUserController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ManageApplicantController;
 use App\Http\Controllers\ManageScholarController;
+use App\Http\Controllers\ScholarSubmitRequirementsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,10 +22,7 @@ use App\Http\Controllers\ManageScholarController;
 |
 */
 
-
 Route::view('/', 'welcome');
-Route::view('sample', 'sample');
-
 Route::middleware('auth')->group(function () {
 
     Route::view('applicant.registration-new', 'applicant.registration-new');
@@ -39,15 +37,11 @@ Route::middleware('auth')->group(function () {
     Route::view('scholar-submit-req-view', 'scholar-submit-req-view');
     
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('verified');
-    // Route::get('registerrr', [DashboardController::class, 'edit'])->name('register.edit');
-    // Route::post('registerrr', [DashboardController::class, 'store'])->name('register.store');
-
   
     Route::get('account', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('account', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('profile', [UserProfileController::class, 'edit'])->name('account.edit');
     Route::patch('profile', [UserProfileController::class, 'update'])->name('account.update');
-    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::middleware('applicant')->group(function(){
         Route::get('registration', [ApplicantController::class, 'edit'])->name('registration.edit');
@@ -68,12 +62,28 @@ Route::middleware('auth')->group(function () {
                 Route::post('selected', [ManageApplicantController::class, 'updateApplicantSelected'])->name('selected.update');
                 Route::get('rejected', [ManageApplicantController::class, 'rejected'])->name('rejected.index');
             });
-            Route::get('scholar', [ManageScholarController::class, 'index'])->name('scholar.index');
-            Route::get('scholar/{id}', [ManageScholarController::class, 'show'])->name('scholar.show');
-            // Route::get('scholar/{user_id}/edit', [ManageScholarController::class, 'show'])->name('scholar.show');
+            Route::prefix('scholar')->as('scholar.')->group(function(){
+                Route::get('/', [ManageScholarController::class, 'index'])->name('index');
+                Route::post('/', [ManageScholarController::class, 'updateStatus'])->name('updatestatus');
+                Route::get('{id}', [ManageScholarController::class, 'show'])->name('show');
+                Route::get('{user_id}/edit-attendance', [ManageScholarController::class, 'editAttendance'])->name('attendance-edit');
+                Route::patch('{applicant_user_id}', [ManageScholarController::class, 'update'])->name('update');
+                Route::get('{user_id}/edit-requirements', [ManageScholarController::class, 'editRequirements'])->name('requirements-edit');
+                Route::post('{user_id}/regi/{id}', [ManageScholarController::class, 'destroyRegi'])->name('regi-destroy');
+                Route::post('{user_id}/report/{id}', [ManageScholarController::class, 'destroyReport'])->name('report-destroy');
+            });
 
-            
+            // Route::get('scholar', [ManageScholarController::class, 'index'])->name('scholar.index');
+            // Route::post('scholar', [ManageScholarController::class, 'updateStatus'])->name('scholar.updatestatus');
+            // Route::get('scholar/{id}', [ManageScholarController::class, 'show'])->name('scholar.show');
+            // Route::get('scholar/{user_id}/edit', [ManageScholarController::class, 'edit'])->name('scholar.edit');
+            // Route::patch('scholar/{applicant_user_id}', [ManageScholarController::class, 'update'])->name('scholar.update');
         });
+    });
+
+    Route::middleware('scholar')->group(function() {
+        Route::get('submit-requirements', [ScholarSubmitRequirementsController::class, 'index'])->name('submit-requirements.index');
+        Route::post('submit-requirements', [ScholarSubmitRequirementsController::class, 'store'])->name('submit-requirements.store');
     });
 });
 

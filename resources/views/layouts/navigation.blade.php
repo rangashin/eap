@@ -20,6 +20,10 @@
                             <x-nav-link :href="route('registration.edit')" :active="request()->routeIs('registration.edit')">
                                 {{ __('Registration') }}
                             </x-nav-link>
+                        @elseif (auth()->user()->role_id == 3)
+                            <x-nav-link :href="route('submit-requirements.index')" :active="request()->routeIs('submit-requirements.index')">
+                                {{ __('Submit Requirements') }}
+                            </x-nav-link>
                         @endif
                     @elseif (auth()->user()->role_id == 4)
                         <x-nav-link :href="route('admin.user.index')" :active="request()->routeIs('admin.user.index')">

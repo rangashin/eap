@@ -24,7 +24,6 @@
                 <div class="p-6 bg-white border-b border-gray-200 ">
                     <form action="{{ route('registration.update') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        
                         <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
                             Applicant's Information
                         </h6>
