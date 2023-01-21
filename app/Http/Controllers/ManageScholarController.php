@@ -64,10 +64,12 @@ class ManageScholarController extends Controller
             'secondstudent' => $request->secondstudent,
             'thirdstudent' => $request->thirdstudent,
             'fourthstudent' => $request->fourthstudent,
+            'totalstudent' => $temp->student,
             'firstparent' => $request->firstparent,
             'secondparent' => $request->secondparent,
             'thirdparent' => $request->thirdparent,
             'fourthparent' =>  $request->fourthparent,
+            'totalparent' => $temp->parent,
         ]);
         
         return redirect()->route('admin.scholar.show', $applicant_user_id)->with('success', $temp->applicant->full_name.'\'s attendance has been updated.');

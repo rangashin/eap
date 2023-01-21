@@ -63,12 +63,7 @@
                             </div>
                             <div>
                                 <x-input-label for="genave" :value="__('Gen. Ave')" class="uppercase"/>
-                                <x-text-input id="genave" class="mt-1 block w-full" type="number" name="genave" value=" 
-                                    {{  old('genave') != '' ? old('genave') : null }}
-                                    {{  old('elemtohsgenave') != '' ? old('elemtohsgenave') : null }}
-                                    {{  old('collegegenave') != '' ? old('collegegenave') : null }}
-                                    {{  $applicant->genave != '' ? $applicant->genave : null }}
-                                " step="any"/>
+                                <x-text-input id="genave" class="mt-1 block w-full" type="number" name="genave" value="{{ old('genave', $applicant->genave) }}" step="any"/>
                                 @if (!empty($errors->get('elemtohsgenave')))
                                     <x-input-error :messages="$errors->get('elemtohsgenave')" class="mt-2" />
                                 @elseif (!empty($errors->get('collegegenave')))
@@ -286,19 +281,19 @@
                             <div class="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-6 my-6">
                                 <div>
                                     <x-input-label for="pwdname-{{ $id }}" :value="__('Name (Leave blank if empty)')" class="uppercase"/>
-                                    <x-text-input id="pwdname-{{ $id }}" class="block mt-1 w-full uppercase" type="text" name="pwdname[]" value="{{ old('pwdname.'.$id) }}" autocomplete="name" />
+                                    <x-text-input id="pwdname-{{ $id }}" class="block mt-1 w-full uppercase" type="text" name="pwdname[]" value="{{ old('pwdname.'.$id, $applicant->pwdMembers[$id]->pwdname ?? null) }}" autocomplete="name" />
                                     <x-input-error :messages="$errors->get('pwdname.'.$id)" class="mt-2" />
                                 </div>
                                 <div>
                                     <x-input-label for="pwdage-{{ $id }}" :value="__('Age')" class="uppercase"/>
-                                    <x-text-input id="pwdage-{{ $id }}" class="block mt-1 w-full" type="number" name="pwdage[]" value="{{ old('pwdage.'.$id) }}" />
+                                    <x-text-input id="pwdage-{{ $id }}" class="block mt-1 w-full" type="number" name="pwdage[]" value="{{ old('pwdage.'.$id, $applicant->pwdMembers[$id]->pwdage ?? null) }}" />
                                     <x-input-error :messages="$errors->get('pwdage.'.$id)" class="mt-2" />
                                 </div>
                             </div>
-                            <hr>
+                            <hr class="h-px bg-gray-200 border-0 dark:bg-gray-700">
                         @endforeach
 
-                        <hr class="my-4 h-px bg-gray-200 border-0 dark:bg-gray-700">
+                        <div class="my-4"></div>
                         <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
                             IBANG MGA KAPATID NA NAG-AARAL O MAY TRABAHO
                         </h6>
@@ -306,22 +301,22 @@
                             <div class="grid lg:grid-cols-3 sm:grid-cols-2 gap-6 my-6">
                                 <div>
                                     <x-input-label for="siblingname-{{ $id }}" value="Pangalan (Leave blank if empty)" class="uppercase"/>     
-                                    <x-text-input id="siblingname-{{ $id }}" class="block mt-1 w-full uppercase" type="text" name="siblingname[]" value="{{ old('siblingname.'.$id) }}" autocomplete="name" />
+                                    <x-text-input id="siblingname-{{ $id }}" class="block mt-1 w-full uppercase" type="text" name="siblingname[]" value="{{ old('siblingname.'.$id, $applicant->siblingMembers[$id]->siblingname ?? null) }}" autocomplete="name" />
                                     <x-input-error :messages="$errors->get('siblingname.'.$id)" class="mt-2" />
                                 </div>
                                 <div>
                                     <x-input-label for="siblingage-{{ $id }}" :value="__('Age')" class="uppercase"/>
-                                    <x-text-input id="siblingage-{{ $id }}" class="block mt-1 w-full" type="number" name="siblingage[]" value="{{ old('siblingage.'.$id) }}" />
+                                    <x-text-input id="siblingage-{{ $id }}" class="block mt-1 w-full" type="number" name="siblingage[]" value="{{ old('siblingage.'.$id, $applicant->siblingMembers[$id]->siblingage ?? null) }}" />
                                     <x-input-error :messages="$errors->get('siblingage.'.$id)" class="mt-2" />
                                 </div>
                                 <div>
                                     <x-input-label for="siblingyearorwork-{{ $id }}" :value="__('Year Level Or Work')" class="uppercase"/>
                                     <select class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm uppercase" name="siblingyearorwork[]" id="siblingyearorwork-{{ $id }}" >
-                                        <option {{ old('siblingyearorwork.'.$id) == '' ? 'selected' : '' }} value="" selected></option>
-                                        <option {{ old('siblingyearorwork.'.$id) == 'ELEMENTARY' ? 'selected' : '' }} value="ELEMENTARY">ELEMENTARY</option>
-                                        <option {{ old('siblingyearorwork.'.$id) == 'HIGH SCHOOL' ? 'selected' : '' }} value="{{ "HIGH SCHOOL" }}">HIGH SCHOOL</option>
-                                        <option {{ old('siblingyearorwork.'.$id) == 'COLLEGE' ? 'selected' : '' }} value="COLLEGE">COLLEGE</option>
-                                        <option {{ old('siblingyearorwork.'.$id) == 'WORKING' ? 'selected' : '' }} value="WORKING">WORKING</option>
+                                        <option {{ old('siblingyearorwork.'.$id, $applicant->siblingMembers[$id]->siblingyearorwork ?? null) == '' ? 'selected' : '' }} value="" selected></option>
+                                        <option {{ old('siblingyearorwork.'.$id, $applicant->siblingMembers[$id]->siblingyearorwork ?? null) == 'ELEMENTARY' ? 'selected' : '' }} value="ELEMENTARY">ELEMENTARY</option>
+                                        <option {{ old('siblingyearorwork.'.$id, $applicant->siblingMembers[$id]->siblingyearorwork ?? null) == 'HIGH SCHOOL' ? 'selected' : '' }} value="{{ "HIGH SCHOOL" }}">HIGH SCHOOL</option>
+                                        <option {{ old('siblingyearorwork.'.$id, $applicant->siblingMembers[$id]->siblingyearorwork ?? null) == 'COLLEGE' ? 'selected' : '' }} value="COLLEGE">COLLEGE</option>
+                                        <option {{ old('siblingyearorwork.'.$id, $applicant->siblingMembers[$id]->siblingyearorwork ?? null) == 'WORKING' ? 'selected' : '' }} value="WORKING">WORKING</option>
                                     </select>
                                     <x-input-error :messages="$errors->get('siblingyearorwork.'.$id)" class="mt-2" />
                                 </div>
@@ -350,23 +345,23 @@
                             <div>
                                 <x-input-label for="applicantministryans" :value="__('Sagot')" class="uppercase"/>
                                 <select class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm uppercase" name="applicantministryans" id="applicantministryans">
-                                    <option {{ old('applicantministryans') == '' ? 'selected' : '' }} value="" disabled selected hidden></option>
-                                    <option {{ old('applicantministryans') == 'OO' ? 'selected' : '' }} value="OO">OO</option>
-                                    <option {{ old('applicantministryans') == 'HINDI' ? 'selected' : '' }} value="HINDI">HINDI</option>
+                                    <option {{ old('applicantministryans', !empty($applicant->applicantministry) ? 'OO' : 'HINDI') == '' ? 'selected' : '' }} value="" disabled selected hidden></option>
+                                    <option {{ old('applicantministryans', !empty($applicant->applicantministry) ? 'OO' : 'HINDI') == 'OO' ? 'selected' : '' }} value="OO">OO</option>
+                                    <option {{ old('applicantministryans', !empty($applicant->applicantministry) ? 'OO' : 'HINDI') == 'HINDI' ? 'selected' : '' }} value="HINDI">HINDI</option>
                                 </select>
                                 <x-input-error :messages="$errors->get('applicantministryans')" class="mt-2" />
                             </div>
                             <div>
                                 <x-input-label for="applicantministry" :value="__('Kung Oo, anong ministry?')" class="uppercase"/>
                                 <select class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm " name="applicantministry" id="applicantministry">
-                                    <option {{ old('applicantministry') == '' ? 'selected' : '' }} value="" disabled selected hidden></option>
-                                    <option {{ old('applicantministry') == 'Choir' ? 'selected' : '' }} value="Choir">LITURGICAL MUSIC MINISTRY</option>
-                                    <option {{ old('applicantministry') == 'FOG' ? 'selected' : '' }} value="FOG">FAMILY OF GOD MINISTRY</option>
-                                    <option {{ old('applicantministry') == 'L&C' ? 'selected' : '' }} value="L&C">LECTOR AND COMMENTATOR MINISTRY</option>
-                                    <option {{ old('applicantministry') == 'PCCVA' ? 'selected' : '' }} value="PCCVA">PASTORAL CARE FOR CHILDREN AND VULNERABLE ADULTS MINISTRY</option>
-                                    <option {{ old('applicantministry') == 'Sacristan' ? 'selected' : '' }} value="Sacristan">ALTAR SERVER MINISTRY</option>
-                                    <option {{ old('applicantministry') == 'SocComm' ? 'selected' : '' }} value="SocComm">SOCIAL COMMUNICATIONS MINISTRY</option>
-                                    <option {{ old('applicantministry') == 'YFC' ? 'selected' : '' }} value="YFC">YOUTH FOR CHRIST MINISTRY</option>
+                                    <option {{ old('applicantministry', $applicant->applicantministry ?? null) == '' ? 'selected' : '' }} value="" disabled selected hidden></option>
+                                    <option {{ old('applicantministry', $applicant->applicantministry ?? null) == 'Choir' ? 'selected' : '' }} value="Choir">LITURGICAL MUSIC MINISTRY</option>
+                                    <option {{ old('applicantministry', $applicant->applicantministry ?? null) == 'FOG' ? 'selected' : '' }} value="FOG">FAMILY OF GOD MINISTRY</option>
+                                    <option {{ old('applicantministry', $applicant->applicantministry ?? null) == 'L&C' ? 'selected' : '' }} value="L&C">LECTOR AND COMMENTATOR MINISTRY</option>
+                                    <option {{ old('applicantministry', $applicant->applicantministry ?? null) == 'PCCVA' ? 'selected' : '' }} value="PCCVA">PASTORAL CARE FOR CHILDREN AND VULNERABLE ADULTS MINISTRY</option>
+                                    <option {{ old('applicantministry', $applicant->applicantministry ?? null) == 'Sacristan' ? 'selected' : '' }} value="Sacristan">ALTAR SERVER MINISTRY</option>
+                                    <option {{ old('applicantministry', $applicant->applicantministry ?? null) == 'SocComm' ? 'selected' : '' }} value="SocComm">SOCIAL COMMUNICATIONS MINISTRY</option>
+                                    <option {{ old('applicantministry', $applicant->applicantministry ?? null) == 'YFC' ? 'selected' : '' }} value="YFC">YOUTH FOR CHRIST MINISTRY</option>
                                 </select>
                                 <x-input-error :messages="$errors->get('applicantministry')" class="mt-2" />
                             </div>
@@ -380,23 +375,23 @@
                             <div>
                                 <x-input-label for="parentapplicantministryans" :value="__('Sagot')" class="uppercase"/>
                                 <select class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm uppercase" name="parentapplicantministryans" id="parentapplicantministryans">
-                                    <option {{ old('parentapplicantministryans') == '' ? 'selected' : '' }} value="" disabled selected hidden></option>
-                                    <option {{ old('parentapplicantministryans') == 'OO' ? 'selected' : '' }} value="OO">OO</option>
-                                    <option {{ old('parentapplicantministryans') == 'HINDI' ? 'selected' : '' }} value="HINDI">HINDI</option>
+                                    <option {{ old('parentapplicantministryans', !empty($applicant->parentapplicantministry) ? 'OO' : 'HINDI') == '' ? 'selected' : '' }} value="" disabled selected hidden></option>
+                                    <option {{ old('parentapplicantministryans', !empty($applicant->parentapplicantministry) ? 'OO' : 'HINDI') == 'OO' ? 'selected' : '' }} value="OO">OO</option>
+                                    <option {{ old('parentapplicantministryans', !empty($applicant->parentapplicantministry) ? 'OO' : 'HINDI') == 'HINDI' ? 'selected' : '' }} value="HINDI">HINDI</option>
                                 </select>
                                 <x-input-error :messages="$errors->get('parentapplicantministryans')" class="mt-2" />
                             </div>
                             <div>
                                 <x-input-label for="parentapplicantministry" :value="__('Kung Oo, anong ministry?')" class="uppercase"/>
                                 <select class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm " name="parentapplicantministry" id="parentapplicantministry" >
-                                    <option {{ old('parentapplicantministry') == '' ? 'selected' : '' }} value="" disabled selected hidden></option>
-                                    <option {{ old('parentapplicantministry') == 'Choir' ? 'selected' : '' }} value="Choir">LITURGICAL MUSIC MINISTRY</option>
-                                    <option {{ old('parentapplicantministry') == 'FOG' ? 'selected' : '' }} value="FOG">FAMILY OF GOD MINISTRY</option>
-                                    <option {{ old('parentapplicantministry') == 'L&C' ? 'selected' : '' }} value="L&C">LECTOR AND COMMENTATOR MINISTRY</option>
-                                    <option {{ old('parentapplicantministry') == 'PCCVA' ? 'selected' : '' }} value="PCCVA">PASTORAL CARE FOR CHILDREN AND VULNERABLE ADULTS MINISTRY</option>
-                                    <option {{ old('parentapplicantministry') == 'Sacristan' ? 'selected' : '' }} value="Sacristan">ALTAR SERVER MINISTRY</option>
-                                    <option {{ old('parentapplicantministry') == 'SocComm' ? 'selected' : '' }} value="SocComm">SOCIAL COMMUNICATIONS MINISTRY</option>
-                                    <option {{ old('parentapplicantministry') == 'YFC' ? 'selected' : '' }} value="YFC">YOUTH FOR CHRIST MINISTRY</option>
+                                    <option {{ old('parentapplicantministry', $applicant->parentapplicantministry ?? null) == '' ? 'selected' : '' }} value="" disabled selected hidden></option>
+                                    <option {{ old('parentapplicantministry', $applicant->parentapplicantministry ?? null) == 'Choir' ? 'selected' : '' }} value="Choir">LITURGICAL MUSIC MINISTRY</option>
+                                    <option {{ old('parentapplicantministry', $applicant->parentapplicantministry ?? null) == 'FOG' ? 'selected' : '' }} value="FOG">FAMILY OF GOD MINISTRY</option>
+                                    <option {{ old('parentapplicantministry', $applicant->parentapplicantministry ?? null) == 'L&C' ? 'selected' : '' }} value="L&C">LECTOR AND COMMENTATOR MINISTRY</option>
+                                    <option {{ old('parentapplicantministry', $applicant->parentapplicantministry ?? null) == 'PCCVA' ? 'selected' : '' }} value="PCCVA">PASTORAL CARE FOR CHILDREN AND VULNERABLE ADULTS MINISTRY</option>
+                                    <option {{ old('parentapplicantministry', $applicant->parentapplicantministry ?? null) == 'Sacristan' ? 'selected' : '' }} value="Sacristan">ALTAR SERVER MINISTRY</option>
+                                    <option {{ old('parentapplicantministry', $applicant->parentapplicantministry ?? null) == 'SocComm' ? 'selected' : '' }} value="SocComm">SOCIAL COMMUNICATIONS MINISTRY</option>
+                                    <option {{ old('parentapplicantministry', $applicant->parentapplicantministry ?? null) == 'YFC' ? 'selected' : '' }} value="YFC">YOUTH FOR CHRIST MINISTRY</option>
                                 </select>
                                 <x-input-error :messages="$errors->get('parentapplicantministry')" class="mt-2" />
                             </div>
@@ -410,78 +405,127 @@
                         <div class="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 gap-6 my-6">
                             <div>
                                 <x-input-label for="relativename-{{ $id }}" value="Pangalan (Leave blank if empty)" class="uppercase"/>
-                                <x-text-input id="relativename-{{ $id }}" class="block mt-1 w-full uppercase" type="text" name="relativename[]" value="{{ old('relativename.'.$id) }}" autocomplete=""/>
+                                <x-text-input id="relativename-{{ $id }}" class="block mt-1 w-full uppercase" type="text" name="relativename[]" value="{{ old('relativename.'.$id, $applicant->otherMembers[$id]->relativename ?? null) }}" autocomplete=""/>
                                 <x-input-error :messages="$errors->get('relativename.'.$id)" class="mt-2" />
                             </div>
                             <div>
                                 <x-input-label for="relativeage-{{ $id }}" :value="__('Edad')" class="uppercase"/>
-                                <x-text-input id="relativeage-{{ $id }}" class="block mt-1 w-full" type="number" name="relativeage[]" value="{{ old('relativeage.'.$id) }}" autocomplete=""/>
+                                <x-text-input id="relativeage-{{ $id }}" class="block mt-1 w-full" type="number" name="relativeage[]" value="{{ old('relativeage.'.$id, $applicant->otherMembers[$id]->relativeage ?? null) }}" autocomplete=""/>
                                 <x-input-error :messages="$errors->get('relativeage.'.$id)" class="mt-2" />
                             </div>
                             <div>
                                 <x-input-label for="relativerelation-{{ $id }}" :value="__('Relasyon')" class="uppercase"/>
-                                <x-text-input id="relativerelation-{{ $id }}" class="block mt-1 w-full uppercase" type="text" name="relativerelation[]" value="{{ old('relativerelation.'.$id) }}" autocomplete=""/>
+                                <x-text-input id="relativerelation-{{ $id }}" class="block mt-1 w-full uppercase" type="text" name="relativerelation[]" value="{{ old('relativerelation.'.$id, $applicant->otherMembers[$id]->relativerelation ?? null) }}" autocomplete=""/>
                                 <x-input-error :messages="$errors->get('relativerelation.'.$id)" class="mt-2" />
                             </div>
                             <div>
                                 <x-input-label for="relativework-{{ $id }}" :value="__('Trabaho')" class="uppercase"/>
-                                <x-text-input id="relativework-{{ $id }}" class="block mt-1 w-full uppercase" type="text" name="relativework[]" value="{{ old('relativework.'.$id) }}" autocomplete=""/>
+                                <x-text-input id="relativework-{{ $id }}" class="block mt-1 w-full uppercase" type="text" name="relativework[]" value="{{ old('relativework.'.$id, $applicant->otherMembers[$id]->relativework ?? null) }}" autocomplete=""/>
                                 <x-input-error :messages="$errors->get('relativework.'.$id)" class="mt-2" />
                             </div>
                         </div>
-                        <hr>
+                        <hr class="h-px bg-gray-200 border-0 dark:bg-gray-700">
                         @endforeach
                     
-                        <hr class="my-4 h-px bg-gray-200 border-0 dark:bg-gray-700">
+                        <div class="my-4"></div>
                         <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
                             Requirements (Clear Copy)
                         </h6>
                         <div class="mb-4">
                             <!-- Upload Applicant Picture -->
-                            <x-input-label class="my-2 uppercase " for="file_input_picture" id="file_input_picture_label" value="2x2 Picture"/>
+                            <div class="flex items-center">
+                                <x-input-label class="my-2 uppercase " for="file_input_picture" id="file_input_picture_label" value="2x2 Picture"/>
+                                <svg fill="none" data-tooltip-target="tooltip-2x2" data-tooltip-placement="right" class="flex-shrink-0 inline w-5 h-5 ml-3 fill-gray-300 stroke-gray-600" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"></path>
+                                </svg>
+                                <div id="tooltip-2x2" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"><b>Example Format: </b><i> Dela Cruz, Juan-2x2 Picture</i><div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
+                            </div>
                             <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 " aria-describedby="file_input_help" id="file_input_picture" name="file_input_picture" type="file">
                             <x-input-error :messages="$errors->get('file_input_picture')" class="mt-2 mb-5" />
                         </div>
-                        
-                        <div class="mb-4">
+
+                        <div class="mb-4" id="baptismal_div">
                             <!-- Upload Baptismal Cert -->
-                            <x-input-label class="my-2 uppercase " for="file_input_baptismal" id="file_input_baptismal_label" value="Baptismal Certificate"/>
+                            <div class="flex items-center my-0 py-0">
+                                <x-input-label class="mb-2 uppercase " for="file_input_baptismal" id="file_input_baptismal_label" value="Baptismal Certificate"/>
+                                <svg fill="none" data-tooltip-target="tooltip-baptismal" data-tooltip-placement="right" class="flex-shrink-0 inline w-5 h-5 ml-3 fill-gray-300 stroke-gray-600 mb-2 " stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" id="baptismal_svg"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"></path>
+                                </svg>
+                                <div id="tooltip-baptismal" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"><b>Example Format: </b><i> Dela Cruz, Juan-Baptismal Certificate</i><div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
+                            </div>
                             <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 " aria-describedby="file_input_help" id="file_input_baptismal" name="file_input_baptismal" type="file">
-                            <x-input-error :messages="$errors->get('file_input_baptismal')" class="mt-2 mb-5" />
+                            <x-input-error :messages="$errors->get('file_input_baptismal')" class="mt-2 mb-5" id="baptismal_error"/>
                         </div>
                         
-                        <div class="mb-4">
+                        <div class="mb-4" id="birth_div">
                             <!-- Upload Birth Cert -->
-                            <x-input-label class="my-2 uppercase " for="file_input_birth" id="file_input_birth_label" value="Birth Certificate"/>
+                            <div class="flex items-center my-0 py-0">
+                                <x-input-label class="mb-2 uppercase " for="file_input_birth" id="file_input_birth_label" value="Birth Certificate"/>
+                                <svg fill="none" data-tooltip-target="tooltip-birth" data-tooltip-placement="right" class="flex-shrink-0 inline w-5 h-5 ml-3 fill-gray-300 stroke-gray-600 mb-2 " stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"></path>
+                                </svg>
+                                <div id="tooltip-birth" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"><b>Example Format: </b><i> Dela Cruz, Juan-Birth Certificate</i><div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
+                            </div>
                             <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 " aria-describedby="file_input_help" id="file_input_birth" name="file_input_birth" type="file">
-                            <x-input-error :messages="$errors->get('file_input_birth')" class="mt-2 mb-5" />
+                            <x-input-error :messages="$errors->get('file_input_birth')" class="mt-2 mb-5" id="birth_error"/>
                         </div>
                             
-                        <div class="mb-4">
+                        <div class="mb-4" id="regi_report_div">
                             <!-- Upload Registration Form/Report Card -->
-                            <x-input-label class="my-2 uppercase " for="file_input_regi_report" id="file_input_regi_report_label" value="Report Card/Registration Form"/>
+                            <div class="flex items-center my-0 py-0">
+                                <x-input-label class="mb-2 uppercase " for="file_input_regi_report" id="file_input_regi_report_label" value="Report Card/Registration Form"/>
+                                <svg fill="none" data-tooltip-target="tooltip-regi_report" data-tooltip-placement="right" class="flex-shrink-0 inline w-5 h-5 ml-3 fill-gray-300 stroke-gray-600 mb-2 " stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"></path>
+                                </svg>
+                                <div id="tooltip-regi_report" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                    <b>Example Format: </b>
+                                    <ul>
+                                        <li class="pl-5"><b>For Elementary to High School: </b> <i>Dela Cruz, Juan-Report Card(1st Quarter)</i> OR <i>Dela Cruz, Juan-Registration Form</i></li>
+                                        <li class="pl-5"><b>For Senior High School to College: </b> <i>Dela Cruz, Juan-Report Card(1st Semester)</i> OR <i>Dela Cruz, Juan-Registration Form(1st Semester)</i></li>
+                                    </ul>
+                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
+                            </div>
                             <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 " aria-describedby="file_input_help" id="file_input_regi_report" name="file_input_regi_report" type="file">
-                            <x-input-error :messages="$errors->get('file_input_regi_report')" class="mt-2 mb-5" />
+                            <x-input-error :messages="$errors->get('file_input_regi_report')" class="mt-2 mb-5" id="regi_report_error"/>
                         </div>
-
-                        <div class="mb-4">
+                        
+                        <div class="mb-4" id="regi_div">
                             <!-- Upload Registration Form -->
-                            <x-input-label class="my-2 uppercase " for="file_input_regi" id="file_input_regi_label" value="Registration Form"/>
-                            <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  " aria-describedby="file_input_help" id="file_input_regi" name="file_input_regi" type="file">
-                            <x-input-error :messages="$errors->get('file_input_regi')" class="mt-2 mb-5" />
+                            <div class="flex items-center my-0 py-0">
+                                <x-input-label class="mb-2 uppercase " for="file_input_regi" id="file_input_regi_label" value="Registration Form"/>
+                                <svg fill="none" data-tooltip-target="tooltip-regi" data-tooltip-placement="right" class="flex-shrink-0 inline w-5 h-5 ml-3 fill-gray-300 stroke-gray-600 mb-2 " stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"></path>
+                                </svg>
+                                <div id="tooltip-regi" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"><b>Example Format: </b><i> Dela Cruz, Juan-Registration Form</i><div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
+                            </div>
+                            <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 " aria-describedby="file_input_help" id="file_input_regi" name="file_input_regi" type="file">
+                            <x-input-error :messages="$errors->get('file_input_regi')" class="mt-2 mb-5" id="regi_error"/>
                         </div>
 
-                        <div class="mb-4">
+                        <div class="mb-4" id="report_div">
                             <!-- Upload Report Card -->
-                            <x-input-label class="my-2 uppercase " for="file_input_report" id="file_input_report_label" value="Report Card"/>
+                            <div class="flex items-center my-0 py-0">
+                                <x-input-label class="mb-2 uppercase " for="file_input_report" id="file_input_report_label" value="Report Card"/>
+                                <svg fill="none" data-tooltip-target="tooltip-report" data-tooltip-placement="right" class="flex-shrink-0 inline w-5 h-5 ml-3 fill-gray-300 stroke-gray-600 mb-2 " stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"></path>
+                                </svg>
+                                <div id="tooltip-report" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"><b>Example Format: </b><i> Dela Cruz, Juan-Report Card</i><div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
+                            </div>
                             <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 " aria-describedby="file_input_help" id="file_input_report" name="file_input_report" type="file">
-                            <x-input-error :messages="$errors->get('file_input_report')" class="mt-2 mb-5" />
+                            <x-input-error :messages="$errors->get('file_input_report')" class="mt-2 mb-5" id="report_error"/>
                         </div>
 
-                        <div class="flex p-4 mt-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800" role="alert">
+                        <div class="flex items-baseline p-4 my-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800" role="alert">
                             <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
                             <span class="sr-only">Info</span>
-                            <div>Only UPLOAD DOCUMENTS in JPG or PNG Format! (Max. 8MB)</div>
+                            <div>
+                                <span class="font-medium"><p class="text-xl font-black">NOTE:</p></span>
+                                <ul class="list-disc pl-5">
+                                    <li class="font-bold text-base">Only UPLOAD DOCUMENTS in JPG or PNG Format! (Max. 8MB)</li>
+                                    <li class="font-semibold text-base">Please make sure that you have rename your file before submitting to reduce the chance that your submission will be rejected.</li>
+                                    <li class="font-semibold text-base">Please rename the file with your name, and according to the requirements.</li>
+                                </ul>
+                            </div>
                         </div>
                         
                         <div class="flex items-center justify-end mt-4">

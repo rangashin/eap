@@ -127,78 +127,108 @@
                 var selectedRenewal = $("select#renewal option:selected").val(); 
                 if(selectedRenewal == 'OLD'){
                     $("#scholaryears").removeClass("bg-slate-200").prop('disabled', false);
-                    $("#file_input_baptismal_label").addClass("hidden");
-                    $("#file_input_baptismal").addClass("hidden");
-                    $("#file_input_birth_label").addClass("hidden");
-                    $("#file_input_birth").addClass("hidden");
-                    $("#file_input_regi_report_label").addClass("hidden");
-                    $("#file_input_regi_report").addClass("hidden");
-                    $("#file_input_regi_label").removeClass("hidden");
-                    $("#file_input_regi").removeClass("hidden");
-                    $("#file_input_report_label").removeClass("hidden");
-                    $("#file_input_report").removeClass("hidden");
+                    // $("#file_input_baptismal_label").addClass("hidden");
+                    // $("#file_input_baptismal").addClass("hidden");
+                    // $("#baptismal_svg").addClass("hidden");
+                    $("#baptismal_div").addClass("hidden");
+                    // $("#file_input_birth_label").addClass("hidden");
+                    // $("#file_input_birth").addClass("hidden");
+                    $("#birth_div").addClass("hidden");
+                    // $("#file_input_regi_report_label").addClass("hidden");
+                    // $("#file_input_regi_report").addClass("hidden");
+                    $("#regi_report_div").addClass("hidden");
+                    // $("#file_input_regi_label").removeClass("hidden");
+                    // $("#file_input_regi").removeClass("hidden");
+                    $("#regi_div").removeClass("hidden");
+                    // $("#file_input_report_label").removeClass("hidden");
+                    // $("#file_input_report").removeClass("hidden");
+                    $("#report_div").removeClass("hidden");
                 }else if (selectedRenewal == 'NEW'){
                     $("#scholaryears").addClass("bg-slate-200").prop('disabled', true).val(0);
-                    $("#file_input_baptismal_label").removeClass("hidden");
-                    $("#file_input_baptismal").removeClass("hidden");
-                    $("#file_input_birth_label").removeClass("hidden");
-                    $("#file_input_birth").removeClass("hidden");
-                    $("#file_input_regi_report_label").removeClass("hidden");
-                    $("#file_input_regi_report").removeClass("hidden");
-                    $("#file_input_regi_label").addClass("hidden");
-                    $("#file_input_regi").addClass("hidden");
-                    $("#file_input_report_label").addClass("hidden");
-                    $("#file_input_report").addClass("hidden");
+                    // $("#file_input_baptismal_label").removeClass("hidden");
+                    // $("#file_input_baptismal").removeClass("hidden");
+                    // $("#baptismal_svg").removeClass("hidden");
+                    $("#baptismal_div").removeClass("hidden");
+                    // $("#file_input_birth_label").removeClass("hidden");
+                    // $("#file_input_birth").removeClass("hidden");
+                    $("#birth_div").removeClass("hidden");
+                    // $("#file_input_regi_report_label").removeClass("hidden");
+                    // $("#file_input_regi_report").removeClass("hidden");
+                    $("#regi_report_div").removeClass("hidden");
+                    // $("#file_input_regi_label").addClass("hidden");
+                    // $("#file_input_regi").addClass("hidden");
+                    $("#regi_div").addClass("hidden");
+                    // $("#file_input_report_label").addClass("hidden");
+                    // $("#file_input_report").addClass("hidden");
+                    $("#report_div").addClass("hidden");
                 }else if (selectedRenewal == ''){
                     $("#scholaryears").addClass("bg-slate-200").prop('disabled', true).val();
-                    $("#file_input_baptismal_label").addClass("hidden");
-                    $("#file_input_baptismal").addClass("hidden");
-                    $("#file_input_birth_label").addClass("hidden");
-                    $("#file_input_birth").addClass("hidden");
-                    $("#file_input_regi_report_label").addClass("hidden");
-                    $("#file_input_regi_report").addClass("hidden");
-                    $("#file_input_regi_label").addClass("hidden");
-                    $("#file_input_regi").addClass("hidden");
-                    $("#file_input_report_label").addClass("hidden");
-                    $("#file_input_report").addClass("hidden");
+                    // $("#file_input_baptismal_label").addClass("hidden");
+                    // $("#file_input_baptismal").addClass("hidden");
+                    // $("#baptismal_svg").addClass("hidden");
+                    $("#baptismal_div").addClass("hidden");
+                    // $("#file_input_birth_label").addClass("hidden");
+                    // $("#file_input_birth").addClass("hidden");
+                    $("#birth_div").addClass("hidden");
+                    // $("#file_input_regi_report_label").addClass("hidden");
+                    // $("#file_input_regi_report").addClass("hidden");
+                    $("#regi_report_div").addClass("hidden");
+                    // $("#file_input_regi_label").addClass("hidden");
+                    // $("#file_input_regi").addClass("hidden");
+                    $("#regi_div").addClass("hidden");
+                    // $("#file_input_report_label").addClass("hidden");
+                    // $("#file_input_report").addClass("hidden");
+                    $("#report_div").addClass("hidden");
                 }
 
                 $("select#renewal").change(function(){
                     var selectedRenewal = $(this).children("option:selected").val();
                     if(selectedRenewal == 'OLD'){
                         $("#scholaryears").removeClass("bg-slate-200").prop('disabled', false).val(null).focus();
-                        $("#file_input_baptismal_label").addClass("hidden");
-                        $("#file_input_baptismal").addClass("hidden");
-                        $("#baptismal_error").addClass("hidden");
-                        $("#file_input_birth_label").addClass("hidden");
-                        $("#file_input_birth").addClass("hidden");
-                        $("#birth_error").addClass("hidden");
-                        $("#file_input_regi_report_label").addClass("hidden");
-                        $("#file_input_regi_report").addClass("hidden");
-                        $("#regi_report_error").addClass("hidden");
-                        $("#file_input_regi_label").removeClass("hidden");
-                        $("#file_input_regi").removeClass("hidden");
-                        $("#regi_error").removeClass("hidden");
-                        $("#file_input_report_label").removeClass("hidden");
-                        $("#file_input_report").removeClass("hidden");
-                        $("#report_error").removeClass("hidden");
+                        // $("#file_input_baptismal_label").addClass("hidden");
+                        // $("#file_input_baptismal").addClass("hidden");
+                        // $("#baptismal_svg").addClass("hidden");
+                        // $("#baptismal_error").addClass("hidden");
+                        $("#baptismal_div").addClass("hidden");
+                        // $("#file_input_birth_label").addClass("hidden");
+                        // $("#file_input_birth").addClass("hidden");
+                        // $("#birth_error").addClass("hidden");
+                        $("#birth_div").addClass("hidden");
+                        // $("#file_input_regi_report_label").addClass("hidden");
+                        // $("#file_input_regi_report").addClass("hidden");
+                        // $("#regi_report_error").addClass("hidden");
+                        $("#regi_report_div").addClass("hidden");
+                        // $("#file_input_regi_label").removeClass("hidden");
+                        // $("#file_input_regi").removeClass("hidden");
+                        // $("#regi_error").removeClass("hidden");
+                        $("#regi_div").removeClass("hidden");
+                        // $("#file_input_report_label").removeClass("hidden");
+                        // $("#file_input_report").removeClass("hidden");
+                        // $("#report_error").removeClass("hidden");
+                        $("#report_div").removeClass("hidden");
                     }else if (selectedRenewal == 'NEW'){
                         $("#scholaryears").addClass("bg-slate-200").prop('disabled', true).val(0);
-                        $("#file_input_baptismal_label").removeClass("hidden");
-                        $("#file_input_baptismal").removeClass("hidden");
-                        $("#baptismal_error").removeClass("hidden");
-                        $("#file_input_birth_label").removeClass("hidden");
-                        $("#file_input_birth").removeClass("hidden");
-                        $("#birth_error").removeClass("hidden");
-                        $("#file_input_regi_report_label").removeClass("hidden");
-                        $("#file_input_regi_report").removeClass("hidden");
-                        $("#regi_report_error").removeClass("hidden");
-                        $("#file_input_regi_label").addClass("hidden");
-                        $("#file_input_regi").addClass("hidden");
-                        $("#regi_error").addClass("hidden");
-                        $("#file_input_report_label").addClass("hidden");
-                        $("#file_input_report").addClass("hidden");
-                        $("#report_error").addClass("hidden");
+                        // $("#file_input_baptismal_label").removeClass("hidden");
+                        // $("#file_input_baptismal").removeClass("hidden");
+                        // $("#baptismal_svg").removeClass("hidden");
+                        // $("#baptismal_error").removeClass("hidden");
+                        $("#baptismal_div").removeClass("hidden");
+                        // $("#file_input_birth_label").removeClass("hidden");
+                        // $("#file_input_birth").removeClass("hidden");
+                        // $("#birth_error").removeClass("hidden");
+                        $("#birth_div").removeClass("hidden");
+                        // $("#file_input_regi_report_label").removeClass("hidden");
+                        // $("#file_input_regi_report").removeClass("hidden");
+                        // $("#regi_report_error").removeClass("hidden");
+                        $("#regi_report_div").removeClass("hidden");
+                        // $("#file_input_regi_label").addClass("hidden");
+                        // $("#file_input_regi").addClass("hidden");
+                        // $("#regi_error").addClass("hidden");
+                        $("#regi_div").addClass("hidden");
+                        // $("#file_input_report_label").addClass("hidden");
+                        // $("#file_input_report").addClass("hidden");
+                        // $("#report_error").addClass("hidden");
+                        $("#report_div").addClass("hidden");
                     }
                 });
 
@@ -232,7 +262,7 @@
 
                 var selectedApplicantMinistry = $("select#applicantministryans option:selected").val(); 
                 if (selectedApplicantMinistry == 'OO'){
-                    $("#applicantministry").removeClass("bg-slate-200").prop('disabled', false).focus();
+                    $("#applicantministry").removeClass("bg-slate-200").prop('disabled', false);
                 }else{
                     $("#applicantministry").addClass("bg-slate-200").prop('disabled', true).val(null);
                 }
@@ -248,7 +278,7 @@
 
                 var selectedParentApplicantMinistry = $("select#parentapplicantministryans option:selected").val(); 
                 if (selectedParentApplicantMinistry == 'OO'){
-                    $("#parentapplicantministry").removeClass("bg-slate-200").prop('disabled', false).focus();
+                    $("#parentapplicantministry").removeClass("bg-slate-200").prop('disabled', false);
                 }else{
                     $("#parentapplicantministry").addClass("bg-slate-200").prop('disabled', true).val(null);
                 }

@@ -333,7 +333,7 @@
                                         <x-input-label for="resubmissionmessage" :value="__('RESUBMISSION MESSAGE (If the applicant needs to resubmit)')" />
                                     </div>
                                     <div class="flex items-center justify-end">
-                                        <x-text-input id="resubmissionmessage" name="resubmissionmessage" type="text" class="mt-1 block w-full uppercase" />   
+                                        <x-text-input id="resubmissionmessage" name="resubmissionmessage" type="text" class="mt-1 block w-full" />   
                                     </div>
                                     <div class="flex items-center justify-end">
                                         <x-input-error class="mt-2" :messages="$errors->get('resubmissionmessage')" />

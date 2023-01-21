@@ -225,8 +225,7 @@
                         IBANG MGA KAPATID NA NAGAARAL O NAGTRATRABAHO
                     </h6>
                     @forelse ($applicant->siblingMembers as $sibling)
-                        <div
-                            class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 min-[320px]:grid-cols-1 gap-6 my-6">
+                        <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 min-[320px]:grid-cols-1 gap-6 my-6">
                             <div>
                                 <x-input-label for="siblingname" :value="__('Pangalan')" class="uppercase" />
                                 <p class="font-black text-xl text-gray-700 uppercase">{{ $sibling->siblingname }}</p>
@@ -293,8 +292,7 @@
                         Iba pang kasama sa tirahan <span><i>(Kamag-anak, Pamangkin, Lolo, Lola, etc.)</i></span>
                     </h6>
                     @forelse ($applicant->otherMembers as $other)
-                        <div
-                            class="grid lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2 min-[320px]:grid-cols-2 gap-6 my-6">
+                        <div class="grid lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2 min-[320px]:grid-cols-2 gap-6 my-6">
                             <div>
                                 <x-input-label for="relativename" :value="__('Pangalan')" class="uppercase" />
                                 <p class="font-black text-xl text-gray-700 uppercase">{{ $other->relativename }}</p>
@@ -316,11 +314,9 @@
                         <hr>
                     @empty
                         <p class="font-black text-xl text-gray-700 uppercase">{{ 'No PWD Family Member' }}</p>
-                        <hr>
                     @endforelse
 
-
-
+                    <hr class="my-4 h-px bg-gray-200 border-0 dark:bg-gray-700">
                     <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
                         Requirements (Clear Copy)
                     </h6>

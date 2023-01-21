@@ -30,15 +30,13 @@ Route::middleware('auth')->group(function () {
     Route::view('dashboard-impo', 'dashboard-impo');
     Route::view('scholar.dashboard', 'scholar.dashboard');
     Route::view('admin.scholar-index', 'admin.scholar-index');
+    Route::view('applicant.registration-new', 'applicant.registration-new');
 
     //Temp Routes for view
-    Route::view('admin-scholar-edit-attendance', 'admin-scholar-edit-attendance');
-    Route::view('admin.scholar-attendance-show', 'admin.scholar-attendance-show');
     Route::view('admin.scholar-attendance-edit', 'admin.scholar-attendance-edit');
     
-    
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('verified');
-  
+
     Route::get('account', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('account', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('profile', [UserProfileController::class, 'edit'])->name('account.edit');

@@ -280,12 +280,11 @@
                                     <x-text-input id="pwdage-{{ $id }}" class="block mt-1 w-full" type="number" name="pwdage[]" value="{{ old('pwdage.'.$id) }}" />
                                     <x-input-error :messages="$errors->get('pwdage.'.$id)" class="mt-2" />
                                 </div>
-                                
                             </div>
-                            <hr>
+                            <hr class="h-px bg-gray-200 border-0 dark:bg-gray-700">
                         @endforeach
 
-                        <hr class="my-4 h-px bg-gray-200 border-0 dark:bg-gray-700">
+                        <div class="my-4"></div>
                         <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
                             IBANG MGA KAPATID NA NAG-AARAL O MAY TRABAHO
                         </h6>
@@ -312,9 +311,8 @@
                                     </select>
                                     <x-input-error :messages="$errors->get('siblingyearorwork.'.$id)" class="mt-2" />
                                 </div>
-                                
                             </div>
-                            <hr>
+                            <hr class="h-px bg-gray-200 border-0 dark:bg-gray-700">
                         @endforeach
                         <div class="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-6 my-6">
                             <div>
@@ -416,10 +414,10 @@
                                 <x-input-error :messages="$errors->get('relativework.'.$id)" class="mt-2" />
                             </div>
                         </div>
-                        <hr>
+                        <hr class="h-px bg-gray-200 border-0 dark:bg-gray-700">
                         @endforeach
                     
-                        <hr class="my-4 h-px bg-gray-200 border-0 dark:bg-gray-700">
+                        <div class="my-4"></div>
                         <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
                             Requirements (Clear Copy)
                         </h6>
@@ -427,56 +425,85 @@
                             <!-- Upload Applicant Picture -->
                             <div class="flex items-center">
                                 <x-input-label class="my-2 uppercase " for="file_input_picture" id="file_input_picture_label" value="2x2 Picture"/>
-                                <svg fill="none" data-tooltip-target="tooltip-right" data-tooltip-placement="right" class="flex-shrink-0 inline w-5 h-5 ml-3 fill-gray-300 stroke-gray-600" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"></path>
+                                <svg fill="none" data-tooltip-target="tooltip-2x2" data-tooltip-placement="right" class="flex-shrink-0 inline w-5 h-5 ml-3 fill-gray-300 stroke-gray-600" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"></path>
                                 </svg>
-                                <div id="tooltip-right" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">Only UPLOAD FILES in JPG or PNG Format!<div class="tooltip-arrow" data-popper-arrow></div>
+                                <div id="tooltip-2x2" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"><b>Example Format: </b><i> Dela Cruz, Juan-2x2 Picture</i><div class="tooltip-arrow" data-popper-arrow></div>
                                 </div>
                             </div>
-                            
                             <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 " aria-describedby="file_input_help" id="file_input_picture" name="file_input_picture" type="file">
                             <x-input-error :messages="$errors->get('file_input_picture')" class="mt-2 mb-5" />
                         </div>
 
-                        <div class="mb-4">
-                        <!-- Upload Baptismal Cert -->
-                            <x-input-label class="my-2 uppercase " for="file_input_baptismal" id="file_input_baptismal_label" value="Baptismal Certificate"/>
+                        <div class="mb-4" id="baptismal_div">
+                            <!-- Upload Baptismal Cert -->
+                            <div class="flex items-center my-0 py-0">
+                                <x-input-label class="mb-2 uppercase " for="file_input_baptismal" id="file_input_baptismal_label" value="Baptismal Certificate"/>
+                                <svg fill="none" data-tooltip-target="tooltip-baptismal" data-tooltip-placement="right" class="flex-shrink-0 inline w-5 h-5 ml-3 fill-gray-300 stroke-gray-600 mb-2 " stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" id="baptismal_svg"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"></path>
+                                </svg>
+                                <div id="tooltip-baptismal" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"><b>Example Format: </b><i> Dela Cruz, Juan-Baptismal Certificate</i><div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
+                            </div>
                             <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 " aria-describedby="file_input_help" id="file_input_baptismal" name="file_input_baptismal" type="file">
                             <x-input-error :messages="$errors->get('file_input_baptismal')" class="mt-2 mb-5" id="baptismal_error"/>
                         </div>
                         
-                        <div class="mb-4">
+                        <div class="mb-4" id="birth_div">
                             <!-- Upload Birth Cert -->
-                            <x-input-label class="my-2 uppercase " for="file_input_birth" id="file_input_birth_label" value="Birth Certificate"/>
+                            <div class="flex items-center my-0 py-0">
+                                <x-input-label class="mb-2 uppercase " for="file_input_birth" id="file_input_birth_label" value="Birth Certificate"/>
+                                <svg fill="none" data-tooltip-target="tooltip-birth" data-tooltip-placement="right" class="flex-shrink-0 inline w-5 h-5 ml-3 fill-gray-300 stroke-gray-600 mb-2 " stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"></path>
+                                </svg>
+                                <div id="tooltip-birth" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"><b>Example Format: </b><i> Dela Cruz, Juan-Birth Certificate</i><div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
+                            </div>
                             <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 " aria-describedby="file_input_help" id="file_input_birth" name="file_input_birth" type="file">
                             <x-input-error :messages="$errors->get('file_input_birth')" class="mt-2 mb-5" id="birth_error"/>
                         </div>
                             
-                        <div class="mb-4">
+                        <div class="mb-4" id="regi_report_div">
                             <!-- Upload Registration Form/Report Card -->
-                            <x-input-label class="my-2 uppercase " for="file_input_regi_report" id="file_input_regi_report_label" value="Report Card/Registration Form"/>
+                            <div class="flex items-center my-0 py-0">
+                                <x-input-label class="mb-2 uppercase " for="file_input_regi_report" id="file_input_regi_report_label" value="Report Card/Registration Form"/>
+                                <svg fill="none" data-tooltip-target="tooltip-regi_report" data-tooltip-placement="right" class="flex-shrink-0 inline w-5 h-5 ml-3 fill-gray-300 stroke-gray-600 mb-2 " stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"></path>
+                                </svg>
+                                <div id="tooltip-regi_report" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                    <b>Example Format: </b>
+                                    <ul>
+                                        <li class="pl-5"><b>For Elementary to High School: </b> <i>Dela Cruz, Juan-Report Card(1st Quarter)</i> OR <i>Dela Cruz, Juan-Registration Form</i></li>
+                                        <li class="pl-5"><b>For Senior High School to College: </b> <i>Dela Cruz, Juan-Report Card(1st Semester)</i> OR <i>Dela Cruz, Juan-Registration Form(1st Semester)</i></li>
+                                    </ul>
+                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
+                            </div>
                             <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 " aria-describedby="file_input_help" id="file_input_regi_report" name="file_input_regi_report" type="file">
                             <x-input-error :messages="$errors->get('file_input_regi_report')" class="mt-2 mb-5" id="regi_report_error"/>
                         </div>
                         
-                        <div class="mb-4">
+                        <div class="mb-4" id="regi_div">
                             <!-- Upload Registration Form -->
-                            <x-input-label class="my-2 uppercase " for="file_input_regi" id="file_input_regi_label" value="Registration Form"/>
+                            <div class="flex items-center my-0 py-0">
+                                <x-input-label class="mb-2 uppercase " for="file_input_regi" id="file_input_regi_label" value="Registration Form"/>
+                                <svg fill="none" data-tooltip-target="tooltip-regi" data-tooltip-placement="right" class="flex-shrink-0 inline w-5 h-5 ml-3 fill-gray-300 stroke-gray-600 mb-2 " stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"></path>
+                                </svg>
+                                <div id="tooltip-regi" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"><b>Example Format: </b><i> Dela Cruz, Juan-Registration Form</i><div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
+                            </div>
                             <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 " aria-describedby="file_input_help" id="file_input_regi" name="file_input_regi" type="file">
                             <x-input-error :messages="$errors->get('file_input_regi')" class="mt-2 mb-5" id="regi_error"/>
                         </div>
 
-                        <div class="mb-4">
+                        <div class="mb-4" id="report_div">
                             <!-- Upload Report Card -->
-                            <x-input-label class="my-2 uppercase " for="file_input_report" id="file_input_report_label" value="Report Card"/>
+                            <div class="flex items-center my-0 py-0">
+                                <x-input-label class="mb-2 uppercase " for="file_input_report" id="file_input_report_label" value="Report Card"/>
+                                <svg fill="none" data-tooltip-target="tooltip-report" data-tooltip-placement="right" class="flex-shrink-0 inline w-5 h-5 ml-3 fill-gray-300 stroke-gray-600 mb-2 " stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"></path>
+                                </svg>
+                                <div id="tooltip-report" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"><b>Example Format: </b><i> Dela Cruz, Juan-Report Card</i><div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
+                            </div>
                             <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 " aria-describedby="file_input_help" id="file_input_report" name="file_input_report" type="file">
                             <x-input-error :messages="$errors->get('file_input_report')" class="mt-2 mb-5" id="report_error"/>
                         </div>
-
-                        {{-- <div class="flex p-4 mt-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800" role="alert">
-                            <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                            <span class="sr-only">Info</span>
-                            <div>Only UPLOAD DOCUMENTS in JPG or PNG Format! (Max. 8MB)</div>
-                        </div> --}}
                         
                         <div class="flex items-baseline p-4 my-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800" role="alert">
                             <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
@@ -487,8 +514,6 @@
                                     <li class="font-bold text-base">Only UPLOAD DOCUMENTS in JPG or PNG Format! (Max. 8MB)</li>
                                     <li class="font-semibold text-base">Please make sure that you have rename your file before submitting to reduce the chance that your submission will be rejected.</li>
                                     <li class="font-semibold text-base">Please rename the file with your name, and according to the requirements.</li>
-                                    <li class="font-semibold text-base">Format: <strong>LastName, FirstName-Grading Quarter(Report Card/Registration Form)</strong></li>
-                                    <li class="font-semibold text-base">Example: <i><strong>Cruz, Juan-1st Quarter(Report Card)</strong></i> | If college: <i><strong>Dela Cruz, Juan-1st Semester(Report Card)</strong></i></li>
                                 </ul>
                             </div>
                         </div>
