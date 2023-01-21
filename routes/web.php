@@ -73,11 +73,7 @@ Route::middleware('auth')->group(function () {
                 Route::post('{user_id}/report/{id}', [ManageScholarController::class, 'destroyReport'])->name('report-destroy');
             });
 
-            // Route::get('scholar', [ManageScholarController::class, 'index'])->name('scholar.index');
-            // Route::post('scholar', [ManageScholarController::class, 'updateStatus'])->name('scholar.updatestatus');
-            // Route::get('scholar/{id}', [ManageScholarController::class, 'show'])->name('scholar.show');
-            // Route::get('scholar/{user_id}/edit', [ManageScholarController::class, 'edit'])->name('scholar.edit');
-            // Route::patch('scholar/{applicant_user_id}', [ManageScholarController::class, 'update'])->name('scholar.update');
+            
         });
     });
 

@@ -9,6 +9,7 @@ use App\Http\Requests\StoreOrUpdateApplicantRequest;
 use App\Models\OtherMemberApplicant;
 use App\Models\PWDFamilyMemberApplicant;
 use App\Models\SiblingMemberApplicant;
+use App\Models\YearLevel;
 
 class ApplicantController extends Controller
 {
@@ -28,6 +29,10 @@ class ApplicantController extends Controller
     //StoreOrUpdateApplicantRequest     Request
     public function update(StoreOrUpdateApplicantRequest $request){
 
+        $elementary = ['GRADE 1', 'GRADE 2', 'GRADE 3', 'GRADE 4', 'GRADE 5', 'GRADE 6'];
+        $highschool = ['GRADE 7', 'GRADE 8', 'GRADE 9', 'GRADE 10'];
+        $seniorhighschool = ['GRADE 11', 'GRADE 12'];
+        $college = ['1ST YEAR COLLEGE', '2ND YEAR COLLEGE', '3RD YEAR COLLEGE', '4TH YEAR COLLEGE'];
         // dd($request->all());
 
         $request->validated();
@@ -48,6 +53,7 @@ class ApplicantController extends Controller
             'applicantcontactno' => $request->applicantcontactno,
             'applicantaddress' => strtoupper($request->applicantaddress),
             'gradeyearorlevel' => strtoupper($request->gradeyearorlevel),
+            'yearlevel' => in_array($request->gradeyearorlevel, $elementary) ? YearLevel::IS_ELEMENTARY : (in_array($request->gradeyearorlevel, $highschool) ? YearLevel::IS_HIGHSCHOOL : (in_array($request->gradeyearorlevel, $seniorhighschool) ? YearLevel::IS_SENIORHIGHSCHOOL : YearLevel::IS_COLLEGE)),
             'course' => !empty($request->course) ? strtoupper($request->course) : null,
             'schoolname' => strtoupper($request->schoolname),
             'schooladdress' => strtoupper($request->schooladdress),

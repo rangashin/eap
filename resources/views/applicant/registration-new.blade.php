@@ -425,7 +425,7 @@
                         </h6>
                         <div class="mb-4">
                             <!-- Upload Applicant Picture -->
-                            <x-input-label class="my-2 uppercase " for="file_input_picture" id="file_input_picture_label" value="2x2 Picture"/>
+                            <x-input-label class="my-2 uppercase " for="file_input_picture" id="file_input_picture_label" value="2x2 Picture info"/>
                             <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 " aria-describedby="file_input_help" id="file_input_picture" name="file_input_picture" type="file">
                             <x-input-error :messages="$errors->get('file_input_picture')" class="mt-2 mb-5" />
                         </div>
@@ -465,13 +465,27 @@
                             <x-input-error :messages="$errors->get('file_input_report')" class="mt-2 mb-5" id="report_error"/>
                         </div>
 
-
-                        <div class="flex p-4 mt-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800" role="alert">
+                        {{-- <div class="flex p-4 mt-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800" role="alert">
                             <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
                             <span class="sr-only">Info</span>
                             <div>Only UPLOAD DOCUMENTS in JPG or PNG Format! (Max. 8MB)</div>
-                        </div>
+                        </div> --}}
                         
+                        <div class="flex items-baseline p-4 my-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800" role="alert">
+                            <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                            <span class="sr-only">Info</span>
+                            <div>
+                                <span class="font-medium"><p class="text-xl font-black">NOTE:</p></span>
+                                <ul class="list-disc pl-5">
+                                    <li class="font-bold text-base">Only UPLOAD DOCUMENTS in JPG or PNG Format! (Max. 8MB)</li>
+                                    <li class="font-semibold text-base">Please make sure that you have rename your file before submitting to reduce the chance that your submission will be rejected.</li>
+                                    <li class="font-semibold text-base">Please rename the file with your name, and according to the requirements.</li>
+                                    <li class="font-semibold text-base">Format: <strong>LastName, FirstName-Grading Quarter(Report Card/Registration Form)</strong></li>
+                                    <li class="font-semibold text-base">Example: <i><strong>Cruz, Juan-1st Quarter(Report Card)</strong></i> | If college: <i><strong>Dela Cruz, Juan-1st Semester(Report Card)</strong></i></li>
+                                </ul>
+                            </div>
+                        </div>
+
                         <div class="flex items-center justify-end mt-4">
                             <x-primary-button type="reset" class="ml-3">
                                 {{ __('Reset') }}

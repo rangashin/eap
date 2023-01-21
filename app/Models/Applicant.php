@@ -66,6 +66,10 @@ class Applicant extends Model implements HasMedia
         return $this->hasOne(Scholar::class);
     }
 
+    public function yearlevel(){
+        return $this->belongsTo(YearLevel::class, 'year_level');
+    }
+
     protected $primaryKey = 'user_id';
 
     protected $fillable = [
@@ -83,7 +87,7 @@ class Applicant extends Model implements HasMedia
         'applicantcontactno',
         'applicantaddress',
         'gradeyearorlevel',
-        // yearlevel
+        'yearlevel',
         'course',
         'schoolname',
         'schooladdress',

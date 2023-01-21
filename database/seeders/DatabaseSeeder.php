@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\UserProfile;
+use App\Models\YearLevel;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
             MinistrySeeder::class,
             ApplicantStatusSeeder::class,
             ScholarStatusSeeder::class,
+            YearLevelSeeder::class,
         ]);
 
         User::create([

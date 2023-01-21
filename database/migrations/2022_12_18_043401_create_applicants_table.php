@@ -32,6 +32,8 @@ return new class extends Migration
             $table->string('applicantcontactno', 13);
             $table->string('applicantaddress', 100);
             $table->string('gradeyearorlevel', 20);
+            $table->string('yearlevel', 5)->nullable();
+            $table->foreign('yearlevel')->references('id')->on('year_levels')->nullOnDelete();
             $table->string('course', 100)->nullable();
             $table->string('schoolname', 100);
             $table->string('schooladdress', 100);

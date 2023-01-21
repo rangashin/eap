@@ -13,8 +13,8 @@ class ScholarSubmitRequirementsController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'file_input_scholar_regi' => ['file', 'mimes:jpg,png,jpeg'],
-            'file_input_scholar_report' => ['file', 'mimes:jpg,png,jpeg'],
+            'file_input_scholar_regi' => ['required_without:file_input_scholar_report' ,'file', 'mimes:jpg,png,jpeg'],
+            'file_input_scholar_report' => ['required_without:file_input_scholar_regi', 'file', 'mimes:jpg,png,jpeg'],
         ]);
 
         $scholar = Scholar::find(auth()->user()->id);

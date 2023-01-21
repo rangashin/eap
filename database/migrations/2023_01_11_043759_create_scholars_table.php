@@ -30,6 +30,7 @@ return new class extends Migration
             $table->integer('totalcombinedattendance')->nullable();
             $table->string('scholar_statuses_id', 1)->nullable()->default(ScholarStatus::IS_REGULAR);
             $table->foreign('scholar_statuses_id')->references('id')->on('scholar_statuses')->nullOnDelete();
+            $table->string('scholarresubmissionmessage')->nullable();
             $table->timestamps();
         });
     }
