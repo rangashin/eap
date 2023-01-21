@@ -425,7 +425,14 @@
                         </h6>
                         <div class="mb-4">
                             <!-- Upload Applicant Picture -->
-                            <x-input-label class="my-2 uppercase " for="file_input_picture" id="file_input_picture_label" value="2x2 Picture info"/>
+                            <div class="flex items-center">
+                                <x-input-label class="my-2 uppercase " for="file_input_picture" id="file_input_picture_label" value="2x2 Picture"/>
+                                <svg fill="none" data-tooltip-target="tooltip-right" data-tooltip-placement="right" class="flex-shrink-0 inline w-5 h-5 ml-3 fill-gray-300 stroke-gray-600" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"></path>
+                                </svg>
+                                <div id="tooltip-right" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">Only UPLOAD FILES in JPG or PNG Format!<div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
+                            </div>
+                            
                             <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 " aria-describedby="file_input_help" id="file_input_picture" name="file_input_picture" type="file">
                             <x-input-error :messages="$errors->get('file_input_picture')" class="mt-2 mb-5" />
                         </div>

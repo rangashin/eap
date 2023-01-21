@@ -23,6 +23,7 @@ use App\Http\Controllers\ScholarSubmitRequirementsController;
 */
 
 Route::view('/', 'welcome');
+Route::view('sample-homepage', 'sample-homepage');
 Route::middleware('auth')->group(function () {
 
     Route::view('applicant.registration-new', 'applicant.registration-new');
@@ -34,7 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::view('admin-scholar-edit-attendance', 'admin-scholar-edit-attendance');
     Route::view('admin.scholar-attendance-show', 'admin.scholar-attendance-show');
     Route::view('admin.scholar-attendance-edit', 'admin.scholar-attendance-edit');
-    Route::view('scholar-submit-req-view', 'scholar-submit-req-view');
+    
     
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('verified');
   
