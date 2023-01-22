@@ -42,6 +42,7 @@
                                 <hr class="mb-3 h-px bg-gray-200 border-0 drop-shadow dark:bg-gray-700">
                                 <div>
                                     <x-text-input id="secondstudent" class="block mt-1 w-full" type="number" name="secondstudent" value="{{ old('secondstudent', $scholar->secondstudent) }}"/>
+                                    <x-input-error :messages="$errors->get('secondstudent')" class="mt-2 mb-5" />
                                 </div>
                             </div>
                             <div class="w-full p-4 mr-3 mb-3 bg-white border rounded-lg shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
@@ -51,6 +52,7 @@
                                 <hr class="mb-3 h-px bg-gray-200 border-0 drop-shadow dark:bg-gray-700">
                                 <div>
                                     <x-text-input id="thirdstudent" class="block mt-1 w-full" type="number" name="thirdstudent" value="{{ old('thirdstudent', $scholar->thirdstudent) }}"/>
+                                    <x-input-error :messages="$errors->get('thirdstudent')" class="mt-2 mb-5" />
                                 </div>
                             </div>
                             <div class="w-full p-4 mr-3 mb-3 bg-white border rounded-lg shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
@@ -60,6 +62,7 @@
                                 <hr class="mb-3 h-px bg-gray-200 border-0 drop-shadow dark:bg-gray-700">
                                 <div>
                                     <x-text-input id="fourthstudent" class="block mt-1 w-full" type="number" name="fourthstudent" value="{{ old('fourthstudent', $scholar->fourthstudent) }}"/>
+                                    <x-input-error :messages="$errors->get('fourthstudent')" class="mt-2 mb-5" />
                                 </div>
                             </div>
                         </div>
@@ -79,6 +82,7 @@
                                 <hr class="mb-3 h-px bg-gray-200 border-0 drop-shadow dark:bg-gray-700">
                                 <div>
                                     <x-text-input id="firstparent" class="block mt-1 w-full" type="number" name="firstparent" value="{{ old('firstparent', $scholar->firstparent) }}"/>
+                                    <x-input-error :messages="$errors->get('firstparent')" class="mt-2 mb-5" />
                                 </div>
                             </div>
                             <div class="w-full p-4 mr-3 mb-3 bg-white border rounded-lg shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
@@ -88,6 +92,7 @@
                                 <hr class="mb-3 h-px bg-gray-200 border-0 drop-shadow dark:bg-gray-700">
                                 <div>
                                     <x-text-input id="secondparent" class="block mt-1 w-full" type="number" name="secondparent" value="{{ old('secondparent', $scholar->secondparent) }}"/>
+                                    <x-input-error :messages="$errors->get('secondparent')" class="mt-2 mb-5" />
                                 </div>
                             </div>
                             <div class="w-full p-4 mr-3 mb-3 bg-white border rounded-lg shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
@@ -97,6 +102,7 @@
                                 <hr class="mb-3 h-px bg-gray-200 border-0 drop-shadow dark:bg-gray-700">
                                 <div>
                                     <x-text-input id="thirdparent" class="block mt-1 w-full" type="number" name="thirdparent" value="{{ old('thirdparent', $scholar->thirdparent) }}"/>
+                                    <x-input-error :messages="$errors->get('thirdparent')" class="mt-2 mb-5" />
                                 </div>
                             </div>
                             <div class="w-full p-4 mr-3 mb-3 bg-white border rounded-lg shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
@@ -106,6 +112,7 @@
                                 <hr class="mb-3 h-px bg-gray-200 border-0 drop-shadow dark:bg-gray-700">
                                 <div>
                                     <x-text-input id="fourthparent" class="block mt-1 w-full" type="number" name="fourthparent" value="{{ old('fourthparent', $scholar->fourthparent) }}"/>
+                                    <x-input-error :messages="$errors->get('fourthparent')" class="mt-2 mb-5" />
                                 </div>
                             </div>
                         </div>
