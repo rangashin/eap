@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::view('scholar.dashboard', 'scholar.dashboard');
     Route::view('admin.scholar-index', 'admin.scholar-index');
     Route::view('applicant.registration-new', 'applicant.registration-new');
+    Route::view('scholar.submit-requirements', 'scholar.submit-requirements');
 
     //Temp Routes for view
     Route::view('admin.scholar-attendance-edit', 'admin.scholar-attendance-edit');
@@ -70,6 +71,7 @@ Route::middleware('auth')->group(function () {
                 Route::get('{user_id}/edit-requirements', [ManageScholarController::class, 'editRequirements'])->name('requirements-edit');
                 Route::post('{user_id}/regi/{id}', [ManageScholarController::class, 'destroyRegi'])->name('regi-destroy');
                 Route::post('{user_id}/report/{id}', [ManageScholarController::class, 'destroyReport'])->name('report-destroy');
+                Route::post('{applicant_user_id}/resubmit', [ManageScholarController::class, 'resubmit'])->name('resubmit');
             });
 
             

@@ -38,9 +38,9 @@ class ManageScholarController extends Controller
 
     public function show($id){
         $scholar = Applicant::findOrFail($id);
-        $files = Scholar::findOrFail($id);
-        $regis = $files->getMedia('scholar_regi');
-        $reports = $files->getMedia('scholar_report');
+        $scholarfiles = Scholar::findOrFail($id);
+        $regis = $scholarfiles->getMedia('scholar_regi');
+        $reports = $scholarfiles->getMedia('scholar_report');
         return view('admin.scholar-show', compact('scholar', 'regis', 'reports'));
     }
 
@@ -70,6 +70,7 @@ class ManageScholarController extends Controller
             'thirdparent' => $request->thirdparent,
             'fourthparent' =>  $request->fourthparent,
             'totalparent' => $temp->parent,
+            'totalcombinedattendance' => $temp->total,
         ]);
         
         return redirect()->route('admin.scholar.show', $applicant_user_id)->with('success', $temp->applicant->full_name.'\'s attendance has been updated.');
@@ -79,7 +80,6 @@ class ManageScholarController extends Controller
         $scholar = Scholar::findOrFail($user_id);
         $regis = $scholar->getMedia('scholar_regi');
         $regis[$id]->delete();
-        // dd($regis);
         return redirect()->route('admin.scholar.requirements-edit', $user_id)->with('success', $scholar->applicant->full_name.'\'s requirements have been modified.');
     }
 
@@ -88,5 +88,15 @@ class ManageScholarController extends Controller
         $reports = $scholar->getMedia('scholar_report');
         $reports[$id]->delete();
         return redirect()->route('admin.scholar.requirements-edit', $user_id)->with('success', $scholar->applicant->full_name.'\'s requirements have been modified.');
+    }
+
+    public function resubmit(Request $request, $applicant_user_id){
+        $request->validate([
+            'scholarresubmissionmessage' => ['required', 'string'],
+        ]);
+
+        $temp = Scholar::find($applicant_user_id);
+        $temp->update(['scholarresubmissionmessage' => $request->scholarresubmissionmessage]);
+        return redirect()->route('admin.scholar.show', $applicant_user_id)->with('success', $temp->applicant->full_name.' needs resubmission of requirements.');
     }
 }

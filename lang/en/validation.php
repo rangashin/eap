@@ -304,6 +304,7 @@ return [
         'fourthparent' => 'fourth attendance',
         'file_input_scholar_regi' => 'registration form',
         'file_input_scholar_report' => 'report card',
+        'scholarresubmissionmessage' => 'resubmission message',
     ],
 
 ];

@@ -25,6 +25,10 @@ class Scholar extends Model implements HasMedia
         return (!empty($this->firstparent) ? 1 : 0) + (!empty($this->secondparent) ? 1 : 0) + (!empty($this->thirdparent) ? 1 : 0) + (!empty($this->fourthparent) ? 1 : 0);
     }
 
+    public function getTotalAttribute(){
+        return floor($this->totalstudent ?? 0 + $this->totalparent ?? 0);
+    }
+
     public function applicant(){
         return $this->belongsTo(Applicant::class, 'applicant_user_id');
     }
@@ -52,7 +56,7 @@ class Scholar extends Model implements HasMedia
         'fourthparent',
         'totalparent',
         'totalcombinedattendance',
-        // scholarsubmissionmessage
+        'scholarresubmissionmessage',
         'scholar_statuses_id',
     ];
 }
