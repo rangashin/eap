@@ -470,7 +470,7 @@
                             <x-input-error :messages="$errors->get('file_input_birth')" class="mt-2 mb-5" id="birth_error"/>
                         </div>
                             
-                        <div class="mb-4" id="regi_report_div">
+                        {{-- <div class="mb-4" id="regi_report_div">
                             <!-- Upload Registration Form/Report Card -->
                             <div class="flex items-center my-0 py-0">
                                 <x-input-label class="mb-2 uppercase " for="file_input_regi_report" id="file_input_regi_report_label" value="Report Card/Registration Form"/>
@@ -487,7 +487,7 @@
                             </div>
                             <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 " aria-describedby="file_input_help" id="file_input_regi_report" name="file_input_regi_report" type="file">
                             <x-input-error :messages="$errors->get('file_input_regi_report')" class="mt-2 mb-5" id="regi_report_error"/>
-                        </div>
+                        </div> --}}
                         
                         <div class="mb-4" id="regi_div">
                             <!-- Upload Registration Form -->

@@ -17,9 +17,9 @@ class Applicant extends Model implements HasMedia
         $this->addMediaCollection('picture')->singleFile();
         $this->addMediaCollection('baptismal_new')->singleFile();
         $this->addMediaCollection('birth_new')->singleFile();
-        $this->addMediaCollection('regi_report_new')->singleFile();
-        $this->addMediaCollection('regi_old')->singleFile();
-        $this->addMediaCollection('report_old')->singleFile();
+        // $this->addMediaCollection('regi_report_new')->singleFile();
+        $this->addMediaCollection('applicant_regi')->singleFile();
+        $this->addMediaCollection('applicant_report')->singleFile();
     }
 
     public function getFullNameAttribute(){

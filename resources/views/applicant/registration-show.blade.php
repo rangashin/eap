@@ -242,7 +242,8 @@
                         </div>
                         <hr>
                     @empty
-                        <p class="font-black text-xl text-gray-700 uppercase">{{ 'No PWD Family Member' }}</p>
+                        <p class="font-black text-xl text-gray-700 uppercase">{{ 'No Sibling Family Member' }}</p>
+                        <hr class="my-4 h-px bg-gray-200 border-0 dark:bg-gray-700">
                     @endforelse
                     <div class="grid grid-cols-2 gap-6 my-6">
                         <div>
@@ -311,12 +312,13 @@
                                 <p class="font-black text-xl text-gray-700 uppercase">{{ $other->relativework }}</p>
                             </div>
                         </div>
-                        <hr>
+                        <hr class="my-4 h-px bg-gray-200 border-0 dark:bg-gray-700">
                     @empty
-                        <p class="font-black text-xl text-gray-700 uppercase">{{ 'No PWD Family Member' }}</p>
+                        <p class="font-black text-xl text-gray-700 uppercase">{{ 'No Other Family Member' }}</p>
+                        <hr class="my-4 h-px bg-gray-200 border-0 dark:bg-gray-700">
                     @endforelse
 
-                    <hr class="my-4 h-px bg-gray-200 border-0 dark:bg-gray-700">
+                    
                     <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
                         Requirements (Clear Copy)
                     </h6>
@@ -347,8 +349,8 @@
                                     </x-primary-button>
                                 </a>
                             </div>
-
-                            <div class="mb-4">
+                        @endif
+                            {{-- <div class="mb-4">
                                 <!-- Upload Registration Form/Report Card -->
                                 <x-input-label class="my-2 uppercase " for="file_input_regi_report"
                                     value="Report Card/Registration Form" />
@@ -359,8 +361,8 @@
                                     <x-primary-button class="mt-2 bg-blue-700">View Birth Certificate
                                     </x-primary-button>
                                 </a>
-                            </div>
-                        @elseif ($applicant->renewal == 'OLD')
+                            </div> --}}
+                        {{-- @elseif ($applicant->renewal == 'OLD')
                             <div class="mb-4">
                                 <!-- Upload Registration Form -->
                                 <x-input-label class="my-2 uppercase " for="file_input_regi"
@@ -383,8 +385,31 @@
                                 <a href="{{ $applicant->getFirstMediaUrl('report_old') }}" target="_blank">
                                     <x-primary-button class="mt-2 bg-blue-700">View Report Card</x-primary-button>
                                 </a>
-                            </div>
-                        @endif
+                            </div> --}}
+                        
+                        <div class="mb-4">
+                            <!-- Upload Registration Form -->
+                            <x-input-label class="my-2 uppercase " for="file_input_regi"
+                                value="Registration Form" />
+                            <x-text-input class="mt-1 block w-full bg-slate-200" type="text"
+                                value="{{ !empty($applicant->getFirstMedia('applicant_regi')->file_name) ? $applicant->getFirstMedia('applicant_regi')->file_name : null }}"
+                                disabled />
+                            <a href="{{ $applicant->getFirstMediaUrl('applicant_regi') }}" target="_blank">
+                                <x-primary-button class="mt-2 bg-blue-700">View Registration Certificate
+                                </x-primary-button>
+                            </a>
+                        </div>
+
+                        <div class="mb-4">
+                            <!-- Upload Report Card -->
+                            <x-input-label class="my-2 uppercase " for="file_input_report" value="Report Card" />
+                            <x-text-input class="mt-1 block w-full bg-slate-200" type="text"
+                                value="{{ !empty($applicant->getFirstMedia('applicant_report')->file_name) ? $applicant->getFirstMedia('applicant_report')->file_name : null }}"
+                                disabled />
+                            <a href="{{ $applicant->getFirstMediaUrl('applicant_report') }}" target="_blank">
+                                <x-primary-button class="mt-2 bg-blue-700">View Report Card</x-primary-button>
+                            </a>
+                        </div>
                     </div>
                     {{-- Scroll to Top Button --}}
                     <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" class="fixed hidden p-3 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5" id="btn-back-to-top">

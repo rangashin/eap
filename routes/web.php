@@ -26,16 +26,16 @@ Route::view('/', 'welcome');
 Route::view('sample-homepage', 'sample-homepage');
 Route::middleware('auth')->group(function () {
 
-    Route::view('applicant.registration-new', 'applicant.registration-new');
-    Route::view('dashboard-impo', 'dashboard-impo');
-    Route::view('scholar.dashboard', 'scholar.dashboard');
-    Route::view('admin.scholar-index', 'admin.scholar-index');
-    Route::view('applicant.registration-new', 'applicant.registration-new');
-    Route::view('scholar.submit-requirements', 'scholar.submit-requirements');
-
     //Temp Routes for view
-    Route::view('admin.scholar-attendance-edit', 'admin.scholar-attendance-edit');
-    
+    // Route::view('applicant.registration-new', 'applicant.registration-new');
+    // Route::view('dashboard-impo', 'dashboard-impo');
+    // Route::view('scholar.dashboard', 'scholar.dashboard');
+    // Route::view('admin.scholar-index', 'admin.scholar-index');
+    // Route::view('applicant.registration-new', 'applicant.registration-new');
+    // Route::view('scholar.submit-requirements', 'scholar.submit-requirements');
+    // Route::view('admin.scholar-attendance-edit', 'admin.scholar-attendance-edit');
+    // Route::view('applicant.registration-new', 'applicant.registration-new');
+
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('verified');
 
     Route::get('account', [ProfileController::class, 'edit'])->name('profile.edit');

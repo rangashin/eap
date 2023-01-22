@@ -136,13 +136,13 @@
                     $("#birth_div").addClass("hidden");
                     // $("#file_input_regi_report_label").addClass("hidden");
                     // $("#file_input_regi_report").addClass("hidden");
-                    $("#regi_report_div").addClass("hidden");
+                    // $("#regi_report_div").addClass("hidden");
                     // $("#file_input_regi_label").removeClass("hidden");
                     // $("#file_input_regi").removeClass("hidden");
-                    $("#regi_div").removeClass("hidden");
+                    // $("#regi_div").removeClass("hidden");
                     // $("#file_input_report_label").removeClass("hidden");
                     // $("#file_input_report").removeClass("hidden");
-                    $("#report_div").removeClass("hidden");
+                    // $("#report_div").removeClass("hidden");
                 }else if (selectedRenewal == 'NEW'){
                     $("#scholaryears").addClass("bg-slate-200").prop('disabled', true).val(0);
                     // $("#file_input_baptismal_label").removeClass("hidden");
@@ -154,13 +154,13 @@
                     $("#birth_div").removeClass("hidden");
                     // $("#file_input_regi_report_label").removeClass("hidden");
                     // $("#file_input_regi_report").removeClass("hidden");
-                    $("#regi_report_div").removeClass("hidden");
+                    // $("#regi_report_div").removeClass("hidden");
                     // $("#file_input_regi_label").addClass("hidden");
                     // $("#file_input_regi").addClass("hidden");
-                    $("#regi_div").addClass("hidden");
+                    // $("#regi_div").addClass("hidden");
                     // $("#file_input_report_label").addClass("hidden");
                     // $("#file_input_report").addClass("hidden");
-                    $("#report_div").addClass("hidden");
+                    // $("#report_div").addClass("hidden");
                 }else if (selectedRenewal == ''){
                     $("#scholaryears").addClass("bg-slate-200").prop('disabled', true).val();
                     // $("#file_input_baptismal_label").addClass("hidden");
@@ -172,13 +172,13 @@
                     $("#birth_div").addClass("hidden");
                     // $("#file_input_regi_report_label").addClass("hidden");
                     // $("#file_input_regi_report").addClass("hidden");
-                    $("#regi_report_div").addClass("hidden");
+                    // $("#regi_report_div").addClass("hidden");
                     // $("#file_input_regi_label").addClass("hidden");
                     // $("#file_input_regi").addClass("hidden");
-                    $("#regi_div").addClass("hidden");
+                    // $("#regi_div").addClass("hidden");
                     // $("#file_input_report_label").addClass("hidden");
                     // $("#file_input_report").addClass("hidden");
-                    $("#report_div").addClass("hidden");
+                    // $("#report_div").addClass("hidden");
                 }
 
                 $("select#renewal").change(function(){
@@ -197,15 +197,15 @@
                         // $("#file_input_regi_report_label").addClass("hidden");
                         // $("#file_input_regi_report").addClass("hidden");
                         // $("#regi_report_error").addClass("hidden");
-                        $("#regi_report_div").addClass("hidden");
+                        // $("#regi_report_div").addClass("hidden");
                         // $("#file_input_regi_label").removeClass("hidden");
                         // $("#file_input_regi").removeClass("hidden");
                         // $("#regi_error").removeClass("hidden");
-                        $("#regi_div").removeClass("hidden");
+                        // $("#regi_div").removeClass("hidden");
                         // $("#file_input_report_label").removeClass("hidden");
                         // $("#file_input_report").removeClass("hidden");
                         // $("#report_error").removeClass("hidden");
-                        $("#report_div").removeClass("hidden");
+                        // $("#report_div").removeClass("hidden");
                     }else if (selectedRenewal == 'NEW'){
                         $("#scholaryears").addClass("bg-slate-200").prop('disabled', true).val(0);
                         // $("#file_input_baptismal_label").removeClass("hidden");
@@ -220,15 +220,15 @@
                         // $("#file_input_regi_report_label").removeClass("hidden");
                         // $("#file_input_regi_report").removeClass("hidden");
                         // $("#regi_report_error").removeClass("hidden");
-                        $("#regi_report_div").removeClass("hidden");
+                        // $("#regi_report_div").removeClass("hidden");
                         // $("#file_input_regi_label").addClass("hidden");
                         // $("#file_input_regi").addClass("hidden");
                         // $("#regi_error").addClass("hidden");
-                        $("#regi_div").addClass("hidden");
+                        // $("#regi_div").addClass("hidden");
                         // $("#file_input_report_label").addClass("hidden");
                         // $("#file_input_report").addClass("hidden");
                         // $("#report_error").addClass("hidden");
-                        $("#report_div").addClass("hidden");
+                        // $("#report_div").addClass("hidden");
                     }
                 });
 

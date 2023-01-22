@@ -80,6 +80,7 @@ class ManageScholarController extends Controller
         $scholar = Scholar::findOrFail($user_id);
         $regis = $scholar->getMedia('scholar_regi');
         $regis[$id]->delete();
+        $scholar->update(['scholar_statuses_id' => ScholarStatus::IS_INCOMPLETE]);
         return redirect()->route('admin.scholar.requirements-edit', $user_id)->with('success', $scholar->applicant->full_name.'\'s requirements have been modified.');
     }
 
@@ -87,6 +88,7 @@ class ManageScholarController extends Controller
         $scholar = Scholar::findOrFail($user_id);
         $reports = $scholar->getMedia('scholar_report');
         $reports[$id]->delete();
+        $scholar->update(['scholar_statuses_id' => ScholarStatus::IS_INCOMPLETE]);
         return redirect()->route('admin.scholar.requirements-edit', $user_id)->with('success', $scholar->applicant->full_name.'\'s requirements have been modified.');
     }
 
@@ -96,7 +98,7 @@ class ManageScholarController extends Controller
         ]);
 
         $temp = Scholar::find($applicant_user_id);
-        $temp->update(['scholarresubmissionmessage' => $request->scholarresubmissionmessage]);
+        $temp->update(['scholarresubmissionmessage' => $request->scholarresubmissionmessage, 'scholar_statuses_id' => ScholarStatus::IS_INCOMPLETE]);
         return redirect()->route('admin.scholar.show', $applicant_user_id)->with('success', $temp->applicant->full_name.' needs resubmission of requirements.');
     }
 }

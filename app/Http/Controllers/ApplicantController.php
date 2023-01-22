@@ -85,18 +85,17 @@ class ApplicantController extends Controller
         $applicant->clearMediaCollection('picture');
         $applicant->clearMediaCollection('baptismal_new');
         $applicant->clearMediaCollection('birth_new');
-        $applicant->clearMediaCollection('regi_report_new');
-        $applicant->clearMediaCollection('regi_old');
-        $applicant->clearMediaCollection('report_old');
+        // $applicant->clearMediaCollection('regi_report_new');
+        $applicant->clearMediaCollection('applicant_regi');
+        $applicant->clearMediaCollection('applicant_report');
 
         $applicant->addMedia($request->file_input_picture)->toMediaCollection('picture');
+        $applicant->addMedia($request->file_input_regi)->toMediaCollection('applicant_regi');
+        $applicant->addMedia($request->file_input_report)->toMediaCollection('applicant_report');
         if($applicant->renewal == 'NEW'){
             $applicant->addMedia($request->file_input_baptismal)->toMediaCollection('baptismal_new');
             $applicant->addMedia($request->file_input_birth)->toMediaCollection('birth_new');
-            $applicant->addMedia($request->file_input_regi_report)->toMediaCollection('regi_report_new');
-        }elseif($applicant->renewal == 'OLD'){
-            $applicant->addMedia($request->file_input_regi)->toMediaCollection('regi_old');
-            $applicant->addMedia($request->file_input_report)->toMediaCollection('report_old');
+            // $applicant->addMedia($request->file_input_regi_report)->toMediaCollection('regi_report_new');
         }
         
         // dd($applicant->id);

@@ -214,6 +214,12 @@ return [
             'gte' => 'The :attribute must be a counting value.',
             'lte' => 'The :attribute must be less than 3 hours (180 minutes).'
         ],
+        'file_input_scholar_regi' => [
+            'required_without' => 'The :attribute is required.'
+        ],
+        'file_input_scholar_report' => [
+            'required_without' => 'The :attribute is required.'
+        ],
     ],
 
     /*
@@ -290,7 +296,7 @@ return [
         'file_input_picture' => '2X2 picture',
         'file_input_baptismal' => 'baptismal file',
         'file_input_birth' => 'birth certificate',
-        'file_input_regi_report' => 'registration card or report form', 
+        // 'file_input_regi_report' => 'registration card or report form', 
         'file_input_regi' => 'registration form',
         'file_input_report' => 'report card',
         'applicantstatus' => 'applicant status (dropdown)',

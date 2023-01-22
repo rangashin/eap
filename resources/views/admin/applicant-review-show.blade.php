@@ -202,7 +202,7 @@
                             </div>
                         </div>
                     @empty
-                        <p class="font-black text-xl text-gray-700 uppercase">{{ 'No PWD Family Member' }}</p>   
+                        <p class="font-black text-xl text-gray-700 uppercase">{{ 'No Sibling Family Member' }}</p>   
                     @endforelse
                     <div class="grid grid-cols-3 gap-6 my-6">
                         <div>
@@ -265,7 +265,7 @@
                         </div>
                     </div>
                 @empty
-                    <p class="font-black text-xl text-gray-700 uppercase">{{ 'No PWD Family Member' }}</p>   
+                    <p class="font-black text-xl text-gray-700 uppercase">{{ 'No Other Family Member' }}</p>   
                 @endforelse
 
 
@@ -278,7 +278,7 @@
                             <div class="mb-4">
                             <!-- Upload Baptismal Cert -->
                                 <x-input-label class="my-2 uppercase " for="file_input_baptismal" value="Baptismal Certificate"/>
-                                <x-text-input class="mt-1 block w-full bg-slate-200" type="text" value="{{ $applicant->getFirstMedia('baptismal_new')->file_name }}" disabled/>
+                                <x-text-input class="mt-1 block w-full bg-slate-200" type="text" value="{{ $applicant->getFirstMedia('baptismal_new')->file_name ?? null }}" disabled/>
                                 <a href="{{ $applicant->getFirstMediaUrl('baptismal_new') }}" target="_blank"> 
                                     <x-primary-button class="mt-2 bg-blue-700">View Baptismal Certificate</x-primary-button>
                                 </a>
@@ -287,22 +287,22 @@
                             <div class="mb-4">
                                 <!-- Upload Birth Cert -->
                                 <x-input-label class="my-2 uppercase " for="file_input_birth" value="Birth Certificate"/>
-                                <x-text-input class="mt-1 block w-full bg-slate-200" type="text" value="{{ $applicant->getFirstMedia('birth_new')->file_name }}" disabled/>
+                                <x-text-input class="mt-1 block w-full bg-slate-200" type="text" value="{{ $applicant->getFirstMedia('birth_new')->file_name ?? null }}" disabled/>
                                 <a href="{{ $applicant->getFirstMediaUrl('birth_new') }}" target="_blank"> 
                                     <x-primary-button class="mt-2 bg-blue-700">View Birth Certificate</x-primary-button>
                                 </a>
                             </div>
-                                
-                            <div class="mb-4">
+                        @endif  
+                            {{-- <div class="mb-4">
                                 <!-- Upload Registration Form/Report Card -->
                                 <x-input-label class="my-2 uppercase " for="file_input_regi_report" value="Report Card/Registration Form"/>
                                 <x-text-input class="mt-1 block w-full bg-slate-200" type="text" value="{{ $applicant->getFirstMedia('regi_report_new')->file_name }}" disabled/>
                                 <a href="{{ $applicant->getFirstMediaUrl('regi_report_new') }}" target="_blank"> 
                                     <x-primary-button class="mt-2 bg-blue-700">View Birth Certificate</x-primary-button>
                                 </a>
-                            </div>
-
-                        @elseif ($applicant->renewal == 'OLD')
+                            </div> --}}
+                        
+                        {{-- @elseif ($applicant->renewal == 'OLD')
                             <div class="mb-4">
                                 <!-- Upload Registration Form -->
                                 <x-input-label class="my-2 uppercase " for="file_input_regi" value="Registration Form"/>
@@ -319,8 +319,24 @@
                                 <a href="{{ $applicant->getFirstMediaUrl('report_old') }}" target="_blank"> 
                                     <x-primary-button class="mt-2 bg-blue-700">View Registration Certificate</x-primary-button>
                                 </a>
-                            </div>
-                        @endif
+                            </div> --}}
+                        <div class="mb-4">
+                            <!-- Upload Registration Form -->
+                            <x-input-label class="my-2 uppercase " for="file_input_regi" value="Registration Form"/>
+                            <x-text-input class="mt-1 block w-full bg-slate-200" type="text" value="{{ $applicant->getFirstMedia('applicant_regi')->file_name }}" disabled/>
+                            <a href="{{ $applicant->getFirstMediaUrl('applicant_regi') }}" target="_blank"> 
+                                <x-primary-button class="mt-2 bg-blue-700">View Registration Certificate</x-primary-button>
+                            </a>
+                        </div>
+
+                        <div class="mb-4">
+                            <!-- Upload Report Card -->
+                            <x-input-label class="my-2 uppercase " for="file_input_report" value="Report Card"/>
+                            <x-text-input class="mt-1 block w-full bg-slate-200" type="text" value="{{ $applicant->getFirstMedia('applicant_report')->file_name }}" disabled/>
+                            <a href="{{ $applicant->getFirstMediaUrl('applicant_report') }}" target="_blank"> 
+                                <x-primary-button class="mt-2 bg-blue-700">View Registration Certificate</x-primary-button>
+                            </a>
+                        </div>
                     </div>
 
                     @if ($applicant->applicant_statuses_id != 4)

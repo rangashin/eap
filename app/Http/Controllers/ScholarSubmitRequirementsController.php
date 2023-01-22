@@ -9,9 +9,11 @@ class ScholarSubmitRequirementsController extends Controller
 {
     public function index(){
         $scholar = Scholar::find(auth()->user()->id);
+        // dd(count($scholar->getMedia('scholar_regi')));
         return view('scholar.submit-requirements', compact('scholar'));
     }
 
+    //
     public function store(Request $request){
         $request->validate([
             'file_input_scholar_regi' => ['required_without:file_input_scholar_report' ,'file', 'mimes:jpg,png,jpeg'],

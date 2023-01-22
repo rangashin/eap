@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ $scholar->full_name.'\'s Attendance' }}
+            {{ $scholar->full_name.'\'s Scholarship Info' }}
         </h2>
     </x-slot>
 
@@ -135,60 +135,26 @@
             </div>
 
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-
-                @if ($scholar->renewal == 'NEW')
-                    <div class="flex items-baseline">
-                        <div class="items-center py-0 mt-0">
-                            <svg fill="none" class="flex-shrink-0 inline w-6 h-6 mr-3 pb-1" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path></svg>
-                        </div>
-                        <h5 class="my-1 text-base font-semibold text-gray-900 md:text-xl dark:text-white">Report Card/Registration Form (<i>If NEW</i>) </h5>
-                    </div>
-                    <div class="flex items-center justify-center w-4/5 mt-3">
-                        <x-text-input class="block w-full mr-3 flex-1 bg-slate-200" type="text" value="{{ $scholar->getFirstMedia('regi_report_new')->file_name ?? null }}" disabled />
-                        <a href="{{ $scholar->getFirstMedia('regi_report_new') ? $scholar->getFirstMedia('regi_report_new')->getUrl() : null }}" target="_blank">
-                            <x-primary-button class="bg-blue-700">View Report Card/Registration Form</x-primary-button>
-                        </a>
-                    </div>
-                    <br><hr class="h-px bg-gray-200 border-0 dark:bg-gray-700"><br>
-                @endif
-
                 <div class="flex items-baseline">
                     <div class="items-center py-0 mt-0">
                         <svg fill="none" class="flex-shrink-0 inline w-6 h-6 mr-3 pb-1" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z"></path></svg>
                     </div>
                     <h5 class="my-1 text-base font-semibold text-gray-900 md:text-xl dark:text-white">Registration Form/Card</h5>
                 </div>
-                @if ($scholar->renewal == 'OLD')
-                    <div class="flex items-center w-4/5 mt-3">
-                        <x-text-input class="mt-1 block w-full mr-3 flex-1 bg-slate-200" type="text" value="{{ $scholar->getFirstMedia('regi_old')->file_name ?? null }}" disabled />
-                        <a href="{{ $scholar->getFirstMedia('regi_old') ? $scholar->getFirstMedia('regi_old')->getUrl() : null }}" target="_blank">
-                            <x-primary-button class="mt-2 bg-blue-700">View Registration Card/Form</x-primary-button>
+                <div class="flex items-center w-4/5 mt-4">
+                    <x-text-input class="block w-full mr-3 flex-1 bg-slate-200" type="text" value="{{ $scholar->getFirstMedia('applicant_regi')->file_name ?? null }}" disabled />
+                    <a href="{{ $scholar->getFirstMedia('applicant_regi') ? $scholar->getFirstMedia('applicant_regi')->getUrl() : null }}" target="_blank">
+                        <x-primary-button class=" bg-blue-700">View Registration Card/Form</x-primary-button>
+                    </a>
+                </div>
+                @foreach ($regis as $regi)
+                    <div class="flex items-center w-4/5 mt-4">
+                        <x-text-input class="block w-full mr-3 flex-1 bg-slate-200" type="text" value="{{ $regi->file_name }}" disabled />
+                        <a href="{{ $regi->getUrl() }}" target="_blank">
+                            <x-primary-button class=" bg-blue-700">View Registration Card/Form</x-primary-button>
                         </a>
                     </div>
-                    @foreach ($regis as $regi)
-                        <div class="flex items-center w-4/5 mt-3">
-                            <x-text-input class="mt-1 block w-full mr-3 flex-1 bg-slate-200" type="text" value="{{ $regi->file_name }}" disabled />
-                            <a href="{{ $regi->getUrl() }}" target="_blank">
-                                <x-primary-button class="mt-2 bg-blue-700">View Registration Card/Form</x-primary-button>
-                            </a>
-                        </div>
-                    @endforeach
-                @elseif ($scholar->renewal == 'NEW')
-                    @if (count($regis) == 0)
-                        <div class="py-6 bg-white hover:bg-gray-50">
-                            <p class="font-black text-xl text-gray-700">{{ 'No files.' }}</p>
-                        </div>
-                    @else
-                        @foreach ($regis as $regi)
-                            <div class="flex items-center w-4/5 mt-3">
-                                <x-text-input class="mt-1 block w-full mr-3 flex-1 bg-slate-200" type="text" value="{{ $regi->file_name }}" disabled />
-                                <a href="{{ $regi->getUrl() }}" target="_blank">
-                                    <x-primary-button class="mt-2 bg-blue-700">View Registration Card/Form</x-primary-button>
-                                </a>
-                            </div>
-                        @endforeach
-                    @endif
-                @endif
+                @endforeach
                 
                 <br><hr class="h-px bg-gray-200 border-0 dark:bg-gray-700"><br>
 
@@ -198,37 +164,20 @@
                     </div>
                     <h5 class="my-1 text-base font-semibold text-gray-900 md:text-xl dark:text-white">Report Card</h5>
                 </div>
-                @if ($scholar->renewal == 'OLD')
-                    <div class="flex items-center w-4/5 mt-3">
-                        <x-text-input class="mt-1 block w-full mr-3 flex-1 bg-slate-200" type="text" value="{{ $scholar->getFirstMedia('report_old')->file_name ?? null }}" disabled />
-                        <a href="{{ $scholar->getFirstMedia('report_old') ? $scholar->getFirstMedia('report_old')->getUrl() : null }}" target="_blank">
-                            <x-primary-button class="mt-2 bg-blue-700">View Report Card</x-primary-button>
+                <div class="flex items-center w-4/5 mt-4">
+                    <x-text-input class="block w-full mr-3 flex-1 bg-slate-200" type="text" value="{{ $scholar->getFirstMedia('applicant_report')->file_name ?? null }}" disabled />
+                    <a href="{{ $scholar->getFirstMedia('applicant_report') ? $scholar->getFirstMedia('applicant_report')->getUrl() : null }}" target="_blank">
+                        <x-primary-button class=" bg-blue-700">View Report Card</x-primary-button>
+                    </a>
+                </div>
+                @foreach ($reports as $report)
+                    <div class="flex items-center w-4/5 mt-4">
+                        <x-text-input class="block w-full mr-3 flex-1 bg-slate-200" type="text" value="{{ $report->file_name }}" disabled />
+                        <a href="{{ $report->getUrl() }}" target="_blank">
+                            <x-primary-button class=" bg-blue-700">View Report Card</x-primary-button>
                         </a>
                     </div>
-                    @foreach ($reports as $report)
-                        <div class="flex items-center w-4/5 mt-3">
-                            <x-text-input class="mt-1 block w-full mr-3 flex-1 bg-slate-200" type="text" value="{{ $report->file_name }}" disabled />
-                            <a href="{{ $report->getUrl() }}" target="_blank">
-                                <x-primary-button class="mt-2 bg-blue-700">View Report Card</x-primary-button>
-                            </a>
-                        </div>
-                    @endforeach
-                @elseif ($scholar->renewal == 'NEW')
-                    @if (count($reports) == 0)
-                        <div class="py-6 bg-white hover:bg-gray-50">
-                            <p class="font-black text-xl text-gray-700">{{ 'No files.' }}</p>
-                        </div>
-                    @else
-                        @foreach ($reports as $report)
-                            <div class="flex items-center w-4/5 mt-3">
-                                <x-text-input class="mt-1 block w-full mr-3 flex-1 bg-slate-200" type="text" value="{{ $report->file_name }}" disabled />
-                                <a href="{{ $report->getUrl() }}" target="_blank">
-                                    <x-primary-button class="mt-2 bg-blue-700">View Report Card</x-primary-button>
-                                </a>
-                            </div>
-                        @endforeach
-                    @endif
-                @endif
+                @endforeach
 
                 <div class="flex items-center justify-end mt-4">
                     <a href="{{ route('admin.scholar.requirements-edit', $scholar->user_id) }}">
