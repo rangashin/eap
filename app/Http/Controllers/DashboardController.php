@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminSettings;
 use App\Models\Role;
 use App\Models\Scholar;
 use App\Models\Applicant;
@@ -27,7 +28,9 @@ class DashboardController extends Controller
             $scholar = Scholar::find(auth()->user()->id);
             return view('scholar.dashboard', compact('scholar'));
         }elseif(auth()->user()->role_id == Role::IS_SECRETARY){
-            return redirect()->route('admin.user.index');
+            $settings = AdminSettings::find(1);
+            return view('admin.dashboard', compact('settings'));
+            // return redirect()->route('admin.user.index');
         }elseif(auth()->user()->role_id == Role::IS_LEADER){
             return redirect()->route('account.edit');
         }elseif(auth()->user()->role_id == Role::IS_ADVISER){

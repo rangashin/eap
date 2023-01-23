@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\AdminSettings;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\UserProfile;
@@ -66,6 +68,8 @@ class DatabaseSeeder extends Seeder
             'birthdate' => '2001-02-21',
             'acctype' => 'STUDENT',
         ]);
+
+        AdminSettings::create();
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

@@ -35,6 +35,9 @@ Route::middleware('auth')->group(function () {
     // Route::view('scholar.submit-requirements', 'scholar.submit-requirements');
     // Route::view('admin.scholar-attendance-edit', 'admin.scholar-attendance-edit');
     // Route::view('applicant.registration-new', 'applicant.registration-new');
+    Route::view('applicant-report', 'applicant-report');
+    Route::view('off-reg', 'off-reg');
+    Route::view('kawan-dashboard', 'kawan-dashboard');
 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('verified');
 
