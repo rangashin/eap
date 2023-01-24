@@ -24,6 +24,7 @@ use App\Http\Controllers\ScholarSubmitRequirementsController;
 
 Route::view('/', 'welcome');
 Route::view('sample-new', 'sample-new');
+
 Route::middleware('auth')->group(function () {
 
     //Temp Routes for view
@@ -38,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::view('applicant-report', 'applicant-report');
     Route::view('off-reg', 'off-reg');
     Route::view('kawan-dashboard', 'kawan-dashboard');
+    Route::view('report-gen', 'report-gen');
 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('verified');
 

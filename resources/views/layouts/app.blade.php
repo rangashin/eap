@@ -567,6 +567,18 @@
                     $("#relativework-3").addClass("bg-slate-200").prop('disabled', true).val('');
                 }
 
+                
+                $("select#adminreportgen").change(function(){
+                    var selectedDropdown = $(this).children("option:selected").val();
+                    if (selectedDropdown == 'applicant'){
+                        $("#applicantstatusdropdown").removeClass("hidden");
+                    }else{
+                        $("#applicantstatusdropdown").addClass("hidden");
+                    }
+                   
+                    
+                });
+                
             });
         </script>
     </body>
