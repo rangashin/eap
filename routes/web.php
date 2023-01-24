@@ -23,7 +23,7 @@ use App\Http\Controllers\ScholarSubmitRequirementsController;
 */
 
 Route::view('/', 'welcome');
-Route::view('sample-homepage', 'sample-homepage');
+Route::view('sample-new', 'sample-new');
 Route::middleware('auth')->group(function () {
 
     //Temp Routes for view
