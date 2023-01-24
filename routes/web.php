@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
     // Route::view('applicant.registration-new', 'applicant.registration-new');
     Route::view('applicant-report', 'applicant-report');
     Route::view('off-reg', 'off-reg');
+    Route::view('off-sub', 'off-sub');
     Route::view('kawan-dashboard', 'kawan-dashboard');
     Route::view('report-gen', 'report-gen');
 
