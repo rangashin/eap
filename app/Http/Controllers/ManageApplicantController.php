@@ -13,9 +13,9 @@ use App\Models\ApplicantStatus;
 class ManageApplicantController extends Controller
 {
 
-    public function index(){
-        $applicants = Applicant::latest('formreceived')->with('applicantStatus')->get();
-
+    public function __construct()
+    {
+        $applicants = Applicant::all();
         foreach($applicants as $applicant){
             $now = Carbon::now()->format('Y-m-d');
             $enddate = Carbon::parse($applicant->hasbeenselecteddate)->addDays(9)->format('Y-m-d');
@@ -25,6 +25,20 @@ class ManageApplicantController extends Controller
                 continue;
             }
         }
+    }
+
+    public function index(){
+        $applicants = Applicant::latest('formreceived')->with('applicantStatus')->get();
+
+        // foreach($applicants as $applicant){
+        //     $now = Carbon::now()->format('Y-m-d');
+        //     $enddate = Carbon::parse($applicant->hasbeenselecteddate)->addDays(9)->format('Y-m-d');
+        //     if((Carbon::parse($now))->gt($enddate) && empty($applicant->interviewdate)){
+        //         $applicant->update(['applicant_statuses_id' => ApplicantStatus::IS_REJECTED]);
+        //         // SMS NOTIFICATION
+        //         continue;
+        //     }
+        // }
 
         return view('admin.applicant-index', compact('applicants'));
     }
@@ -42,15 +56,15 @@ class ManageApplicantController extends Controller
     public function selected(){
         $applicants = Applicant::latest('hasbeenselecteddate')->latest('formreceived')->with('applicantStatus')->whereIn('applicant_statuses_id', [ApplicantStatus::IS_SELECTED, ApplicantStatus::IS_WAITING])->get();
         
-        foreach($applicants as $applicant){
-            $now = Carbon::now()->format('Y-m-d');
-            $enddate = Carbon::parse($applicant->hasbeenselecteddate)->addDays(9)->format('Y-m-d');
-            if((Carbon::parse($now))->gt($enddate) && empty($applicant->interviewdate)){
-                $applicant->update(['applicant_statuses_id' => ApplicantStatus::IS_REJECTED]);
-                // SMS NOTIFICATION
-                continue;
-            }
-        }
+        // foreach($applicants as $applicant){
+        //     $now = Carbon::now()->format('Y-m-d');
+        //     $enddate = Carbon::parse($applicant->hasbeenselecteddate)->addDays(9)->format('Y-m-d');
+        //     if((Carbon::parse($now))->gt($enddate) && empty($applicant->interviewdate)){
+        //         $applicant->update(['applicant_statuses_id' => ApplicantStatus::IS_REJECTED]);
+        //         // SMS NOTIFICATION
+        //         continue;
+        //     }
+        // }
         
         return view('admin.applicant-selected', compact('applicants'));
     }

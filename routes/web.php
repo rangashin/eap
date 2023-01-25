@@ -9,6 +9,7 @@ use App\Http\Controllers\ManageUserController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ManageApplicantController;
 use App\Http\Controllers\ManageScholarController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ScholarSubmitRequirementsController;
 
 /*
@@ -78,7 +79,8 @@ Route::middleware('auth')->group(function () {
                 Route::post('{user_id}/report/{id}', [ManageScholarController::class, 'destroyReport'])->name('report-destroy');
                 Route::post('{applicant_user_id}/resubmit', [ManageScholarController::class, 'resubmit'])->name('resubmit');
             });
-
+            Route::get('report', [PDFController::class, 'index'])->name('report.index');
+            Route::post('report', [PDFController::class, 'generateReport'])->name('report.generate');
             
         });
     });
@@ -86,6 +88,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('scholar')->group(function() {
         Route::get('submit-requirements', [ScholarSubmitRequirementsController::class, 'index'])->name('submit-requirements.index');
         Route::post('submit-requirements', [ScholarSubmitRequirementsController::class, 'store'])->name('submit-requirements.store');
+        // Route::post('submit-requirementsxd', [ScholarSubmitRequirementsController::class, 'store'])->name('submit-requirements.store');
     });
 });
 

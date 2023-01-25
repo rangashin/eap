@@ -28,7 +28,7 @@
                             <x-nav-link :href="route('admin.user.index')" :active="request()->routeIs('admin.user.index')">
                                 {{ __('User') }}
                             </x-nav-link>
-                            <x-nav-button-link id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="cursor-pointer" :active="request()->routeIs('admin.applicant.index')">Applicants </x-nav-button-link>
+                            <x-nav-button-link id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="cursor-pointer" :active="request()->routeIs('admin.applicant.index')">Applicant </x-nav-button-link>
                             <!-- Dropdown menu -->
                             <div id="dropdownNavbar" class="z-10  hidden  font-normal bg-white  divide-gray-100 rounded shadow w-44 dark:bg-gray-700 dark:divide-gray-600  ">
                                 <ul class="text-sm top-0 text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
@@ -40,6 +40,9 @@
                             </div>
                             <x-nav-link :href="route('admin.scholar.index')" :active="request()->routeIs('admin.scholar.index')">
                                 {{ __('Scholar') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('admin.report.index')" :active="request()->routeIs('admin.report.index')">
+                                {{ __('Report') }}
                             </x-nav-link>
                         @endif
                     @endif              
@@ -119,6 +122,9 @@
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('admin.scholar.index')" :active="request()->routeIs('admin.scholar.index')">
                         {{ __('Scholar') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('admin.report.index')" :active="request()->routeIs('admin.report.index')">
+                        {{ __('Report') }}
                     </x-responsive-nav-link>
                 @endif
             @endif
