@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminSettingsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Capsule\Manager;
 use App\Http\Controllers\ProfileController;
@@ -79,6 +80,8 @@ Route::middleware('auth')->group(function () {
                 Route::post('{user_id}/report/{id}', [ManageScholarController::class, 'destroyReport'])->name('report-destroy');
                 Route::post('{applicant_user_id}/resubmit', [ManageScholarController::class, 'resubmit'])->name('resubmit');
             });
+            Route::post('updateyear', [AdminSettingsController::class, 'updateAcadYear'])->name('year-update');
+            Route::post('submission', [AdminSettingsController::class, 'submission'])->name('submission-update');
             Route::get('report', [PDFController::class, 'index'])->name('report.index');
             Route::post('report', [PDFController::class, 'generateReport'])->name('report.generate');
             

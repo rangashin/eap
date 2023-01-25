@@ -7,7 +7,8 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            
+            <x-success-message/>
+            <x-error-message/>    
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class=" bg-white border-b border-gray-200 ">
                     <div class=" mx-6 my-6">
@@ -19,7 +20,7 @@
                                         <h5 class="mb-3 text-base font-semibold text-gray-900 md:text-xl dark:text-white">Total Users</h5>
                                     </div>
                                     <div>
-                                        <p class="font-black text-xl text-gray-700 uppercase">{{ __('420') }}</p>
+                                        <p class="font-black text-xl text-gray-700 uppercase">{{ $users }}</p>
                                     </div>
                                 </div>
                                 <div class="w-full  p-4 mr-3 mb-3 bg-white border rounded-lg shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
@@ -28,7 +29,7 @@
                                         <h5 class="mb-3 text-base font-semibold text-gray-900 md:text-xl dark:text-white">Total Kawans</h5>
                                     </div>
                                     <div>
-                                        <p class="font-black text-xl text-gray-700 uppercase">{{ __('9') }}</p>
+                                        <p class="font-black text-xl text-gray-700 uppercase">{{ $kawans }}</p>
                                     </div>
                                 </div>
                                 <div class="w-full p-4 mb-3 bg-white border rounded-lg shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
@@ -37,7 +38,7 @@
                                         <h5 class="mb-3 text-base font-semibold text-gray-900 md:text-xl dark:text-white">Total Applicants</h5>
                                     </div>
                                     <div>
-                                        <p class="font-black text-xl text-gray-700 uppercase">{{ __('69') }}</p>
+                                        <p class="font-black text-xl text-gray-700 uppercase">{{ $applicants }}</p>
                                     </div>
                                 </div>
                                 <div class="w-full  p-4  bg-white border rounded-lg shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
@@ -46,51 +47,56 @@
                                         <h5 class="mb-3 text-base font-semibold text-gray-900 md:text-xl dark:text-white">Total Scholars</h5>
                                     </div>
                                     <div>
-                                        <p class="font-black text-xl text-gray-700 uppercase">{{ __('200') }}</p>
+                                        <p class="font-black text-xl text-gray-700 uppercase">{{ $scholars }}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="mr-6">
                                 <div class="w-full p-4 my-3 mx-3  bg-white border rounded-lg shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
-                                    <div class="flex items-baseline flex-wrap">
-                                        <div>
-                                            <p class="mb-3 text-lg mr-3 font-semibold text-gray-900 md:text-xl dark:text-white">Academic Year:</p>
+                                    <form action="{{ route('admin.year-update') }}" method="post">
+                                        @csrf
+                                        <div class="flex items-baseline flex-wrap">
+                                            <div>
+                                                <p class="mb-3 text-lg mr-3 font-semibold text-gray-900 md:text-xl dark:text-white">Academic Year:</p>
+                                            </div>
+                                            <select id="academicyear" name="academicyear" class="mr-3 text-lg border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm " placeholder="Change To" >
+                                                <option value="" disabled hidden selected >Select year</option>
+                                                <option {{ $settings->academicyear == ($settings->academicyear) - 1 ? 'selected' : '' }} value="{{ ($settings->academicyear) - 1 }}">{{ ($settings->academicyear) - 2 }}-{{ ($settings->academicyear) - 1 }}</option>
+                                                <option {{ $settings->academicyear == $settings->academicyear ? 'selected' : '' }} value="{{ $settings->academicyear }}">{{ ($settings->academicyear) - 1 }}-{{ $settings->academicyear }}</option>
+                                                <option {{ $settings->academicyear == ($settings->academicyear) + 1 ? 'selected' : '' }} value="{{ ($settings->academicyear) + 1 }}">{{ $settings->academicyear }}-{{ ($settings->academicyear) + 1 }}</option>
+                                            </select>
+                                            <x-primary-button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-6 py-3.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" id="submissionbutton">
+                                                Save
+                                            </x-primary-button>
                                         </div>
-                                        <select id="year" name="year" class="mr-3 text-lg border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm " placeholder="Change To" >
-                                            <option value="" disabled hidden selected >Select year</option>
-                                            <option value="2023">{{ 'sample' }}</option>
-                                            <option value="2022">2022-2021</option>
-                                            <option value="2021">2021-2020</option>
-                                        </select>
-                                        <x-primary-button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-6 py-3.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                            Save
-                                        </x-primary-button>
-                                    </div>
-                                    
+                                    </form>
                                 </div>
+
                                 <div class="w-full p-4 my-3 mx-3 bg-white border rounded-lg shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
-                                    <div class="mb-3 ml-3">
-                                        <h5 class="mb-3 text-lg font-semibold text-gray-900 md:text-xl dark:text-white">Applicants Open Submission</h5>
-                                        <label class="relative inline-flex items-center mb-5 cursor-pointer">
-                                            <input type="checkbox" value="" class="sr-only peer">
-                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                                            <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Close/Open</span>
-                                        </label>
-                                    </div>
-                                    <div class="ml-3">
-                                        <h5 class="mb-3 text-lg font-semibold text-gray-900 md:text-xl dark:text-white">Scholars Open Submission</h5>
-                                        <label class="relative inline-flex items-center mb-5 cursor-pointer">
-                                            <input type="checkbox" value="" class="sr-only peer">
-                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                                            <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Close/Open</span>
-                                        </label>
-                                    </div>
-                                    <div class="grid justify-items-center ml-3">
-                                        {{-- <button type="button" class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Confirm Changes</button> --}}
-                                        <x-primary-button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                            {{ 'Confirm Changes' }}
-                                        </x-primary-button>
-                                    </div>
+                                    <form action="{{ route('admin.submission-update') }}" method="post">
+                                        @csrf
+                                        <div class="mb-3 ml-3">
+                                            <h5 class="mb-3 text-lg font-semibold text-gray-900 md:text-xl dark:text-white">Applicants Open Submission</h5>
+                                            <label class="relative inline-flex items-center mb-5 cursor-pointer">
+                                                <input type="checkbox" name="applicantssubmission" value="1" class="sr-only peer" {{ $settings->applicantssubmission == 1 ? 'checked' : '' }}/>
+                                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                                <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Close/Open</span>
+                                            </label>
+                                        </div>
+                                        <div class="ml-3">
+                                            <h5 class="mb-3 text-lg font-semibold text-gray-900 md:text-xl dark:text-white">Scholars Open Submission</h5>
+                                            <label class="relative inline-flex items-center mb-5 cursor-pointer">
+                                                <input type="checkbox" name="scholarssubmission" value="1" class="sr-only peer" {{ $settings->scholarssubmission == 1 ? 'checked' : '' }} />
+                                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                                <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Close/Open</span>
+                                            </label>
+                                        </div>
+                                        <div class="grid justify-items-center ml-3">
+                                            <x-primary-button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                                {{ 'Confirm Changes' }}
+                                            </x-primary-button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -99,4 +105,20 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function(){
+            var date = @json($settings->academicyear);
+
+            $("#submissionbutton").addClass("hidden").prop('disabled', false);
+
+            $("select#academicyear").change(function(){
+                var selected = $(this).children("option:selected").val();
+                if (selected == date){
+                    $("#submissionbutton").addClass("hidden").prop('disabled', false);
+                }else{
+                    $("#submissionbutton").removeClass("hidden").prop('disabled', true);
+                }
+            });
+        });
+    </script>
 </x-app-layout>
