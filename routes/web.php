@@ -41,7 +41,6 @@ Route::middleware('auth')->group(function () {
     Route::view('off-reg', 'off-reg');
     Route::view('off-sub', 'off-sub');
     Route::view('kawan-dashboard', 'kawan-dashboard');
-    Route::view('report-gen', 'report-gen');
 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('verified');
 

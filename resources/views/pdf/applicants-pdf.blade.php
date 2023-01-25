@@ -46,15 +46,15 @@
         <th>Created At</th>
       </thead>
 
-      @forelse($applicants as $applicants)
+      @forelse($applicants as $applicant)
         <tr>
-          <td>{{ $applicants->full_name }}</td>
-          <td>{{ $applicants->renewal }}</td>
-          <td>{{ $applicants->gradeyearorlevel }}</td>
-          <td>{{ $applicants->genave }}</td>
-          <td>{{ $applicants->family_total_income }}</td>
-          <td>{{ $applicants->applicantStatus->status }}</td>
-          <td>{{ $applicants->created_at }}</td>
+          <td>{{ $applicant->full_name }}</td>
+          <td>{{ $applicant->renewal }}</td>
+          <td>{{ $applicant->gradeyearorlevel }}</td>
+          <td>{{ $applicant->genave }}</td>
+          <td>{{ '₱'.number_format($applicant->family_total_income, 2) }}</td>
+          <td>{{ $applicant->applicantStatus->status }}</td>
+          <td>{{ $applicant->created_at }}</td>
         </tr>
       @empty
         <tr>

@@ -52,7 +52,7 @@
           <td>{{ $applicant->renewal }}</td>
           <td>{{ $applicant->gradeyearorlvl }}</td>
           <td>{{ $applicant->genave }}</td>
-          <td>{{ $applicant->family_total_income }}</td>
+          <td>{{ '₱'.number_format($applicant->family_total_income, 2) }}</td>
           <td>{{ $applicant->hasselecteddate }}</td>
           <td>{{ $applicant->interviewdate ?? 'Not yet selected.' }}</td>
         </tr>
