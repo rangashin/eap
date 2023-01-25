@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <style>
       #applicants {
         font-family: Arial, Helvetica, sans-serif;
@@ -51,7 +50,7 @@
           <td>{{ $applicant->renewal }}</td>
           <td>{{ $applicant->gradeyearorlevel }}</td>
           <td>{{ $applicant->genave }}</td>
-          <td>{{ '₱'.number_format($applicant->family_total_income, 2) }}</td>
+          <td>{{ number_format($applicant->family_total_income, 2) }}</td>
         </tr>
       @empty
         <tr>
