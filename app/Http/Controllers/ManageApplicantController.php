@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Scholar;
+use Twilio\Rest\Client;
 use App\Models\Applicant;
 use Illuminate\Http\Request;
 use App\Models\ApplicantStatus;
@@ -107,6 +108,16 @@ class ManageApplicantController extends Controller
                     Scholar::create(['applicant_user_id' => $id]);
                 }
                 
+                // $twilio = new Client(config('twilio.account_sid'), config('twilio.auth_token'));
+                // $message = $twilio->messages->create(
+                //     "+1234567890",
+                //     array(
+                //         "from" => config('twilio.from'),
+                //         "body" => "Hello from Laravel!"
+                //     )
+                // );
+
+
                 return redirect()->route('admin.applicant.review.index')->with('success', 'The selection of applicants for the admission have been updated.');
             }
         }
