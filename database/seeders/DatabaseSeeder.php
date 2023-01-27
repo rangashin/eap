@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             'role_id' => Role::IS_SECRETARY,
             'username' => 'bjbjbjbj',
             'email' => 'bj@bjbj.com',
+            'email_verified_at' => date('Y-m-d H:i:s'),
             'contactno' => '09142412312',
             'password' => bcrypt('billie20'),
         ]);

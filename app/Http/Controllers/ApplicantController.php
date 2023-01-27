@@ -6,6 +6,7 @@ use App\Models\Applicant;
 use Illuminate\Http\Request;
 use App\Models\ApplicantStatus;
 use App\Http\Requests\StoreOrUpdateApplicantRequest;
+use App\Models\AdminSettings;
 use App\Models\OtherMemberApplicant;
 use App\Models\PWDFamilyMemberApplicant;
 use App\Models\SiblingMemberApplicant;
@@ -14,15 +15,20 @@ use App\Models\YearLevel;
 class ApplicantController extends Controller
 {
     public function edit(){
-        if(Applicant::where('user_id', auth()->user()->id)->doesntExist()){
-            return view('applicant.registration-new');
-        }else{
-            $applicant = Applicant::find(auth()->user()->id);
-            if($applicant->issubmitted == Applicant::IS_SUBMITTED){
-                return view('applicant.registration-show', compact('applicant'));
-            }elseif($applicant->issubmitted == Applicant::IS_NOT_SUBMMITED){
-                return view('applicant.registration-update', compact('applicant'));
+        $settings = AdminSettings::find(1);
+        if($settings->applicantssubmission == AdminSettings::IS_ON){
+            if(Applicant::where('user_id', auth()->user()->id)->doesntExist()){
+                return view('applicant.registration-new');
+            }else{
+                $applicant = Applicant::find(auth()->user()->id);
+                if($applicant->issubmitted == Applicant::IS_SUBMITTED){
+                    return view('applicant.registration-show', compact('applicant'));
+                }elseif($applicant->issubmitted == Applicant::IS_NOT_SUBMMITED){
+                    return view('applicant.registration-update', compact('applicant'));
+                }
             }
+        }else if($settings->applicantssubmission == AdminSettings::IS_OFF){
+            return view('admin.off-applicant-registration');
         }
     }
 

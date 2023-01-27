@@ -53,8 +53,8 @@
                                         <option {{ old('role_id')  == '' ? 'selected' : '' }} value="" disabled selected hidden></option>
                                         <option {{ old('role_id') == '1' ? 'selected' : '' }} value="1">New Account</option>
                                         <option {{ old('role_id') == '5' ? 'selected' : '' }} value="5">Leader</option>
-                                        <option {{ old('role_id') == '6' ? 'selected' : '' }} value="6">Priest</option>
-                                        <option {{ old('role_id') == '7' ? 'selected' : '' }} value="7">Adviser</option>
+                                        {{-- <option {{ old('role_id') == '6' ? 'selected' : '' }} value="6">Priest</option>
+                                        <option {{ old('role_id') == '7' ? 'selected' : '' }} value="7">Adviser</option> --}}
                                     </select>
                                     <x-input-error class="mt-2" :messages="$errors->get('role_id')" />
                             </div>

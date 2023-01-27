@@ -29,20 +29,7 @@ Route::view('sample-new', 'sample-new');
 
 Route::middleware('auth')->group(function () {
 
-    //Temp Routes for view
-    // Route::view('applicant.registration-new', 'applicant.registration-new');
-    // Route::view('dashboard-impo', 'dashboard-impo');
-    // Route::view('scholar.dashboard', 'scholar.dashboard');
-    // Route::view('admin.scholar-index', 'admin.scholar-index');
-    // Route::view('applicant.registration-new', 'applicant.registration-new');
-    // Route::view('scholar.submit-requirements', 'scholar.submit-requirements');
-    // Route::view('admin.scholar-attendance-edit', 'admin.scholar-attendance-edit');
-    // Route::view('applicant.registration-new', 'applicant.registration-new');
     Route::view('applicant-report', 'applicant-report');
-    Route::view('off-reg', 'off-reg');
-    Route::view('off-sub', 'off-sub');
-    Route::view('kawan-dashboard', 'kawan-dashboard');
-    Route::view('applicant.dashboard-offreg', 'applicant.dashboard-offreg');
 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('verified');
 
@@ -85,14 +72,12 @@ Route::middleware('auth')->group(function () {
             Route::post('submission', [AdminSettingsController::class, 'submission'])->name('submission-update');
             Route::get('report', [PDFController::class, 'index'])->name('report.index');
             Route::post('report', [PDFController::class, 'generateReport'])->name('report.generate');
-            
         });
     });
 
     Route::middleware('scholar')->group(function() {
         Route::get('submit-requirements', [ScholarSubmitRequirementsController::class, 'index'])->name('submit-requirements.index');
         Route::post('submit-requirements', [ScholarSubmitRequirementsController::class, 'store'])->name('submit-requirements.store');
-        // Route::post('submit-requirementsxd', [ScholarSubmitRequirementsController::class, 'store'])->name('submit-requirements.store');
     });
 });
 

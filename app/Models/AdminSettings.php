@@ -16,4 +16,7 @@ class AdminSettings extends Model
         'scholarssubmission',
         'academicyear',
     ];
+
+    public const IS_ON = 1;
+    public const IS_OFF = 0;
 }
