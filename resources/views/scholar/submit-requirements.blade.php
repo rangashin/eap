@@ -137,11 +137,6 @@
                                 </div>
                             @endunless
                         @endif
-                        {{-- <div class="flex items-center justify-end mt-4">
-                            <x-primary-button class="ml-3">
-                                {{ __('Submit Requirements') }}
-                            </x-primary-button>
-                        </div>           --}}
                     </form>         
                 </div>
             </div>
