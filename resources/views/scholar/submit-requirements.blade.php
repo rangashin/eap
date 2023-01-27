@@ -120,11 +120,28 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="flex items-center justify-end mt-4">
+                        @if (in_array($scholar->applicant->yearlevel, ['SHS', 'C']))
+                            @unless (count($scholar->getMedia('scholar_regi')) == 1 && count($scholar->getMedia('scholar_report')) == 1)
+                                <div class="flex items-center justify-end mt-4">
+                                    <x-primary-button class="ml-3">
+                                        {{ ('Submit Requirements') }}
+                                    </x-primary-button>
+                                </div>
+                            @endunless
+                        @elseif (in_array($scholar->applicant->yearlevel, ['E', 'HS']))
+                            @unless (count($scholar->getMedia('scholar_report')) == 3)
+                                <div class="flex items-center justify-end mt-4">
+                                    <x-primary-button class="ml-3">
+                                        {{ ('Submit Requirements') }}
+                                    </x-primary-button>
+                                </div>
+                            @endunless
+                        @endif
+                        {{-- <div class="flex items-center justify-end mt-4">
                             <x-primary-button class="ml-3">
                                 {{ __('Submit Requirements') }}
                             </x-primary-button>
-                        </div>          
+                        </div>           --}}
                     </form>         
                 </div>
             </div>

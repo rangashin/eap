@@ -32,4 +32,18 @@ window.confirmSave = function(formId)
         }
     });
 }
+window.confirmSubmit = function(formId)
+{
+    Swal.fire({
+        icon: 'info',
+        text: 'Are you sure you want to finalize your submission?',
+        showCancelButton: true,
+        confirmButtonText: 'Confirm',
+        confirmButtonColor: '#1e90ff',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById(formId).submit();
+        }
+    });
+}
 Alpine.start();

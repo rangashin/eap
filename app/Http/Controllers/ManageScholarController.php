@@ -59,18 +59,21 @@ class ManageScholarController extends Controller
     public function update(UpdateAttendanceRequest $request, $applicant_user_id){
         $request->validated();
         $temp = Scholar::find($applicant_user_id);
+        $totalstudent = $temp->student;
+        $totalparent = $temp->parent;
+        $totalcombinedattendance = floor($totalstudent ?? 0 + $totalparent ?? 0);
         $temp->update([
             'firststudent' => $request->firststudent,
             'secondstudent' => $request->secondstudent,
             'thirdstudent' => $request->thirdstudent,
             'fourthstudent' => $request->fourthstudent,
-            'totalstudent' => $temp->student,
+            'totalstudent' => $totalstudent,
             'firstparent' => $request->firstparent,
             'secondparent' => $request->secondparent,
             'thirdparent' => $request->thirdparent,
             'fourthparent' =>  $request->fourthparent,
-            'totalparent' => $temp->parent,
-            'totalcombinedattendance' => $temp->total,
+            'totalparent' => $totalparent,
+            'totalcombinedattendance' => $totalcombinedattendance,
         ]);
         
         return redirect()->route('admin.scholar.show', $applicant_user_id)->with('success', $temp->applicant->full_name.'\'s attendance has been updated.');

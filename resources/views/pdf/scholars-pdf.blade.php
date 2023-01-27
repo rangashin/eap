@@ -56,7 +56,7 @@
       @forelse($scholars as $scholar)
         <tr>
             <td>{{ $scholar->applicant->full_name }}</td>
-            <td>{{ $scholar->scholar_statuses_id->status }}</td>
+            <td>{{ $scholar->scholarStatus->status }}</td>
             <td>{{ $scholar->applicant->gradeyearorlevel }}</td>
             <td>{{ $scholar->firststudent }}</td>
             <td>{{ $scholar->secondstudent }}</td>
