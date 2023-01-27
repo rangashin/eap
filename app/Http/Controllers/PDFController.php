@@ -107,4 +107,98 @@ class PDFController extends Controller
             }
         }
     }
+
+    public function kawanIndex(){
+        return view('kawan.report-generation');
+    }
+
+    public function kawanGenerateReport(Request $request){
+        if(empty($request->category)){
+            return redirect()->route('kawan.report.index')->with('error', 'Warning alert! The category (dropdown) field is required.');
+        }elseif($request->category == 'applicant'){
+            if(empty($request->applicantstatusreport)){
+                return redirect()->route('kawan.report.index')->with('error', 'Warning alert! The applicant status (dropdown) field is required.');
+            }elseif($request->applicantstatusreport == 'selectedwaiting'){
+                if(empty($request->selecteddatespan)){
+                    return redirect()->route('kawan.report.index')->with('error', 'Warning alert! The date span (dropdown) field is required.');
+                }elseif($request->selecteddatespan == 'all'){
+                    $applicants = Applicant::latest('interviewdate')->latest('hasbeenselecteddate')->whereIn('applicant_statuses_id', [ApplicantStatus::IS_SELECTED, ApplicantStatus::IS_WAITING])->whereNot(function ($query){
+                        $query->where('kawan_id', auth()->user()->adminProfile->kawan_id);
+                    })->with('kawan')->get();
+    
+                    $data = ['applicants' => $applicants];
+
+                    $pdf = Pdf::loadView('pdf.kawan-applicants-selected-pdf', $data);
+                    return $pdf->download('EAP Interview Selection.pdf');
+                }elseif($request->selecteddatespan == 'today'){
+                    $applicants = Applicant::latest('interviewdate')->latest('hasbeenselecteddate')->where('interviewdate', Carbon::now()->toDateString())->whereIn('applicant_statuses_id', [ApplicantStatus::IS_SELECTED, ApplicantStatus::IS_WAITING])->whereNot(function ($query){
+                        $query->where('kawan_id', auth()->user()->adminProfile->kawan_id);
+                    })->with('kawan')->get();
+    
+                    $data = ['applicants' => $applicants];
+                    
+                    $pdf = Pdf::loadView('pdf.kawan-applicants-selected-pdf', $data);
+                    return $pdf->download('EAP Interview Selection.pdf');
+                }elseif($request->selecteddatespan == 'tomorrow'){
+                    $applicants = Applicant::latest('interviewdate')->latest('hasbeenselecteddate')->where('interviewdate', Carbon::now()->addDays(1)->toDateString())->whereIn('applicant_statuses_id', [ApplicantStatus::IS_SELECTED, ApplicantStatus::IS_WAITING])->whereNot(function ($query){
+                        $query->where('kawan_id', auth()->user()->adminProfile->kawan_id);
+                    })->with('kawan')->get();
+    
+                    $data = ['applicants' => $applicants];
+                    
+                    $pdf = Pdf::loadView('pdf.kawan-applicants-selected-pdf', $data);
+                    return $pdf->download('EAP Interview Selection.pdf');
+                }elseif($request->selecteddatespan == 'thisweek'){
+                    $applicants = Applicant::latest('interviewdate')->latest('hasbeenselecteddate')->whereBetween('interviewdate', [Carbon::now()->toDateString(), Carbon::now()->addDays(7)->toDateString()])->whereIn('applicant_statuses_id', [ApplicantStatus::IS_SELECTED, ApplicantStatus::IS_WAITING])->whereNot(function ($query){
+                        $query->where('kawan_id', auth()->user()->adminProfile->kawan_id);
+                    })->with('kawan')->get();
+    
+                    $data = ['applicants' => $applicants];
+                    
+                    $pdf = Pdf::loadView('pdf.kawan-applicants-selected-pdf', $data);
+                    return $pdf->download('EAP Interview Selection.pdf');
+                }
+            }
+        }elseif($request->category == 'scholar'){
+            if(empty($request->scholarstatusreport)){
+                return redirect()->route('admin.report.index')->with('error', 'Warning alert! The scholar status (dropdown) field is required.');
+            }elseif($request->scholarstatusreport == 'all'){
+                $scholars = Scholar::with(['applicant' => function($query){
+                    $query->where('kawan_id', auth()->user()->adminProfile->kawan_id)->orderBy('applicantlastname', 'asc')->orderBy('kawan_id', 'asc');
+                }, 'scholarStatus'])->get();
+
+                $data = ['scholars' => $scholars];
+
+                $pdf = Pdf::loadView('pdf.scholars-pdf', $data);
+                return $pdf->download('EAP All Scholars.pdf');
+            }elseif($request->scholarstatusreport == 'regular'){
+                $scholars = Scholar::where('scholar_statuses_id', ScholarStatus::IS_REGULAR)->with(['applicant' => function($query){
+                    $query->where('kawan_id', auth()->user()->adminProfile->kawan_id)->orderBy('applicantlastname', 'asc')->orderBy('kawan_id', 'asc');
+                }])->get();
+
+                $data = ['scholars' => $scholars, 'temp' => '(Regular)'];
+
+                $pdf = Pdf::loadView('pdf.scholars-with-status-pdf', $data);
+                return $pdf->download('EAP Scholars (Regular).pdf');
+            }elseif($request->scholarstatusreport == 'conditional'){
+                $scholars = Scholar::where('scholar_statuses_id', ScholarStatus::IS_CONDITIONAL)->with(['applicant' => function($query){
+                    $query->where('kawan_id', auth()->user()->adminProfile->kawan_id)->orderBy('applicantlastname', 'asc')->orderBy('kawan_id', 'asc');
+                }])->get();
+
+                $data = ['scholars' => $scholars, 'temp' => '(Conditional)'];
+
+                $pdf = Pdf::loadView('pdf.scholars-with-status-pdf', $data);
+                return $pdf->download('EAP Scholars (Conditional).pdf');
+            }elseif($request->scholarstatusreport == 'incomplete'){
+                $scholars = Scholar::where('scholar_statuses_id', ScholarStatus::IS_INCOMPLETE)->with(['applicant' => function($query){
+                    $query->where('kawan_id', auth()->user()->adminProfile->kawan_id)->orderBy('applicantlastname', 'asc')->orderBy('kawan_id', 'asc');
+                }])->get();
+
+                $data = ['scholars' => $scholars, 'temp' => '(Incomplete)'];
+
+                $pdf = Pdf::loadView('pdf.scholars-with-status-pdf', $data);
+                return $pdf->download('EAP Scholars (Incomplete).pdf');
+            }
+        }
+    }
 }

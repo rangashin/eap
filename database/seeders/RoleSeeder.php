@@ -19,8 +19,9 @@ class RoleSeeder extends Seeder
         Role::create(['roletype' => 'Applicant']);
         Role::create(['roletype' => 'Scholar']);
         Role::create(['roletype' => 'Secretary']);
+        Role::create(['roletype' => 'Leader']); //NEW
         Role::create(['roletype' => 'Leader']);
-        Role::create(['roletype' => 'Priest']);
-        Role::create(['roletype' => 'Adviser']);
+        // Role::create(['roletype' => 'Priest']);
+        // Role::create(['roletype' => 'Adviser']);
     }
 }

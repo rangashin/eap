@@ -21,7 +21,8 @@ class Role extends Model
     public const IS_APPLICANT = 2;
     public const IS_SCHOLAR = 3;
     public const IS_SECRETARY = 4;
-    public const IS_LEADER = 5;
-    public const IS_PRIEST = 6;
-    public const IS_ADVISER = 7;
+    public const IS_LEADER_NEW = 5;
+    public const IS_LEADER = 6;
+    // public const IS_PRIEST = 6;
+    // public const IS_ADVISER = 7;
 }

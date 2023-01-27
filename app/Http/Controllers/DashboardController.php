@@ -8,6 +8,7 @@ use App\Models\Scholar;
 use App\Models\Applicant;
 use Illuminate\Http\Request;
 use App\Models\AdminSettings;
+use App\Models\ApplicantStatus;
 use Illuminate\Support\Facades\Redis;
 
 class DashboardController extends Controller
@@ -34,14 +35,17 @@ class DashboardController extends Controller
             return view('scholar.dashboard', compact('scholar'));
         }elseif(auth()->user()->role_id == Role::IS_SECRETARY){
             $users = User::count();
-            $kawans = User::where('role_id', Role::IS_LEADER)->count();
+            $kawans = User::whereIn('role_id', [Role::IS_LEADER_NEW, Role::IS_LEADER])->count();
             $applicants = Applicant::count();
             $scholars = Scholar::count();
             $settings = AdminSettings::find(1);
             return view('admin.dashboard', compact('settings', 'users', 'kawans', 'applicants', 'scholars'));
             // return redirect()->route('admin.user.index');
-        }elseif(auth()->user()->role_id == Role::IS_LEADER){
+        }elseif(auth()->user()->role_id == Role::IS_LEADER_NEW){
             return redirect()->route('account.edit');
+        }elseif(auth()->user()->role_id == Role::IS_LEADER){
+            $applicants = Applicant::latest('interviewdate')->latest('hasbeenselecteddate')->with('applicantStatus')->whereIn('applicant_statuses_id', [ApplicantStatus::IS_SELECTED, ApplicantStatus::IS_WAITING])->get();
+            return view('kawan.dashboard', compact('applicants'));
         }
         // }elseif(auth()->user()->role_id == Role::IS_ADVISER){
         //     return redirect()->route('account.edit');

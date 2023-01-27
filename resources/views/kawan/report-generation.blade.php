@@ -10,7 +10,7 @@
             <x-error-message/>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200 ">
-                    <form action="{{ route('admin.report.generate') }}" method="post">
+                    <form action="{{ route('kawan.report.generate') }}" method="post">
                         @csrf
                         {{--Dropdown for Main Category --}}
                         <div class="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-6 mt-2 mb-6">
@@ -21,7 +21,6 @@
                                     <option {{ old('category') == 'applicant' ? 'selected' : '' }} value="applicant">Applicant</option>
                                     <option {{ old('category') == 'scholar' ? 'selected' : '' }} value="scholar">Scholar</option>
                                 </select>
-                                {{-- <x-input-error :messages="$errors->get('renewal')" class="mt-2" /> --}}
                             </div>
                         </div>
                         {{-- End of Block for Main Category --}}
@@ -34,22 +33,19 @@
                                 <x-input-label for="applicantstatus-report" :value="__('Select Applicant Status:')" class="uppercase"/>
                                 <select class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm uppercase" name="applicantstatusreport" id="applicantstatus-report">
                                     <option {{ old('applicantstatus-report') == '' ? 'selected' : '' }} value="" disabled selected hidden></option>
-                                    <option {{ old('applicantstatus-report') == 'all' ? 'selected' : '' }} value="all">All</option>
-                                    <option {{ old('applicantstatus-report') == 'underreview' ? 'selected' : '' }} value="underreview">Under Review</option>
                                     <option {{ old('applicantstatus-report') == 'selectedwaiting' ? 'selected' : '' }} value="selectedwaiting">Selected and Waiting</option>
-                                    <option {{ old('applicantstatus-report') == 'rejected' ? 'selected' : '' }} value="rejected">Rejected</option>
                                 </select>
-                                {{-- <x-input-error :messages="$errors->get('renewal')" class="mt-2" /> --}}
                             </div>
 
-                            <div class="hidden " id="underreviewdatespan_div">
-                                <x-input-label for="underreviewdatespan" :value="__('Select Date Span:')" class="uppercase"/>
-                                <select class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm uppercase" name="underreviewdatespan" id="underreviewdatespan">
-                                    <option {{ old('underreviewdatespan') == '' ? 'selected' : '' }} value="" disabled selected hidden></option>
-                                    <option {{ old('underreviewdatespan') == 'lastweek' ? 'selected' : '' }} value="lastweek">Last 7 days</option>
-                                    <option {{ old('underreviewdatespan') == 'lastmonth' ? 'selected' : '' }} value="lastmonth">Last Month</option>
+                            <div class="hidden " id="selecteddatespan_div">
+                                <x-input-label for="selecteddatespan" :value="__('Select Date Span:')" class="uppercase"/>
+                                <select class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm uppercase" name="selecteddatespan" id="selecteddatespan">
+                                    <option {{ old('selecteddatespan') == '' ? 'selected' : '' }} value="" disabled selected hidden></option>
+                                    <option {{ old('selecteddatespan') == 'all' ? 'selected' : '' }} value="all">All</option>
+                                    <option {{ old('selecteddatespan') == 'today' ? 'selected' : '' }} value="today">Today</option>
+                                    <option {{ old('selecteddatespan') == 'tomorrow' ? 'selected' : '' }} value="tomorrow">Tomorrow</option>
+                                    <option {{ old('selecteddatespan') == 'thisweek' ? 'selected' : '' }} value="thisweek">This Week</option>
                                 </select>
-                                {{-- <x-input-error :messages="$errors->get('renewal')" class="mt-2" /> --}}
                             </div>
                         </div>
                         {{-- End of Block for Applicants --}}
@@ -102,7 +98,7 @@
                     $("#scholar_hr").removeClass("hidden");
                     $("#scholar_div").removeClass("hidden");
                     $("#scholarstatus-report_div").removeClass("hidden");
-                    $("select#underreviewdatespan").val('');
+                    $("select#selecteddatespan").val('');
                     $("select#applicantstatus-report").val('');
                     
                 }
@@ -124,7 +120,7 @@
                 $("#scholar_hr").removeClass("hidden");
                 $("#scholar_div").removeClass("hidden");
                 $("#scholarstatus-report_div").removeClass("hidden");
-                $("select#underreviewdatespan").val('');
+                $("select#selecteddatespan").val('');
                 $("select#applicantstatus-report").val('');  
             }else if (selectedCategory == ''){
                 $("#applicant_hr").addClass("hidden");
@@ -133,26 +129,26 @@
                 $("#scholar_div").addClass("hidden");
                 $("#scholarstatus-report_div").addClass("hidden");
                 $("select#scholarstatus-report").val('');
-                $("select#underreviewdatespan").val('');
+                $("select#selecteddatespan").val('');
                 $("select#applicantstatus-report").val('');  
             }
 
             $("select#applicantstatus-report").change(function(){
                 var selected = $(this).children("option:selected").val();
-                if (selected == 'underreview'){
-                    $("#underreviewdatespan_div").removeClass("hidden");
+                if (selected == 'selectedwaiting'){
+                    $("#selecteddatespan_div").removeClass("hidden");
                 }else{
-                    $("#underreviewdatespan_div").addClass("hidden");
-                    $("select#underreviewdatespan").val('');
+                    $("#selecteddatespan_div").addClass("hidden");
+                    $("select#selecteddatespan").val('');
                 }
             });
 
             var selectedStatus = $("select#applicantstatus-report option:selected").val(); 
-            if (selectedStatus == 'underreview'){
-                $("#underreviewdatespan_div").removeClass("hidden");
+            if (selectedStatus == 'selectedwaiting'){
+                $("#selecteddatespan_div").removeClass("hidden");
             }else{
-                $("#underreviewdatespan_div").addClass("hidden");
-                $("select#underreviewdatespan").val('');
+                $("#selecteddatespan_div").addClass("hidden");
+                $("select#selecteddatespan").val('');
             }
         });
     </script>

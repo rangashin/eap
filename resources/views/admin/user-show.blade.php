@@ -42,7 +42,7 @@
                         </div>
 
 
-                        @if (in_array($user->role_id, [2, 3, 5, 6, 7]))
+                        @if (in_array($user->role_id, [2, 3, 5, 6]))
                             <hr class="my-6 h-px bg-gray-200 border-0 dark:bg-gray-700"> 
                             <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
                                 Profile Information
@@ -77,7 +77,7 @@
                                 @endif
                             @else
                                 {{-- @if (empty($user->adminProfile())) --}}
-                                @if (empty($user->adminProfile->adminfullname))
+                                @if ($user->role_id == 5)
                                     <div class="my-5">
                                         <p class="font-black text-xl text-gray-700">{{ 'Not yet filled up.' }}</p>
                                     </div>
@@ -97,17 +97,15 @@
                                         <p class="font-black text-xl text-gray-700">{{ $user->adminProfile->adminbirthdate }}</p>
                                     </div>
                                     
-                                    @if ($user->role_id == 5)
-                                        <div class="my-5">
-                                            <x-input-label for="sex" class="uppercase my-1" :value="__('Sex')" />
-                                            <p class="font-black text-xl text-gray-700">{{ $user->adminProfile->sex }}</p>
-                                        </div>
+                                    <div class="my-5">
+                                        <x-input-label for="sex" class="uppercase my-1" :value="__('Sex')" />
+                                        <p class="font-black text-xl text-gray-700">{{ $user->adminProfile->sex }}</p>
+                                    </div>
 
-                                        <div class="my-5">
-                                            <x-input-label for="kawan_id" class="uppercase my-1" :value="__('Kawan')" />
-                                            <p class="font-black text-xl text-gray-700">{{ $user->adminProfile->kawan->kawanname }}</p>
-                                        </div>
-                                    @endif
+                                    <div class="my-5">
+                                        <x-input-label for="kawan_id" class="uppercase my-1" :value="__('Kawan')" />
+                                        <p class="font-black text-xl text-gray-700">{{ $user->adminProfile->kawan->kawanname }}</p>
+                                    </div>
                                 @endif    
                             @endif
                         @endif

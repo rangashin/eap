@@ -30,6 +30,7 @@ Route::view('/', 'sample-new');
 Route::middleware('auth')->group(function () {
 
     Route::view('applicant-report', 'applicant-report');
+    Route::view('kawan.dashboard', 'kawan.dashboard');
 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('verified');
 
@@ -73,6 +74,11 @@ Route::middleware('auth')->group(function () {
             Route::get('report', [PDFController::class, 'index'])->name('report.index');
             Route::post('report', [PDFController::class, 'generateReport'])->name('report.generate');
         });
+    });
+
+    Route::middleware('leader')->group(function() {
+        Route::get('report', [PDFController::class, 'kawanIndex'])->name('kawan.report.index');
+        Route::post('report', [PDFController::class, 'kawanGenerateReport'])->name('kawan.report.generate');
     });
 
     Route::middleware('scholar')->group(function() {

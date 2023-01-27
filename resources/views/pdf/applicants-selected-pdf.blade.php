@@ -53,7 +53,7 @@
           <td>{{ $applicant->gradeyearorlvl }}</td>
           <td>{{ $applicant->genave }}</td>
           <td>{{ number_format($applicant->family_total_income, 2) }}</td>
-          <td>{{ $applicant->hasselecteddate }}</td>
+          <td>{{ $applicant->hasbeenselecteddate }}</td>
           <td>{{ $applicant->interviewdate ?? 'Not yet selected.' }}</td>
         </tr>
       @empty
