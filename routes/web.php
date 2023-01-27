@@ -24,8 +24,8 @@ use App\Http\Controllers\ScholarSubmitRequirementsController;
 |
 */
 
-Route::view('/', 'welcome');
-Route::view('sample-new', 'sample-new');
+Route::view('/', 'sample-new');
+// Route::view('sample-new', 'sample-new');
 
 Route::middleware('auth')->group(function () {
 
