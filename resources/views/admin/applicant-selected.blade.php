@@ -59,6 +59,7 @@
                                     <th scope="col" class="py-3 px-6">Name</th>
                                     <th scope="col" class="py-3 px-6">Contact Number</th>
                                     <th scope="col" class="py-3 px-6">Grade Year or Level</th>
+                                    <th scope="col" class="py-3 px-6">Date of Selection</th>
                                     <th scope="col" class="py-3 px-6">Interview Date</th>
                                     <th scope="col" class="py-3 px-6">Kawan</th>  
                                 </tr>
@@ -70,6 +71,7 @@
                                         <td class="py-4 px-6 space-x-4 text-base font-semibold text-black uppercase">{{ $applicant->full_name }}</td>
                                         <td class="py-4 px-6 space-x-4">{{ $applicant->applicantcontactno }}</td>
                                         <td class="py-4 px-6 space-x-4">{{ $applicant->gradeyearorlevel }}</td>
+                                        <td class="py-4 px-6 space-x-4">{{ $applicant->hasbeenselecteddate }}</td>
                                         <td class="py-4 px-6 space-x-4">{{ !empty($applicant->interviewdate) ? $applicant->interviewdate : 'Not yet set'}}</td>
                                         <td class="py-4 px-6 space-x-4">{{ $applicant->kawan->kawanname }}</td>
                                     </tr>

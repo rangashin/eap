@@ -20,7 +20,9 @@ return new class extends Migration
             $table->string('adminaddress', 100);
             $table->date('adminbirthdate');
             $table->enum('sex', ['MALE', 'FEMALE'])->nullable();
-            $table->string('kawan_id', 10)->nullable()->constrained()->nullOnDelete();
+            // $table->string('kawan_id', 10)->nullable()->constrained()->nullOnDelete();
+            $table->string('kawan_id', 10)->nullable();
+            $table->foreign('kawan_id')->references('id')->on('kawans')->nullOnDelete();
             $table->timestamps();
         });
     }

@@ -163,37 +163,46 @@ class PDFController extends Controller
             if(empty($request->scholarstatusreport)){
                 return redirect()->route('admin.report.index')->with('error', 'Warning alert! The scholar status (dropdown) field is required.');
             }elseif($request->scholarstatusreport == 'all'){
-                $scholars = Scholar::with(['applicant' => function($query){
+                // $scholars = Scholar::with(['applicant' => function($query){
+                //     $query->where('kawan_id', auth()->user()->adminProfile->kawan_id)->orderBy('applicantlastname', 'asc')->orderBy('kawan_id', 'asc');
+                // }, 'scholarStatus'])->get();
+                $scholars = Scholar::whereHas('applicant', function($query){
                     $query->where('kawan_id', auth()->user()->adminProfile->kawan_id)->orderBy('applicantlastname', 'asc')->orderBy('kawan_id', 'asc');
-                }, 'scholarStatus'])->get();
-
+                })->with('applicant','scholarStatus')->get();
+                
                 $data = ['scholars' => $scholars];
 
                 $pdf = Pdf::loadView('pdf.scholars-pdf', $data);
                 return $pdf->download('EAP All Scholars.pdf');
             }elseif($request->scholarstatusreport == 'regular'){
-                $scholars = Scholar::where('scholar_statuses_id', ScholarStatus::IS_REGULAR)->with(['applicant' => function($query){
+                // $scholars = Scholar::where('scholar_statuses_id', ScholarStatus::IS_REGULAR)->with(['applicant' => function($query){
+                //     $query->where('kawan_id', auth()->user()->adminProfile->kawan_id)->orderBy('applicantlastname', 'asc')->orderBy('kawan_id', 'asc');
+                // }])->get();
+                $scholars = Scholar::where('scholar_statuses_id', ScholarStatus::IS_REGULAR)->whereHas('applicant', function($query){
                     $query->where('kawan_id', auth()->user()->adminProfile->kawan_id)->orderBy('applicantlastname', 'asc')->orderBy('kawan_id', 'asc');
-                }])->get();
-
+                })->with('applicant','scholarStatus')->get();
                 $data = ['scholars' => $scholars, 'temp' => '(Regular)'];
 
                 $pdf = Pdf::loadView('pdf.scholars-with-status-pdf', $data);
                 return $pdf->download('EAP Scholars (Regular).pdf');
             }elseif($request->scholarstatusreport == 'conditional'){
-                $scholars = Scholar::where('scholar_statuses_id', ScholarStatus::IS_CONDITIONAL)->with(['applicant' => function($query){
+                // $scholars = Scholar::where('scholar_statuses_id', ScholarStatus::IS_CONDITIONAL)->with(['applicant' => function($query){
+                //     $query->where('kawan_id', auth()->user()->adminProfile->kawan_id)->orderBy('applicantlastname', 'asc')->orderBy('kawan_id', 'asc');
+                // }])->get();
+                $scholars = Scholar::where('scholar_statuses_id', ScholarStatus::IS_CONDITIONAL)->whereHas('applicant', function($query){
                     $query->where('kawan_id', auth()->user()->adminProfile->kawan_id)->orderBy('applicantlastname', 'asc')->orderBy('kawan_id', 'asc');
-                }])->get();
-
+                })->with('applicant','scholarStatus')->get();
                 $data = ['scholars' => $scholars, 'temp' => '(Conditional)'];
 
                 $pdf = Pdf::loadView('pdf.scholars-with-status-pdf', $data);
                 return $pdf->download('EAP Scholars (Conditional).pdf');
             }elseif($request->scholarstatusreport == 'incomplete'){
-                $scholars = Scholar::where('scholar_statuses_id', ScholarStatus::IS_INCOMPLETE)->with(['applicant' => function($query){
+                // $scholars = Scholar::where('scholar_statuses_id', ScholarStatus::IS_INCOMPLETE)->with(['applicant' => function($query){
+                //     $query->where('kawan_id', auth()->user()->adminProfile->kawan_id)->orderBy('applicantlastname', 'asc')->orderBy('kawan_id', 'asc');
+                // }])->get();
+                $scholars = Scholar::where('scholar_statuses_id', ScholarStatus::IS_INCOMPLETE)->whereHas('applicant', function($query){
                     $query->where('kawan_id', auth()->user()->adminProfile->kawan_id)->orderBy('applicantlastname', 'asc')->orderBy('kawan_id', 'asc');
-                }])->get();
-
+                })->with('applicant','scholarStatus')->get();
                 $data = ['scholars' => $scholars, 'temp' => '(Incomplete)'];
 
                 $pdf = Pdf::loadView('pdf.scholars-with-status-pdf', $data);

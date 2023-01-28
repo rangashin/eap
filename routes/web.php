@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
 
     Route::view('applicant-report', 'applicant-report');
     Route::view('kawan.dashboard', 'kawan.dashboard');
+    Route::view('sample-table', 'sample-table');
 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('verified');
 

@@ -44,7 +44,7 @@ class DashboardController extends Controller
         }elseif(auth()->user()->role_id == Role::IS_LEADER_NEW){
             return redirect()->route('account.edit');
         }elseif(auth()->user()->role_id == Role::IS_LEADER){
-            $applicants = Applicant::latest('interviewdate')->latest('hasbeenselecteddate')->with('applicantStatus')->whereIn('applicant_statuses_id', [ApplicantStatus::IS_SELECTED, ApplicantStatus::IS_WAITING])->get();
+            $applicants = Applicant::latest('interviewdate')->latest('hasbeenselecteddate')->with('applicantStatus')->whereIn('applicant_statuses_id', [ApplicantStatus::IS_SELECTED, ApplicantStatus::IS_WAITING])->paginate(5);
             return view('kawan.dashboard', compact('applicants'));
         }
         // }elseif(auth()->user()->role_id == Role::IS_ADVISER){
