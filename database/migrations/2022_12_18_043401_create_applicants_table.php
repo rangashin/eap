@@ -64,7 +64,6 @@ return new class extends Migration
             $table->tinyInteger('issubmitted')->default(Applicant::IS_SUBMITTED);
             $table->string('resubmissionmessage')->nullable();
             $table->foreignId('applicant_statuses_id')->default(ApplicantStatus::IS_UNDER_REVIEW)->nullable()->constrained()->nullOnDelete();
-            $table->decimal('sawpoints')->nullable();
             $table->timestamps();
         });
     }

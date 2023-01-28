@@ -78,6 +78,8 @@
                                 </tbody>
                             @endforeach                       
                         </table>
+                        <br>
+                        {{ $applicants->links() }}
                         @if (count($applicants) == 0)
                             <div class="py-6 px-3 bg-white  hover:bg-gray-50">
                                 <p class="font-black text-xl text-gray-700">{{ 'No data' }}</p>

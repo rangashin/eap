@@ -17,7 +17,7 @@ class ManageScholarController extends Controller
             $query->orderBy('applicantlastname', 'asc')->orderBy('kawan_id', 'asc')->with(['kawan', 'scholar' => function($query){
                 $query->with('scholarStatus');
             }]);
-        }, 'role'])->get();
+        }, 'role'])->paginate(50);
         return view('admin.scholar-index', compact('scholars'));
     }
 

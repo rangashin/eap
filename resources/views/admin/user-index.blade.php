@@ -63,12 +63,15 @@
                             </tbody>
                         @endforeach
                     </table>
+                    <br>
+                    {{ $users->links() }}
                     @if (count($users) == 0)
                         <div class="py-6 px-3 bg-white  hover:bg-gray-50">
                             <p class="font-black text-xl text-gray-700">{{ 'No data' }}</p>
                         </div>
                     @endif
                 </div>
+                
             </div>
         </div>
     </div>

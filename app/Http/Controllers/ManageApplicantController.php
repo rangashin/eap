@@ -29,7 +29,7 @@ class ManageApplicantController extends Controller
     }
 
     public function index(){
-        $applicants = Applicant::latest('formreceived')->with('applicantStatus')->get();
+        $applicants = Applicant::latest('formreceived')->with('applicantStatus')->paginate(50);
 
         // foreach($applicants as $applicant){
         //     $now = Carbon::now()->format('Y-m-d');
@@ -45,7 +45,7 @@ class ManageApplicantController extends Controller
     }
 
     public function review(){
-        $applicants = Applicant::latest('formreceived')->latest('updated_at')->with('applicantStatus')->where('applicant_statuses_id', ApplicantStatus::IS_UNDER_REVIEW)->get();
+        $applicants = Applicant::latest('formreceived')->latest('updated_at')->with('applicantStatus')->where('applicant_statuses_id', ApplicantStatus::IS_UNDER_REVIEW)->paginate(50);
         return view('admin.applicant-review', compact('applicants'));
     }
 
@@ -55,7 +55,7 @@ class ManageApplicantController extends Controller
     }
 
     public function selected(){
-        $applicants = Applicant::latest('hasbeenselecteddate')->latest('formreceived')->with('applicantStatus')->whereIn('applicant_statuses_id', [ApplicantStatus::IS_SELECTED, ApplicantStatus::IS_WAITING])->get();
+        $applicants = Applicant::latest('hasbeenselecteddate')->latest('formreceived')->with('applicantStatus')->whereIn('applicant_statuses_id', [ApplicantStatus::IS_SELECTED, ApplicantStatus::IS_WAITING])->paginate(50);
         
         // foreach($applicants as $applicant){
         //     $now = Carbon::now()->format('Y-m-d');
@@ -71,7 +71,7 @@ class ManageApplicantController extends Controller
     }
 
     public function rejected(){
-        $applicants = Applicant::latest('formreceived')->latest('updated_at')->with('applicantStatus')->where('applicant_statuses_id', ApplicantStatus::IS_REJECTED)->get();
+        $applicants = Applicant::latest('formreceived')->latest('updated_at')->with('applicantStatus')->where('applicant_statuses_id', ApplicantStatus::IS_REJECTED)->paginate(50);
         return view('admin.applicant-rejected', compact('applicants'));
     }
 
