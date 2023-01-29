@@ -60,7 +60,7 @@
                                 <x-input-error :messages="$errors->get('renewal')" class="mt-2" />
                             </div>
                             <div>
-                                <x-input-label for="scholaryears" :value="__('No. of Years As EAP Scholar')" class="uppercase"/>
+                                <x-input-label for="scholaryears" :value="__('No. of year(s) As EAP Scholar')" class="uppercase"/>
                                 <x-text-input id="scholaryears" class="mt-1 block w-full" type="number" name="scholaryears" value="{{ old('scholaryears', $applicant->scholaryears) }}"/>
                                 <x-input-error :messages="$errors->get('scholaryears')" class="mt-2" />
                             </div>

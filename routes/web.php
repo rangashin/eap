@@ -27,7 +27,7 @@ use App\Http\Controllers\ScholarSubmitRequirementsController;
 Route::view('/', 'sample-new');
 
 Route::middleware('auth')->group(function () {
-
+    Route::view('sample-submit', 'sample-submit');
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('verified');
 
     Route::get('account', [ProfileController::class, 'edit'])->name('profile.edit');
