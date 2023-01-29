@@ -10,6 +10,10 @@ use Twilio\Rest\Client;
 use App\Models\Applicant;
 use Illuminate\Http\Request;
 use App\Models\ApplicantStatus;
+use App\Notifications\ApplicantResubmissionNotification;
+use App\Notifications\SelectedForInterviewNotification;
+use App\Notifications\WelcomeScholarNotification;
+use Illuminate\Support\Facades\Notification;
 
 class ManageApplicantController extends Controller
 {
@@ -31,16 +35,6 @@ class ManageApplicantController extends Controller
     public function index(){
         $applicants = Applicant::latest('formreceived')->with('applicantStatus')->paginate(50);
 
-        // foreach($applicants as $applicant){
-        //     $now = Carbon::now()->format('Y-m-d');
-        //     $enddate = Carbon::parse($applicant->hasbeenselecteddate)->addDays(9)->format('Y-m-d');
-        //     if((Carbon::parse($now))->gt($enddate) && empty($applicant->interviewdate)){
-        //         $applicant->update(['applicant_statuses_id' => ApplicantStatus::IS_REJECTED]);
-        //         // SMS NOTIFICATION
-        //         continue;
-        //     }
-        // }
-
         return view('admin.applicant-index', compact('applicants'));
     }
 
@@ -57,16 +51,6 @@ class ManageApplicantController extends Controller
     public function selected(){
         $applicants = Applicant::latest('hasbeenselecteddate')->latest('formreceived')->with('applicantStatus')->whereIn('applicant_statuses_id', [ApplicantStatus::IS_SELECTED, ApplicantStatus::IS_WAITING])->paginate(50);
         
-        // foreach($applicants as $applicant){
-        //     $now = Carbon::now()->format('Y-m-d');
-        //     $enddate = Carbon::parse($applicant->hasbeenselecteddate)->addDays(9)->format('Y-m-d');
-        //     if((Carbon::parse($now))->gt($enddate) && empty($applicant->interviewdate)){
-        //         $applicant->update(['applicant_statuses_id' => ApplicantStatus::IS_REJECTED]);
-        //         // SMS NOTIFICATION
-        //         continue;
-        //     }
-        // }
-        
         return view('admin.applicant-selected', compact('applicants'));
     }
 
@@ -81,7 +65,14 @@ class ManageApplicantController extends Controller
         ]);
         $temp = Applicant::find($applicant);
         $temp->update(['resubmissionmessage' => $request->resubmissionmessage, 'applicant_statuses_id' => ApplicantStatus::IS_NEED_RESUBMMISSION, 'issubmitted' => Applicant::IS_NOT_SUBMMITED]);
-
+        $user = User::find($applicant);
+        $data = [
+            'greeting' => 'Hello '.$temp->applicantfirstname.'!',
+            'body' => 'Your registration application has been tagged as resubmit because of the following:',
+            'message' => '<ul><li>'.$request->resubmissionmessage.'</li></ul>',
+            'ender' => '<b>Proverbs 24:16</b><br><i>for though the righteous fall seven times, they rise again,<br>but the wicked stumble when calamity strikes.</i>'
+        ];
+        Notification::send($user, new ApplicantResubmissionNotification($data));
         return redirect()->route('admin.applicant.review.index')->with('success', $temp->full_name.' has been resubmitted.');
     }
 
@@ -93,6 +84,16 @@ class ManageApplicantController extends Controller
                 return redirect()->route('admin.applicant.review.index')->with('error', 'Selection for interview must be a NEW applicant.');
             }else{
                 Applicant::whereIn('user_id', $request->userCheckbox)->update(['applicant_statuses_id' => ApplicantStatus::IS_SELECTED, 'hasbeenselecteddate' => date('Y-m-d')]);
+                foreach($request->userCheckbox as $id){
+                    $user = User::find($id);
+                    $data = [
+                        'greeting' => 'Hello '.$user->applicant->applicantfirstname.'!',
+                        'body' => 'Congratulations on being selected for the interview! You\'re selected as of '.$user->applicant->hasbeenselecteddate.'. Log in now using the button below to set your interview date. Failure to select an interview date within 7 days or 1 week after the selection, you will be automatically rejected by the system.',
+                        'ender' => '<b>Proverbs 12:23</b><br><i>"A prudent man conceals knowledge,<br>But the heart of fools proclaims folly."</i>'
+                    ];
+                    Notification::send($user, new SelectedForInterviewNotification($data));
+                }
+
                 return redirect()->route('admin.applicant.review.index')->with('success', 'The selection of applicants for the interview have been updated.');
             }
         }elseif($request->applicantstatus == ApplicantStatus::IS_REJECTED){
@@ -106,6 +107,14 @@ class ManageApplicantController extends Controller
                 User::whereIn('id', $request->userCheckbox)->update(['role_id' => Role::IS_SCHOLAR]);
                 foreach($request->userCheckbox as $id){
                     Scholar::create(['applicant_user_id' => $id]);
+
+                    $user = User::find($id);
+                    $data = [
+                        'greeting' => 'Hello '.$user->applicant->applicantfirstname.'!',
+                        'body' => 'Congratulations on being accepted as an EAP scholar! ',
+                        'ender' => '<b>Proverbs 18:15</b><br><i>"An intelligent heart acquires knowledge, and the ear of the wise seeks knowledge."</i>'
+                    ];
+                    Notification::send($user, new WelcomeScholarNotification($data));
                 }
                 
                 // $twilio = new Client(config('twilio.account_sid'), config('twilio.auth_token'));
@@ -147,6 +156,14 @@ class ManageApplicantController extends Controller
                 User::whereIn('id', $request->userCheckbox)->update(['role_id' => Role::IS_SCHOLAR]);
                 foreach($request->userCheckbox as $id){
                     Scholar::create(['applicant_user_id' => $id]);
+
+                    $user = User::find($id);
+                    $data = [
+                        'greeting' => 'Hello '.$user->applicant->applicantfirstname.'!',
+                        'body' => 'Congratulations on being accepted as an EAP scholar! ',
+                        'ender' => '<b>Proverbs 2:10</b><br><i>"For wisdom will come into your heart, and knowledge will be pleasant to your soul."</i>'
+                    ];
+                    Notification::send($user, new WelcomeScholarNotification($data));
                 }
                 return redirect()->route('admin.applicant.selected.index')->with('success', 'The selection of applicants for the admission have been updated.');
             }

@@ -7,8 +7,11 @@ use App\Models\User;
 use App\Models\Scholar;
 use App\Models\Applicant;
 use Illuminate\Http\Request;
-use App\Http\Requests\UpdateAttendanceRequest;
 use App\Models\ScholarStatus;
+use Illuminate\Support\Facades\Notification;
+use App\Http\Requests\UpdateAttendanceRequest;
+use App\Notifications\ApplicantResubmissionNotification;
+use App\Notifications\ScholarResubmissionNotification;
 
 class ManageScholarController extends Controller
 {
@@ -102,6 +105,14 @@ class ManageScholarController extends Controller
 
         $temp = Scholar::find($applicant_user_id);
         $temp->update(['scholarresubmissionmessage' => $request->scholarresubmissionmessage, 'scholar_statuses_id' => ScholarStatus::IS_INCOMPLETE]);
+        $user = User::find($applicant_user_id);
+        $data = [
+            'greeting' => 'Hello '.$temp->applicant->applicantfirstname.'!',
+            'body' => 'Your submitted document has been rejected because of the following:',
+            'message' => '<ul><li>'.$request->scholarresubmissionmessage.'</li></ul>',
+            'ender' => '<b>2 Corinthians 4:8</b><br><i>We are hard pressed on every side, but not crushed; perplexed, but not in despair;</i>'
+        ];
+        Notification::send($user, new ScholarResubmissionNotification($data));
         return redirect()->route('admin.scholar.show', $applicant_user_id)->with('success', $temp->applicant->full_name.' needs resubmission of requirements.');
     }
 }
