@@ -17,7 +17,7 @@
                         <span class="font-medium">Info alert!</span> Change a few things up and try submitting again.
                         <p class="text-xl font-black pt-3">NOTE:</p>
                         <ul class="list-disc pl-5">
-                            <li class="font-bold text-lg">{{ 'tite' }}</li>
+                            <li class="font-bold text-lg">{{ $scholar->scholarresubmissionmessage }}</li>
                         </ul>
                     </div>
                 </div>
