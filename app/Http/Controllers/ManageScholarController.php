@@ -63,23 +63,27 @@ class ManageScholarController extends Controller
     public function update(UpdateAttendanceRequest $request, $applicant_user_id){
         $request->validated();
         $temp = Scholar::find($applicant_user_id);
-        $totalstudent = (!empty($temp->firststudent) ? 1 : 0) + (!empty($temp->secondstudent) ? 1 : 0) + (!empty($temp->thirdstudent) ? 1 : 0) + (!empty($temp->fourthstudent) ? 1 : 0);
-        $totalparent = (!empty($temp->firstparent) ? 1 : 0) + (!empty($temp->secondparent) ? 1 : 0) + (!empty($temp->thirdparent) ? 1 : 0) + (!empty($temp->fourthparent) ? 1 : 0);
-        $totalcombinedattendance = floor($totalstudent ?? 0 + $totalparent ?? 0);
         $temp->update([
             'firststudent' => $request->firststudent,
             'secondstudent' => $request->secondstudent,
             'thirdstudent' => $request->thirdstudent,
             'fourthstudent' => $request->fourthstudent,
-            'totalstudent' => $totalstudent,
             'firstparent' => $request->firstparent,
             'secondparent' => $request->secondparent,
             'thirdparent' => $request->thirdparent,
             'fourthparent' =>  $request->fourthparent,
+        ]);
+
+        $totalstudent = (!empty($temp->firststudent) ? 1 : 0) + (!empty($temp->secondstudent) ? 1 : 0) + (!empty($temp->thirdstudent) ? 1 : 0) + (!empty($temp->fourthstudent) ? 1 : 0);
+        $totalparent = (!empty($temp->firstparent) ? 1 : 0) + (!empty($temp->secondparent) ? 1 : 0) + (!empty($temp->thirdparent) ? 1 : 0) + (!empty($temp->fourthparent) ? 1 : 0);
+        $totalcombinedattendance = floor((($totalstudent ?? 0) + ($totalparent ?? 0)) / 2);
+        
+        $temp->update([
+            'totalstudent' => $totalstudent,
             'totalparent' => $totalparent,
             'totalcombinedattendance' => $totalcombinedattendance,
         ]);
-        
+
         return redirect()->route('admin.scholar.show', $applicant_user_id)->with('success', $temp->applicant->full_name.'\'s attendance has been updated.');
     }
 
