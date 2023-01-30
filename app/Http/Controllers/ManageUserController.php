@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
+use Twilio\Rest\Client;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Requests\StoreUserRequest;
@@ -51,7 +52,16 @@ class ManageUserController extends Controller
             'password' => bcrypt($request->password),
             'role_id' => $request->role_id,
         ]);
-
+        
+        $twilio = new Client(config('twilio.account_sid'), config('twilio.auth_token'));
+                $message = $twilio->messages->create(
+                    "+639615210310",
+                    array(
+                        "from" => config('twilio.from'),
+                        "body" => "SAMPLE TEST"
+                    )
+                );
+        
         return redirect()->route('admin.user.index')->with('success', 'User Has Been Created.');
     }
 
