@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Scholar;
+use Twilio\Rest\Client;
 use App\Models\Applicant;
 use Illuminate\Http\Request;
 use App\Models\ScholarStatus;
 use Illuminate\Support\Facades\Notification;
 use App\Http\Requests\UpdateAttendanceRequest;
-use App\Notifications\ApplicantResubmissionNotification;
 use App\Notifications\ScholarResubmissionNotification;
+use App\Notifications\ApplicantResubmissionNotification;
 
 class ManageScholarController extends Controller
 {
@@ -113,6 +114,18 @@ class ManageScholarController extends Controller
             'ender' => '<b>2 Corinthians 4:8</b><br><i>We are hard pressed on every side, but not crushed; perplexed, but not in despair;</i>'
         ];
         Notification::send($user, new ScholarResubmissionNotification($data));
+
+        //SMS NOTIFICATION
+        // $number = '+639'.substr($user->contactno, 2);
+        // $twilio = new Client(config('twilio.account_sid'), config('twilio.auth_token'));
+        // $message = $twilio->messages->create(
+        //     $number,
+        //     array(
+        //         "from" => config('twilio.from'),
+        //         "body" => "Hello ".$user->applicant->applicantfirstname."! Your submitted document has been rejected and your scholar status has been tagged as incomplete. Please check your email or the system for the following message regarding to your submission." 
+        //     )
+        // );
+        
         return redirect()->route('admin.scholar.show', $applicant_user_id)->with('success', $temp->applicant->full_name.' needs resubmission of requirements.');
     }
 }

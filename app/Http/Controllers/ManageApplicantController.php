@@ -20,13 +20,26 @@ class ManageApplicantController extends Controller
 
     public function __construct()
     {
-        $applicants = Applicant::all();
+        // $applicants = Applicant::all();
+        $applicants = Applicant::where('applicant_statuses_id', ApplicantStatus::IS_SELECTED)->get();
         foreach($applicants as $applicant){
             $now = Carbon::now()->format('Y-m-d');
             $enddate = Carbon::parse($applicant->hasbeenselecteddate)->addDays(9)->format('Y-m-d');
             if((Carbon::parse($now))->gt($enddate) && empty($applicant->interviewdate)){
                 $applicant->update(['applicant_statuses_id' => ApplicantStatus::IS_REJECTED]);
+
                 // SMS NOTIFICATION
+                // $user = User::find($applicant->user_id);
+                // $number = '+639'.substr($user->contactno, 2);
+                // $twilio = new Client(config('twilio.account_sid'), config('twilio.auth_token'));
+                // $message = $twilio->messages->create(
+                //     $number,
+                //     array(
+                //         "from" => config('twilio.from'),
+                //         "body" => "Hello ".$user->applicant->applicantfirstname.". Your application for EAP scholaship has been automatically rejected by the system after not choosing your interview date." 
+                //     )
+                // );
+
                 continue;
             }
         }
@@ -73,6 +86,18 @@ class ManageApplicantController extends Controller
             'ender' => '<b>Proverbs 24:16</b><br><i>for though the righteous fall seven times, they rise again,<br>but the wicked stumble when calamity strikes.</i>'
         ];
         Notification::send($user, new ApplicantResubmissionNotification($data));
+
+        //SMS NOTIFICATION
+        // $number = '+639'.substr($user->contactno, 2);
+        // $twilio = new Client(config('twilio.account_sid'), config('twilio.auth_token'));
+        // $message = $twilio->messages->create(
+        //     $number,
+        //     array(
+        //         "from" => config('twilio.from'),
+        //         "body" => "Hello ".$user->applicant->applicantfirstname."! Your registration application has been tagged as resubmit. Please check your email or the system for the following resubmission message regarding to your application." 
+        //     )
+        // );
+
         return redirect()->route('admin.applicant.review.index')->with('success', $temp->full_name.' has been resubmitted.');
     }
 
@@ -92,6 +117,17 @@ class ManageApplicantController extends Controller
                         'ender' => '<b>Proverbs 12:23</b><br><i>"A prudent man conceals knowledge,<br>But the heart of fools proclaims folly."</i>'
                     ];
                     Notification::send($user, new SelectedForInterviewNotification($data));
+
+                    //SMS NOTIFICATION
+                    // $number = '+639'.substr($user->contactno, 2);
+                    // $twilio = new Client(config('twilio.account_sid'), config('twilio.auth_token'));
+                    // $message = $twilio->messages->create(
+                    //     $number,
+                    //     array(
+                    //         "from" => config('twilio.from'),
+                    //         "body" => "Congratulations on being selected for the interview! You're selected as of ".$user->applicant->hasbeenselecteddate.". Log in now to your set your interview date. Failure to select an interview date within 7 days or 1 week after the selection, you will be automatically rejected by the system." 
+                    //     )
+                    // );
                 }
 
                 return redirect()->route('admin.applicant.review.index')->with('success', 'The selection of applicants for the interview have been updated.');
@@ -111,21 +147,22 @@ class ManageApplicantController extends Controller
                     $user = User::find($id);
                     $data = [
                         'greeting' => 'Hello '.$user->applicant->applicantfirstname.'!',
-                        'body' => 'Congratulations on being accepted as an EAP scholar! ',
+                        'body' => 'Congratulations on being accepted as an EAP scholar!',
                         'ender' => '<b>Proverbs 18:15</b><br><i>"An intelligent heart acquires knowledge, and the ear of the wise seeks knowledge."</i>'
                     ];
                     Notification::send($user, new WelcomeScholarNotification($data));
-                }
-                
-                // $twilio = new Client(config('twilio.account_sid'), config('twilio.auth_token'));
-                // $message = $twilio->messages->create(
-                //     "+1234567890",
-                //     array(
-                //         "from" => config('twilio.from'),
-                //         "body" => "Hello from Laravel!"
-                //     )
-                // );
 
+                    //SMS NOTIFICATION
+                    // $number = '+639'.substr($user->contactno, 2);
+                    // $twilio = new Client(config('twilio.account_sid'), config('twilio.auth_token'));
+                    // $message = $twilio->messages->create(
+                    //     $number,
+                    //     array(
+                    //         "from" => config('twilio.from'),
+                    //         "body" => "Hello ".$user->applicant->applicantfirstname."! Congratulations on being accepted as an EAP scholar! Check your email for the announcement." 
+                    //     )
+                    // );
+                }
 
                 return redirect()->route('admin.applicant.review.index')->with('success', 'The selection of applicants for the admission have been updated.');
             }
@@ -138,6 +175,17 @@ class ManageApplicantController extends Controller
         ]);
 
         Applicant::where('user_id', auth()->user()->id)->update(['interviewdate' => $request->interviewdate, 'applicant_statuses_id' => ApplicantStatus::IS_WAITING]);
+
+        //SMS NOTIFICATION
+        // $number = '+639'.substr(auth()->user()->contactno, 2);
+        // $twilio = new Client(config('twilio.account_sid'), config('twilio.auth_token'));
+        // $message = $twilio->messages->create(
+        //     $number,
+        //     array(
+        //         "from" => config('twilio.from'),
+        //         "body" => "[EAP Applicant Update] You have set your interview date on ".$request->interviewdate.". Please be minded that be ready and attend your selected interview date. Failure to be present on the day of the interview will be automatically rejected." 
+        //     )
+        // );
 
         return redirect()->route('dashboard')->with('success', 'Your interview date has been set.');
     }
@@ -164,6 +212,17 @@ class ManageApplicantController extends Controller
                         'ender' => '<b>Proverbs 2:10</b><br><i>"For wisdom will come into your heart, and knowledge will be pleasant to your soul."</i>'
                     ];
                     Notification::send($user, new WelcomeScholarNotification($data));
+
+                    //SMS NOTIFICATION
+                    // $number = '+639'.substr($user->contactno, 2);
+                    // $twilio = new Client(config('twilio.account_sid'), config('twilio.auth_token'));
+                    // $message = $twilio->messages->create(
+                    //     $number,
+                    //     array(
+                    //         "from" => config('twilio.from'),
+                    //         "body" => "Hello ".$user->applicant->applicantfirstname."! Congratulations on being accepted as an EAP scholar! Check your email for the announcement." 
+                    //     )
+                    // );
                 }
                 return redirect()->route('admin.applicant.selected.index')->with('success', 'The selection of applicants for the admission have been updated.');
             }
