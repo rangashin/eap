@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}" />
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
@@ -196,14 +196,15 @@
             </ul>
             <div id="fullWidthTabContent" class="border-t border-gray-200">
                 <div class="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800" id="mass" role="tabpanel" aria-labelledby="mass-tab">
-                    <dl class="grid max-w-screen-xl  gap-8 p-4 mx-auto text-gray-900 xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 dark:text-white sm:p-8">
+                    <dl class="grid max-w-screen-xl  gap-8 p-4 mx-auto text-gray-900 xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 content-start dark:text-white sm:p-8">
                         <div
-                            class="flex flex-col max-w-lg p-6 items-center justify-center xl:p-8">
+                            class="flex flex-col max-w-lg p-6 items-center  xl:p-8">
                             <p class="text-2xl font-bold text-gray-900 md:text-1xl">Sunday</p>
                             <ul class="font-light  sm:text-xl dark:text-gray-400">
-                                <li class="list-disc ml-2 text-left">7:00 AM</li>
-                                <li class="list-disc ml-2 text-left">9:00 AM</li>
-                                <li class="list-disc ml-2 text-left">11:00 AM</li>
+                                <li class="list-disc ml-2 text-left">7:00 AM <b>*</b></li>
+                                <li class="list-disc ml-2 text-left">10:00 AM</li>
+                                <li class="list-disc ml-2 text-left">4:00 PM</li>
+                                <li class="list-disc ml-2 text-left">6:00 PM <b>*</b></li>
                             </ul>
                             <p class="font-light text-center lg:text-xl sm:text-lg dark:text-gray-400">* Online Mass
                                 are via
@@ -211,31 +212,27 @@
                             </p>
                         </div>
                         <div
-                            class="flex flex-col max-w-lg p-6 items-center justify-center xl:p-8">
+                            class="flex flex-col max-w-lg p-6 items-center  xl:p-8">
                             <p class="text-2xl font-bold text-gray-900 md:text-1xl">Monday-Friday</p>
                             <ul class="font-light  sm:text-xl dark:text-gray-400">
-                                <li class="list-disc ml-2 text-left">7:00 AM</li>
-                                <li class="list-disc ml-2 text-left">6:00 PM</li>
-                                
+                                <li class="list-disc ml-2 text-left">7:00 AM</li>  
                             </ul>
                             <p class="font-light text-center lg:text-xl sm:text-lg dark:text-gray-400">
                                * Every Wednesday afternoon Mass, there is a Novena to our Mother of Perpetual Help.
                             </p>
                         </div>
                         <div
-                            class="flex flex-col max-w-lg p-6 items-center justify-center xl:p-8">
+                            class="flex flex-col max-w-lg p-6 items-center  xl:p-8">
                             <p class="text-2xl font-bold text-gray-900 md:text-1xl">Saturday</p>
                             <ul class="font-light  sm:text-xl dark:text-gray-400">
-                                <li class="list-disc ml-2 text-left">7:00 AM</li>
-                                <li class="list-disc ml-2 text-left">6:00 PM (Anticipated Mass)</li>
-                                
+                                <li class="list-disc ml-2 text-left">7:00 AM</li>                                
                             </ul>
                         </div>
                     </dl>
                 </div>
                 <div class="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800" id="about" role="tabpanel" aria-labelledby="about-tab">
                     
-                    <dl class="grid max-w-screen-xl  gap-8 p-4 mx-auto text-gray-900 xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 dark:text-white sm:p-8">
+                    <dl class="grid max-w-screen-xl  gap-8 p-4 mx-auto text-gray-900 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 dark:text-white sm:p-8">
                         
                         <div class="flex flex-col items-center justify-center max-w-sm bg-white border border-gray-200 rounded-lg shadow overflow-hidden dark:bg-gray-800 dark:border-gray-700">
                             <img class="rounded-t-lg hover:scale-110" src="./images/1baptism.jpg" alt="" />
@@ -253,6 +250,12 @@
                             <img class="rounded-t-lg hover:scale-110" src="./images/3funeral.jpg" alt="" />
                             <div class="p-5">
                                 <h5 class="mb-2 text-2xl text-center font-bold tracking-tight text-gray-900 dark:text-white">Funeral</h5>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center justify-center max-w-sm bg-white border border-gray-200 rounded-lg shadow overflow-hidden dark:bg-gray-800 dark:border-gray-700">
+                            <img class="rounded-t-lg hover:scale-110" src="./images/4kumpisal.jpg" alt="" />
+                            <div class="p-5">
+                                <h5 class="mb-2 text-2xl text-center font-bold tracking-tight text-gray-900 dark:text-white">Kumpisal</h5>
                             </div>
                         </div>
                     </dl>  
@@ -310,7 +313,7 @@
                 <!-- Pricing Card -->
                 <div
                     class="flex flex-col max-w-lg p-6 mx-auto text-justify text-gray-900 bg-white border border-gray-100 rounded-lg shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
-                    <h3 class="mb-4 text-2xl font-semibold">Kindergarten-Elementary</h3>
+                    <h3 class="mb-4 text-2xl font-semibold">Elementary</h3>
                     <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">The monthly allowance of <a
                             class="font-semibold">₱700</a> is given every second Saturday/Sunday of the month for ten
                         months</p>
